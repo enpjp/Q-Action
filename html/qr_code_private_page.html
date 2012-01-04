@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}<link rel="profile" href="http://microformats.org/profile/hcard" />{% endblock %}
+
+{% block title %}{{ Cardtitle }}{% endblock %}
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+
+<div> </div>
+<div class="black-menu">
+	<ul class = "nav">
+{% if logon_message != "You will need to sign in with a valid gmail account to use this software." %}	
+	<li><a href="/landing_page_list.html">My Cards</a></li>
+{% endif %}
+	</ul>
+ </div>
+
+{% endblock %}
+{% block page_heading %}{% endblock %}
+{% block content %}
+<h2> Card type: {{CardID}} </h2>
+
+{% include display %}
+
+
+<div><img class="banner_line_img_landing" src="/images/line_1.png" alt="line" /></div>
+<img src="{{my_qr_code|safe}}" alt="QR Code to link to this page" title="QR Code to link to this page" />
+<p>This qr code links to: <br /><a href="/{{ Key_Name }}?no_scan=True" >{{my_qr_data}}</a></p>
+<p>Download a copy by using "right-click" and the "save image as" options in your web browser.</p>
+Scan Counter: {{scan_counter}}
+
+
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="{{edit_my_record}}&no_scan=True">Edit Card</a></li>
+	</ul>
+ </div>
+</div>
+
+{% endblock %}
+
+{% block footer %}
+
+
+
+{% endblock %}

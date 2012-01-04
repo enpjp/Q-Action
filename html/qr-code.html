@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+
+{% block content %}
+<p>
+<img src="{{my_qr_code}}" alt="QR Code to link to this page" title="QR Code to link to this page" /></p>
+<p> This qr code links to:</p>
+<p>{{my_qr_url}}</p>
+
+{% endblock %}

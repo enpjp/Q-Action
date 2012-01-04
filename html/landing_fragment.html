@@ -1,0 +1,76 @@
+<div id="address" class="vcard">
+{% if First_Name != "" or Middle_Name != "" or Last_Name != ""  %}
+<span class="fn n" lang="no">
+ <span class="given-name">{{First_Name}}</span> 
+ <span class="additional-name">{{Middle_Name}}</span>
+ <span class="family-name">{{Last_Name}}</span>
+</span>
+{% endif %}
+
+{% if Organisation != "" %}
+<div class="fn org">{{Organisation}}</div>
+{% endif %}
+{% if W_address_line_1 != "" or W_address_Post_Town != "" or W_address_County != "" or W_address_Post_Code != "" or W_address_Country != "" %}
+<div class="adr">
+	{% if W_address_line_1 != "" or W_address_line_2 != "" %}
+		<div class="street-address">{{W_address_line_1}} 	
+		{% if W_address_line_2 != "" %}<br />{{W_address_line_2}}{% endif %}
+		</div>
+	{% endif %}
+	{% if W_address_Post_Town != "" %}
+	<span class="locality">{{W_address_Post_Town}}</span><br />
+	{% endif %}
+	{% if W_address_County != "" %}
+	<span class="region">{{W_address_County}}</span> <br />
+	{% endif %}
+	{% if W_address_Post_Code != "" %}
+	<span class="postal-code">{{W_address_Post_Code}}</span><br />
+	{% endif %}
+	{% if W_address_Country != "" %}
+	<span class="country-name">{{W_address_Country}}</span> <br />
+	{% endif %}
+</div>
+{% endif %}
+
+{% if Work_Phone != "" %}
+<span class="tel">
+ 	<span class="type">Work</span>:
+ 	<span class="value">{{Work_Phone}}</span>
+</span><br />
+{% endif %}
+{% if Home_Phone != "" %}
+
+<span class="tel">
+ 	<span class="type">Home</span>:
+ 	<span class="value">{{Home_Phone}}</span>
+</span><br />
+{% endif %}
+
+{% if Mobile_Phone != "" %}
+<span class="tel">
+ 	<span class="type">Mobile</span>:
+ 	<span class="value">{{Mobile_Phone}}</span>
+</span><br />
+{% endif %}
+
+{% if Email_address != "" %}
+<div>Email: {{Email_address}}</div>
+{% endif %}
+{% if Web_url != "" %}
+<div>URL: {{Web_url}} </div>
+{% endif %}
+{% if Text_message != "" %}
+<div class ="Text_message">
+{% autoescape off %} {{Text_message}} {% endautoescape %}
+</div>
+{% endif %}
+
+{% if Email_address != "" %}
+<div> <a class="email" href="mailto:{{Email_address}}">Email Me</a></div>
+{% endif %}
+{% if Web_url != "" %}
+<div><a class="url fn org" href="{{Web_url}}">Go To My URL</a></div>
+{% endif %}
+
+
+</div>

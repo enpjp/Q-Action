@@ -1,0 +1,74 @@
+
+
+<div id="address" class="vcard">
+{% if my_place.First_Name != "" or my_place.Middle_Name != "" or my_place.Last_Name != ""  %}
+<span class="fn n" lang="no">
+ <span class="given-name">{{my_place.First_Name}}</span> 
+ <span class="additional-name">{{my_place.Middle_Name}}</span>
+ <span class="family-name">{{my_place.Last_Name}}</span>
+</span>
+{% endif %}
+
+{% if my_place.Organisation != "" %}
+<div class="fn org">{{my_place.Organisation}}</div>
+{% endif %}
+{% if my_place.W_address_line_1 != "" or my_place.W_address_Post_Town != "" or my_place.W_address_County != "" or my_place.W_address_Post_Code != "" or my_place.W_address_Country != "" %}
+<div class="adr">
+	{% if my_place.W_address_line_1 != "" or my_place.W_address_line_2 != "" %}
+		<div class="street-address">{{my_place.W_address_line_1}} 	
+		{% if my_place.W_address_line_2 != "" %}<br />{{my_place.W_address_line_2}}{% endif %}
+		</div>
+	{% endif %}
+	{% if my_place.W_address_Post_Town != "" %}
+	<span class="locality">{{my_place.W_address_Post_Town}}</span><br />
+	{% endif %}
+	{% if my_place.W_address_County != "" %}
+	<span class="region">{{my_place.W_address_County}}</span> <br />
+	{% endif %}
+	{% if my_place.W_address_Post_Code != "" %}
+	<span class="postal-code">{{my_place.W_address_Post_Code}}</span><br />
+	{% endif %}
+	{% if my_place.W_address_Country != "" %}
+	<span class="country-name">{{my_place.W_address_Country}}</span> <br />
+	{% endif %}
+</div>
+{% endif %}
+
+{% if my_place.Work_Phone != "" %}
+<span class="tel">
+ 	<span class="type">Work</span>:
+ 	<span class="value">{{my_place.Work_Phone}}</span>
+</span><br />
+{% endif %}
+{% if my_place.Home_Phone != "" %}
+
+<span class="tel">
+ 	<span class="type">Home</span>:
+ 	<span class="value">{{my_place.Home_Phone}}</span>
+</span><br />
+{% endif %}
+
+{% if my_place.Mobile_Phone != "" %}
+<span class="tel">
+ 	<span class="type">Mobile</span>:
+ 	<span class="value">{{my_place.Mobile_Phone}}</span>
+</span><br />
+{% endif %}
+
+{% if my_place.Email_address != "" %}
+<div>Email: {{my_place.Email_address}}</div>
+{% endif %}
+{% if my_place.Web_url != "" %}
+<div>URL: {{my_place.Web_url}} </div>
+{% endif %}
+</div>
+{% if my_place.Text_message != "" %}
+<div class ="Text_message">
+	{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}
+</div>
+{% endif %}
+
+
+
+
+

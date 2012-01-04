@@ -1,0 +1,14 @@
+{% for  value in edit_field_in_form  %}
+	{% if value.2 != "" %}
+		{% if value.1 in field_widget and value.4 == "url_link" %}
+			<div class="black-menu">
+			<ul class = "nav">
+			<li><a href="{{ value.2 }}?back_button={{Key_Name}}{{no_scan_string}}">Further Info</a></li></ul>
+
+
+
+		{% else %}
+			<div class = 'value'>{{value.0}} : {{ value.2 }} </div>
+		{% endif %}
+	{% endif %}
+{% endfor %}

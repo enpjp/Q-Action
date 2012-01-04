@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}<link rel="profile" href="http://microformats.org/profile/hcard" />
+
+{% if Google_analytics != "" %}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{Google_analytics}}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+{% endif %}
+{% endblock %}
+
+{% block title %}{{ Cardtitle }}{% endblock %}
+{% block body_tag %}{% endblock %}
+
+{% block logon %}{% endblock %}
+{% block banner_tag %} 
+<img class="banner_line_img" src="/images/line_1.png" alt="line" />
+{% endblock %}
+
+
+
+
+
+
+{% block main-menu %}
+{% if back_button != "" %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="{{back_button}}">Back</a></li>
+	</ul>
+ </div>
+{% endif %}
+
+{% endblock %}
+{% block page_heading %}{% endblock %}
+
+
+{% block content %}
+
+{% include display %}
+
+{% endblock %}
+
+{% block footer %}
+
+<div class="footer-menu">
+	<ul class = "nav"> 
+
+	</ul>
+</div>
+
+
+{% if Stat_counter != "" %}
+<div id="statcounter_image" style="display:inline;"><a
+title="web statistics"
+href="http://statcounter.com/free-web-stats/"
+class="statcounter"><img
+src="http://c.statcounter.com/{{Stat_counter}}"
+alt="web statistics" style="border:none;" /></a></div>
+{% endif %}
+
+{% endblock %}

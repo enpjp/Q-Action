@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/info/expert.html">back</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+{% block page_heading %}<h2>Upload Complete</h2>{% endblock %}
+
+{% block content %}
+<p>You may have uploaded your edited edited file and your on-line cards have been updated.</p>
+<h3>Hints</h3>
+<p>If editing with a spreadsheet and your software does not automatically detect the required options use:</p>
+<ul>
+<li>Unicode UTF7</li>
+<li>Separated by comma , </li>
+<li>Text delimiter single quote &#39; </li>
+<li>The first column Key_String should never be edited. </li>
+<li>All other columns are optional and may be deleted or re-ordered</li>
+<li>You may delete entire rows.</li>
+<li>When uploading an edited file you must be signed in. Your file is unique to you and will not work on any other account.</li>
+</ul>
+{% endblock %}

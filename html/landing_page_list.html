@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}<link rel="profile" href="http://microformats.org/profile/hcard"/>{% endblock %}
+{% block title %}Card List{% endblock %}
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav"> 
+	<li><a href="/">Home</a></li>
+{% if count_my_records < page_limit %}
+  <li><a href="/create.html">New Card</a></li>
+{% endif %}
+		<li><a href="/info/expert.html">Expert Features</a></li>
+
+	</ul>
+ </div>{% endblock %}
+{% block page_heading %}<h1>Card List</h1>{% endblock %}
+
+{% block content %}
+{% if days_to_end_of_trial < 50  and days_to_end_of_trial > 0  and days_to_end_of_subscription < 1 %}
+
+<p>You have {{days_to_end_of_trial}} day{{ days_to_end_of_trial|pluralize }} of your Q-Action Free trial left.
+</p>
+{% endif %}
+{% if days_to_end_of_subscription < 50 and days_to_end_of_subscription > 0  %}
+<p>You have {{days_to_end_of_subscription }} day{{ days_to_end_of_subscription|pluralize }} of your Q-Action subscription left.
+</p>
+{% endif %}
+<p>
+{% if count_my_records > page_limit %} Lucky you!{% endif %}
+
+You currently have {{count_my_records}} card{{ count_my_records|pluralize }}. Your allowance is currently set to {{page_limit}} cards.</p>
+{% if suspend_account == 'True' %}
+<h1> Your account is currently suspended! </h1>
+{% endif %}
+
+
+{% for card in my_landing_page_dict_list %}
+
+<div class = 'value'>Card Type: {{ card.CardID}} </div>
+<div class = 'value'>Card Title: {{ card.Cardtitle}} </div>
+<div class = 'value'>Scan Counter: {{ card.scan_counter}} </div>
+
+
+
+
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="{{card.my_card_url}}">View Card</a></li>
+	<li><a href="{{card.edit_my_card_url}}">Edit Card</a></li>
+	</ul>
+ </div>
+<img class="banner_line_img_landing" src="/images/line_1.png" alt="line" />
+
+{% endfor %}
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+
+
+{% endblock %}

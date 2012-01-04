@@ -1,0 +1,104 @@
+
+{% for key in edit_field_in_form %}
+
+
+
+
+
+{% if key.1 in field_widget %}
+	{% if key.4 == "url_link" %}
+<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }} (include http:// https:// etc.):</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();"  /></div>
+	{% endif %}
+
+
+
+	{% if key.4 == "Text_area" %}
+<div class='field' id='field_{{key.1}}' >
+<div class= "textarea_container"> <div class = 'field_description'>{{ key.0 }}: </div>  <textarea name="{{ key.1 }}"  id="{{ key.1 }}" rows="5" cols="30" onfocus= "state_changed();">{{ key.2 }}</textarea></div>
+</div>
+	{% endif %}
+	
+{% if key.4 == "mini_web" %}
+<div class = 'field' id='field_{{key.1}}'>  
+		<div class = 'field_description'>Select Mini Web Page:</div>
+	<select name='{{ key.1 }}'  id='{{ key.1 }}' onfocus= "state_changed();" >
+
+	{% for page, value in mini_web_list.items %}
+	{% if Key_Name != page %}
+	<option  value="{{ page }}"
+	{% if page == key.2 %}
+	selected="selected"
+	{% endif %}
+	> {{ value }}  ({{ page }})</option>
+	{% endif %}
+	{% endfor %}
+	</select>
+</div>
+{% endif %}
+{% if key.4 == "Date_field" %}
+<!-- 
+<script type="text/javascript">
+	window.onload = function(){
+		new JsDatePick({
+			useMode:2,
+			target:"{{ key.1 }}",
+			dateFormat:"%d-%M-%Y"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2020],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});
+	};
+
+</script>
+-->
+<div class='field {{ key.1 }}' id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus = 'new JsDatePick({
+			useMode:2,
+			target:"{{ key.1 }}",
+			dateFormat:"%d-%M-%Y"
+			/*selectedDate:{				This is an example of what the full configuration offers.
+				day:5,						For full documentation about these settings please see the full version of the code.
+				month:9,
+				year:2006
+			},
+			yearsRange:[1978,2020],
+			limitToToday:false,
+			cellColorScheme:"beige",
+			dateFormat:"%m-%d-%Y",
+			imgPath:"img/",
+			weekStartDay:1*/
+		});state_changed();' /></div>
+	{% endif %}
+
+
+
+
+
+
+
+{% else %}
+	{% if key.1 ==  "Cardtitle" %}
+
+		{% if  current_card_type  ==  "Not in use" %}
+		<input type='hidden' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' />
+		{% else %}
+	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'>(Note that cards are sorted by Card Title in the list view.) {{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>
+		{% endif %}
+	{% else %}
+<div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>
+
+	{% endif %}
+{% endif %}
+{% endfor %}
+{% for key in hidden_edit_field_in_form %}
+<input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '30' onfocus= "state_changed();" />
+{% endfor %}
+
+

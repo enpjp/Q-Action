@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}<div class="login">{{logon_message}} {{user_nickname_or_url}} <a href="{{logout_url}}">Logout</a><br></div> {% endblock %}
+
+{% block content %}
+
+<div id="address" class="vcard">
+
+<span class="fn n" lang="no">
+ <span class="given-name">{{First_Name}}</span> 
+ <span class="additional-name">{{Middle_Name}}</span>
+ <span class="family-name">{{Last_Name}}</span>
+</span>
+
+
+<div class="fn org">{{Organisation}}</div>
+<div class="adr">
+<div class="street-address">{{W_address_line_1}}<br />{{W_address_line_2}}</div> 
+<span class="locality">{{W_address_Post_Town}}</span><br />
+<span class="region">{{W_address_County}}</span> <br />
+<span class="postal-code">{{W_address_Post_Code}}</span><br /> 
+<span class="country-name">{{W_address_Country}}</span> <br />
+<span class="tel">
+ 	<span class="type">Work</span>:
+ 	<span class="value">{{Work_Phone}}</span>
+</span><br />
+
+
+<span class="tel">
+ 	<span class="type">home</span>:
+ 	<span class="value">{{Home_Phone}}</span>
+</span><br />
+
+<a class="url fn org" href="{{Web_url}}">{{Web_url}}</a>
+
+</div></div>
+
+
+<p>
+<img src="{{my_qr_code}}" alt="QR Code to link to this page" title="QR Code to link to this page" /></p>
+<p> This qr code links to:</p>
+<p><a href="{{my_qr_data}}">{{my_qr_data}}</a></p>
+
+{% endblock %}

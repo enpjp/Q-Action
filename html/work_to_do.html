@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}<div class="login">{{logon_message}} {{user_nickname_or_url}} <a href="{{logout_url}}">Logout</a><br></div> {% endblock %}
+
+{% block content %}
+
+<p>Work to do </p>
+
+<ol>
+
+<li>Create a form to update contact details</li>
+<li><strike>Find records by username</strike></li>
+<li>Show to do list only to administrator</li>
+<li><strike>Add country to list pages</strike></li>
+<li>Edit records button </li>
+<li>Edit records form</li>
+<li>Check to see if record exists before creating a new one.</li>
+<li><strike>Add micro formats</strike></li>
+<li>Add MECARD button </li>
+<li>Add VCARD button</li>
+
+
+</ol>
+
+
+{% endblock %}

@@ -1,0 +1,117 @@
+
+
+
+
+<div id="address" class="vcard">
+{% if display_field_in_form.First_Name != "" or display_field_in_form.Middle_Name != "" or display_field_in_form.Last_Name != ""  %}
+<span class="fn n" lang="no">
+ <span class="title-name">{{display_field_in_form.Persontitle}}</span> 
+ <span class="given-name">{{display_field_in_form.First_Name}}</span> 
+ <span class="additional-name">{{display_field_in_form.Middle_Name}}</span>
+ <span class="family-name">{{display_field_in_form.Last_Name}}</span>
+</span>
+{% endif %}
+
+{% if display_field_in_form.Qualifications != "" %}
+<div class="fn n">{{display_field_in_form.Qualifications}}</div>
+{% endif %}
+
+{% if display_field_in_form.Type != "" %}
+<div class="fn n">{{display_field_in_form.Type}}</div>
+{% endif %}
+
+{% if display_field_in_form.Organisation != "" %}
+<div class="fn org">{{display_field_in_form.Organisation}}</div>
+{% endif %}
+
+
+{% if display_field_in_form.W_address_line_1 != "" or display_field_in_form.W_address_Post_Town != "" or display_field_in_form.W_address_County != "" or display_field_in_form.W_address_Post_Code != "" or display_field_in_form.W_address_Country != "" %}
+<div class="adr">
+	{% if display_field_in_form.W_address_line_1 != "" or display_field_in_form.W_address_line_2 != "" %}
+		<div class="street-address">{{display_field_in_form.W_address_line_1}} 	
+		{% if display_field_in_form.W_address_line_2 != "" %}<br />{{display_field_in_form.W_address_line_2}}{% endif %}
+		</div>
+	{% endif %}
+	{% if display_field_in_form.W_address_Post_Town != "" %}
+	<span class="locality">{{display_field_in_form.W_address_Post_Town}}</span><br />
+	{% endif %}
+	{% if display_field_in_form.W_address_County != "" %}
+	<span class="region">{{display_field_in_form.W_address_County}}</span> <br />
+	{% endif %}
+	{% if display_field_in_form.W_address_Post_Code != "" %}
+	<span class="postal-code">{{display_field_in_form.W_address_Post_Code}}</span><br />
+	{% endif %}
+	{% if display_field_in_form.W_address_Country != "" %}
+	<span class="country-name">{{display_field_in_form.W_address_Country}}</span> <br />
+	{% endif %}
+</div>
+{% endif %}
+
+{% if display_field_in_form.Tel1 != "" %}
+<span class="tel">
+ 	<span class="type">Work</span>:
+ 	<span class="value">{{display_field_in_form.Tel1}}</span>
+</span><br />
+{% endif %}
+{% if display_field_in_form.Tel2 != "" %}
+
+<span class="tel">
+ 	<span class="type">Mobile</span>:
+ 	<span class="value">{{display_field_in_form.Tel2}}</span>
+</span><br />
+{% endif %}
+
+{% if display_field_in_form.Tel3 != "" %}
+<span class="tel">
+ 	<span class="type">Home</span>:
+ 	<span class="value">{{display_field_in_form.Tel3 }}</span>
+</span><br />
+{% endif %}
+
+{% if display_field_in_form.Email_address != "" %}
+<div>Work email: {{display_field_in_form.Email_address }}</div>
+{% endif %}
+
+{% if display_field_in_form.Email2 != "" %}
+<div>Home email: {{display_field_in_form.Email2 }}</div>
+{% endif %}
+
+
+{% if display_field_in_form.Web_url != "" %}
+<div>Website: {{display_field_in_form.Web_url}} </div>
+{% endif %}
+
+
+{% if display_field_in_form.URL2 != "" %}
+<div>Alternative web site: {{display_field_in_form.URL2}} </div>
+{% endif %}
+
+
+{% if display_field_in_form.URLsocialnets != "" %}
+<div>Alternative web site: Social network and conferencing names: {{display_field_in_form.URLsocialnets }} </div>
+{% endif %}
+
+
+
+
+{% if display_field_in_form.Text_message != "" %}
+<div class ="Text_message">
+	{% autoescape off %} {{display_field_in_form.Text_message}} {% endautoescape %}
+</div>
+{% endif %}
+
+{% if display_field_in_form.Email_address != "" %}
+
+{% if display_field_in_form.Web_url != "" %}
+<div><a class ='link_button' href= "{{display_field_in_form.Web_url}}">My Website</a> </div>
+{% endif %}
+
+
+
+<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email_address }}"> My Work Email </a></div>
+{% endif %}
+
+{% if display_field_in_form.Email2 != "" %}
+<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}"> My Home Email </a> </div>
+{% endif %}
+

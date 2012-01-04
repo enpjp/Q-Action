@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+{% block page_heading %}<h1>Subscribe</h1>{% endblock %}
+
+{% block content %}
+<h3>THIS PAGE IS FOR SANDBOX TESTING AND IS NOT LIVE!</h3>
+<h2>Try the full service free for a month!</h2>
+
+<p>We are offering fully functional basic accounts free for a month. No obligations, no credit card details, no spam. We would just like you to give us some feedback on your experience. All you need to do to get your free trial is login or register using the button at the top of the page. To upgrade your free account login and choose one of the options below after creating at least one q-action card.</p>
+<p>For your on line security this site only accepts payment through Google Checkout.</p>
+
+<h3>Basic Account</h3>
+
+<ul>
+<li>12 months service</li>
+<li>100 pages</li>
+<li>500 hits per day per page</li>
+</ul>
+<p>&pound;25 per year</p>
+
+
+
+
+{% if login_check == "True"  %}	
+
+	{% if days_to_end_of_subscription < 60  %}
+<h3>THIS IS A SANDBOX TEST BUTTON!</h3>
+<form action="https://sandbox.google.com/checkout/api/checkout/v2/checkoutForm/Merchant/422756477229559" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top">
+    <input name="item_name_1" type="hidden" value="Annual Subscription"/>
+    <input name="item_description_1" type="hidden" value="Annual subscription for Q-Action account with 100 pages"/>
+    <input name="item_quantity_1" type="hidden" value="1"/>
+    <input name="item_price_1" type="hidden" value="25.0"/>
+    <input name="item_currency_1" type="hidden" value="GBP"/>
+    <input name="shopping-cart.items.item-1.digital-content.description" type="hidden" value="You account will be updated as soon as you visit the custom page provided."/>
+    <input name="shopping-cart.items.item-1.digital-content.url" type="hidden" value="https://q-action.appspot.com/subscribe/buy_subscription.html?key_value={{check_key_annual}}"/>
+    <input name="_charset_" type="hidden" value="utf-8"/>
+    <input alt="" src="https://sandbox.google.com/checkout/buttons/buy.gif?merchant_id=422756477229559&amp;w=117&amp;h=48&amp;style=white&amp;variant=text&amp;loc=en_US" type="image"/>
+</form>
+
+<!--	
+<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/445449504983600" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top">
+    <input name="item_name_1" type="hidden" value="Annual Subscription"/>
+    <input name="item_description_1" type="hidden" value="Annual subscription for Q-Action account with 100 pages"/>
+    <input name="item_quantity_1" type="hidden" value="1"/>
+    <input name="item_price_1" type="hidden" value="25.0"/>
+    <input name="item_currency_1" type="hidden" value="GBP"/>
+    <input name="shopping-cart.items.item-1.digital-content.description" type="hidden" value="You account will be updated as soon as you visit the custom page provided."/>
+    <input name="shopping-cart.items.item-1.digital-content.url" type="hidden" value="https://q-action.appspot.com/subscribe/buy_subscription.html?key_value={{check_key_annual}}"/>
+    <input name="_charset_" type="hidden" value="utf-8"/>
+    <input alt="" src="https://checkout.google.com/buttons/buy.gif?merchant_id=445449504983600&amp;w=117&amp;h=48&amp;style=white&amp;variant=text&amp;loc=en_US" type="image"/>
+</form>
+-->
+	<div class="black-menu">
+		<ul class = "nav">
+
+		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_annual}}">Subscribe to a  1 year Basic Account for &pound;25</a></li>
+		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_annual}}1">Don't Buy 1 year Basic Account for &pound;25</a></li>
+		</ul>
+	 </div>
+	{% else %}
+	<p>You are already subscribed. We will remind you to renew nearer the time. </p>
+	{% endif %}
+{% endif %}
+{% if login_check == "False"  %}	
+<p><strong>You must create an account and be logged in to buy a subscription. </strong></p>
+{% endif %}
+
+
+<h3>Basic Account Plus</h3>
+
+<ul>
+<li>12 months service</li>
+<li>1,000 pages</li>
+<li>3,000 hits per day per page</li>
+</ul>
+<p>&pound;45 per year</p>
+
+{% if login_check == "True"  %}	
+	{% if days_to_end_of_subscription < 60  %}	
+<h3>THIS IS A SANDBOX TEST BUTTON!</h3>
+<form action="https://sandbox.google.com/checkout/api/checkout/v2/checkoutForm/Merchant/422756477229559" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top">
+    <input name="item_name_1" type="hidden" value="Annual Subscription"/>
+    <input name="item_description_1" type="hidden" value="Annual subscription for Q-Action Basic Plus account with 1000 pages"/>
+    <input name="item_quantity_1" type="hidden" value="1"/>
+    <input name="item_price_1" type="hidden" value="45.0"/>
+    <input name="item_currency_1" type="hidden" value="GBP"/>
+    <input name="shopping-cart.items.item-1.digital-content.description" type="hidden" value="You account will be updated as soon as you visit the custom page provided."/>
+    <input name="shopping-cart.items.item-1.digital-content.url" type="hidden" value="https://q-action.appspot.com/subscribe/buy_subscription.html?key_value={{check_key_basic_plus}}"/>
+    <input name="_charset_" type="hidden" value="utf-8"/>
+    <input alt="" src="https://sandbox.google.com/checkout/buttons/buy.gif?merchant_id=422756477229559&amp;w=117&amp;h=48&amp;style=white&amp;variant=text&amp;loc=en_US" type="image"/>
+</form>
+
+
+
+<!--
+<form action="https://checkout.google.com/api/checkout/v2/checkoutForm/Merchant/445449504983600" id="BB_BuyButtonForm" method="post" name="BB_BuyButtonForm" target="_top">
+    <input name="item_name_1" type="hidden" value="Annual Subscription"/>
+    <input name="item_description_1" type="hidden" value="Annual subscription for Q-Action Basic Plus account with 1000 pages"/>
+    <input name="item_quantity_1" type="hidden" value="1"/>
+    <input name="item_price_1" type="hidden" value="45.0"/>
+    <input name="item_currency_1" type="hidden" value="GBP"/>
+    <input name="shopping-cart.items.item-1.digital-content.description" type="hidden" value="You account will be updated as soon as you visit the custom page provided."/>
+    <input name="shopping-cart.items.item-1.digital-content.url" type="hidden" value="https://q-action.appspot.com/subscribe/buy_subscription.html?key_value={{check_key_basic_plus}}"/>
+    <input name="_charset_" type="hidden" value="utf-8"/>
+    <input alt="" src="https://checkout.google.com/buttons/buy.gif?merchant_id=445449504983600&amp;w=117&amp;h=48&amp;style=white&amp;variant=text&amp;loc=en_US" type="image"/>
+</form>
+-->
+
+	<div class="black-menu">
+		<ul class = "nav">
+
+		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_basic_plus}}">Subscribe to a  1 year Basic Account Plus for &pound;45</a></li>
+		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_basic_plus}}1">Don't Buy 1 year Basic Account Plus &pound;45</a></li>
+		</ul>
+	 </div>
+	{% else %}
+	<p>You are already subscribed. We will remind you to renew nearer the time. </p>
+	{% endif %}
+
+{% endif %}
+{% if login_check == "False"  %}	
+<p><strong>You must create an account and be logged in to buy a subscription. </strong></p>
+{% endif %}
+
+
+
+
+<!--
+<h3>Premium account</h3>
+
+<ul>
+<li>12 months service</li>
+<li>10,000 pages</li>
+<li>Unlimited page traffic*</li>
+</ul>
+<p>&pound;150 per year</p>
+-->
+
+<h3>Custom Account</h3>
+
+<p>Any or all of:</p>
+<ul>
+<li>Special functional pages</li>
+<li>We mass populate pages to your specification</li>
+<li>Unlimited number of pages</li>
+<li>Peak traffic support*</li>
+<li>Specified contract length</li>
+<li>Service Level Agreement</li>
+<li>Helpdesk</li>
+</ul>
+<p>&pound; on application</p>
+
+<p>*Page traffic is subject to reasonable use</p>
+
+{% endblock %}

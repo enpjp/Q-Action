@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+{% block page_heading %}<a id='top'><h2>Expert Features</h2></a>{% endblock %}
+{% block content %}
+
+<h3>Contents</h3>
+
+<div class='anchor_menu'>
+<ul class='nav_faq'>
+<li><a href="#What">What are expert features?</a> </li>
+<li><a href="#download">Download csv file</a> </li>
+<li><a href="#upload">Upload csv file</a> </li>
+
+</ul>
+</div>
+
+<h3><a id='What'>What are expert features?</a></h3>
+
+<p>Q-Action has been designed to work on almost any mobile device using a simple interface. These pages provide a range of more advanced features that some users may find useful. However, not all of these features will work on all devices. For example, file upload and download may not work on your mobile device, but it should work on almost any laptop or desktop computer with almost any web browser.</p>
+<div><a class="top" href="#top">Top</a></div>
+
+<h3><a id='download'>Download csv file</a></h3>
+
+<p>You may download a CSV version of your Q-Action pages that may be edited by almost any spreadsheet software. Supported software includes: MicrosoftOffice, LibreOffice, OpenOffice, NeoOffice and many other text editors such as Gedit. With some constraints, you may edit the file and upload all your changes as a batch. </p>
+<h3>Hints</h3>
+<p>If editing with a spreadsheet and your software does not automatically detect the required options try using the settings illustrated in the screenshot:</p>
+<img src="/images/screenshot_csv_settings.png" alt="screenshot of settings for importing csv files" />
+<ul>
+<li>Unicode (UTF-7)</li>
+<li>Separated by a comma , </li>
+<li>Text delimiter single quote &#39; </li>
+<li>If your import facility gives you a preview it should be readable. Note the single quotes round each entry and the underscores in the field names &#39;key_string&#39; and &#39;auto_forward&#39;. If either are missing then your settings are probably incorrect. </li>
+</ul>
+<h3><a id='upload'>Upload csv file</a></h3>
+<p>You may also upload an edited version of the csv file. The following guidelines apply: </p>
+<ul>
+<li>You may not edit the contents of the key_string column.</li>
+<li>Any entry that has a comma <strong>must be enclosed in single quotes</strong>.</li>
+<li>Many uploading errors will be cured by enclosing the entry in single quotes.</li>
+<li>You may delete any row except the first row which must contain the field names.</li>
+<li>You must leave at least one row of data.</li>
+<li>All other columns are optional and may be deleted or re-ordered.</li>
+<li>When uploading an edited file you must be signed in. Your file is unique to you and will not work on any other account.</li>
+<li>Q-Action will confirm the success (or failure) of each uploaded row of data.</li>
+<li>This useful facility is labelled as &quot;for expert use only&quot; for a reason.  It really is a good idea to try uploading a few simple changes to spare cards to check your basic settings before uploading large numbers of changes. </li>
+</ul>
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="/download.csv">Download File</a></li>
+	<li><a href="/choose.html">Upload File</a></li>
+	</ul>
+ </div>
+<div> <a class="top" href="#top">Top</a></div>
+
+
+
+
+
+
+{% endblock %}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+{% block page_heading %}<h1>Purchase of Subscription</h1>{% endblock %}
+
+{% block content %}
+
+<h2>Your Subscription</h2>
+
+{% if success_message == "Basic Account" %}
+Thank you for purchasing a Basic Account subscription for Q-Action.
+<p>Your next renewal is {{ renewal_year }}-{{ renewal_month }}-{{ renewal_day }} </p>
+</p>
+{% endif %}
+
+{% if success_message == "Basic Account Plus" %}
+Thank you for purchasing a Basic Account Plus subscription for Q-Action.
+<p>Your next renewal is {{ renewal_year }}-{{ renewal_month }}-{{ renewal_day }} </p>
+</p>
+{% endif %}
+
+
+
+
+{% if success_message == "Fail" %}
+<p>
+Deep sorrow. Your valued attempt to purchase a Q-Action subscription has gone wrong! We will be having words with our software team about this problem. In the meantime you can rest assured that you have not been charged for this failed transaction.
+
+</p>
+{% endif %}
+
+
+
+
+{% endblock %}

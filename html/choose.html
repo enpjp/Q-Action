@@ -1,0 +1,24 @@
+ {% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/info/expert.html">Back</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+	{% block content %}
+<form name="importFile" enctype="multipart/form-data" action="/upload.html" 
+enctype="multipart/form-data" method="post">
+
+      <div>CSV File(Comma Separated Value) File*: 
+<input id="myfile" name="csv" type="file">
+</div> 
+      <div><input type="submit" value="Upload"></div> 
+</form> 
+{% endblock %}
+
+

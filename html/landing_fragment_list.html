@@ -1,0 +1,72 @@
+<div id="address" class="vcard">
+{% if my_place.1 != "" or my_place.2 != "" or my_place.3 != ""  %}
+<span class="fn n" lang="no">
+ <span class="given-name">{{my_place.1}}</span> 
+ <span class="additional-name">{{my_place.2}}</span>
+ <span class="family-name">{{my_place.3}}</span>
+</span>
+{% endif %}
+
+{% if my_place.4 != "" %}
+<div class="fn org">{{my_place.4}}</div>
+{% endif %}
+{% if my_place.5 != "" or my_place.7 != "" or my_place.8 != "" or my_place.9 != "" or my_place.10 != "" %}
+<div class="adr">
+	{% if my_place.5 != "" or my_place.6 != "" %}
+		<div class="street-address">{{my_place.5}} 	
+		{% if my_place.6 != "" %}<br />{{my_place.6}}{% endif %}
+		</div>
+	{% endif %}
+	{% if my_place.7 != "" %}
+	<span class="locality">{{my_place.7}}</span><br />
+	{% endif %}
+	{% if my_place.8 != "" %}
+	<span class="region">{{my_place.8}}</span> <br />
+	{% endif %}
+	{% if my_place.9 != "" %}
+	<span class="postal-code">{{my_place.9}}</span><br />
+	{% endif %}
+	{% if my_place.10 != "" %}
+	<span class="country-name">{{my_place.10}}</span> <br />
+	{% endif %}
+</div>
+{% endif %}
+
+{% if my_place.12 != "" %}
+<span class="tel">
+ 	<span class="type">Work</span>:
+ 	<span class="value">{{my_place.12}}</span>
+</span><br />
+{% endif %}
+{% if my_place.13 != "" %}
+
+<span class="tel">
+ 	<span class="type">Home</span>:
+ 	<span class="value">{{my_place.13}}</span>
+</span><br />
+{% endif %}
+
+{% if Mobile_Phone != "" %}
+<span class="tel">
+ 	<span class="type">Mobile</span>:
+ 	<span class="value">{{Mobile_Phone}}</span>
+</span><br />
+{% endif %}
+
+{% if my_place.11 != "" %}
+<div>Email: {{my_place.11}}<br /> <a class="email" href="mailto:{{my_place.11}}">Email Me</a></div>
+{% endif %}
+{% if my_place.14 != "" %}
+<div>URL: {{my_place.14}} <br /> <a class="url fn org" href="{{my_place.14}}">Go To My URL</a></div>
+{% endif %}
+
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="{{my_place.0}}">View Entry</a></li>
+	</ul>
+ </div>
+
+<img class="banner_line_img_landing" src="/images/line_1.png" alt="line" />
+
+
+</div>

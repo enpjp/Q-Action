@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+{% endblock %}
+
+{% block page_heading %}<h2>Download Complete</h2>{% endblock %}
+
+{% block content %}
+<p>The download of all your cards in csv format is complete. You may view and edit the file with either a text editor or a spreadsheet. You may then choose to upload the edited file to update your on-line cards.</p>
+<h3>Hints</h3>
+<p>If editing with a spreadsheet and your software does not automatically detect the required options use:</p>
+<ul>
+<li>Unicode UTF7</li>
+<li>Separated by comma , </li>
+<li>Text delimiter single quote &#39; </li>
+<li>The first column Key_String should never be edited. </li>
+<li>All other columns are optional and may be deleted or re-ordered</li>
+<li>You may delete entire rows.</li>
+<li>When uploading an edited file you must be signed in. Your file is unique to you and will not work on any other account.</li>
+</ul>
+{% endblock %}

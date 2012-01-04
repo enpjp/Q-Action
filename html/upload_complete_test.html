@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}<link rel="profile" href="http://microformats.org/profile/hcard" />
+
+{% endblock %}
+
+{% block title %}{{ Cardtitle }}{% endblock %}
+{% block body_tag %}{% endblock %}
+
+{% block logon %}{% endblock %}
+{% block banner_tag %} 
+<img class="banner_line_img" src="/images/line_1.png" alt="line" />
+{% endblock %}
+
+
+
+
+
+
+{% block main-menu %}
+{% if back_button != "" %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href=/choose.html>Back</a></li>
+	</ul>
+ </div>
+{% endif %}
+
+{% endblock %}
+{% block page_heading %}{% endblock %}
+
+
+{% block content %}
+
+<h3>Upload Results </h3>
+
+{% for row in success_row %}
+<div class="{{row.success_class}}"><h4>{{row.success}} </h4>
+	 {% for key,value in row.items %}
+	{% if key != "success" %}
+	{% if key != "success_class" %}
+		{% if value != ""  %}
+		 {{key}} = "{{ value }}"; 
+		{% endif %}
+	{% endif %}
+	{% endif %}
+	{% endfor %}</div>
+{% endfor %}
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+<div class="footer-menu">
+	<ul class = "nav"> 
+
+	</ul>
+</div>
+
+
+
+{% endblock %}
