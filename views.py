@@ -1145,7 +1145,8 @@ def get_a_record_from_key(self, arg_my_key):
 			'zero' : zero,
 			'Google_analytics' : Google_analytics,
 			'Stat_counter' : Stat_counter,
-			'CardID' : CardID
+			'CardID' : CardID,
+			'domain' : domain
     		    	}
 		template_values.update(my_new_template)
 		template_values.update(no_scan_string_dict)
