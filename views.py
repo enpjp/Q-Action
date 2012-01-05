@@ -481,7 +481,7 @@ class edit_landing_page_form(webapp.RequestHandler):
 	for card_type in list_card_types_as_list:
 		make_card_list.append([card_type,list_name_dict[card_type]])
 	template_values.update({'make_card_list' : make_card_list })	
-	template_values.update({'current_card_type' : 'current_card_type' })	
+	template_values.update({'current_card_type' : current_card_type })	
 	#'card_type_dict'
 ##	template_values.update({'list_card_types_dict' : list_card_types_dict })	
 ##	template_values.update({'card_types_dict' : list_card_types_dict[CardID] })
