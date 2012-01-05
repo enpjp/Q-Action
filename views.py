@@ -470,10 +470,18 @@ class edit_landing_page_form(webapp.RequestHandler):
 	list_card_types_as_list = list_card_types_dict.keys()
 	list_card_types_as_list.sort()
 	make_card_list = []
+	# Need to check for non existant card types as we may remove card types from the list
+	# If a user has a removed card type then we will set it to business
+	try:
+		current_card_type = list_name_dict[CardID]
+	except:
+		current_card_type = 'Business'
+
+
 	for card_type in list_card_types_as_list:
 		make_card_list.append([card_type,list_name_dict[card_type]])
 	template_values.update({'make_card_list' : make_card_list })	
-	template_values.update({'current_card_type' : list_name_dict[CardID] })	
+	template_values.update({'current_card_type' : 'current_card_type' })	
 	#'card_type_dict'
 ##	template_values.update({'list_card_types_dict' : list_card_types_dict })	
 ##	template_values.update({'card_types_dict' : list_card_types_dict[CardID] })
