@@ -1119,8 +1119,12 @@ def get_a_record_from_key(self, arg_my_key):
 		
  		#card_types_list_members =  card_types_list_members_dict[CardID]
 		CardID_s = "%s" % CardID
-		card_types_list_members =  card_types_list_members_dict[CardID]    	  			
-		fields_to_use = card_types_dict[CardID]
+		card_types_list_members =  card_types_list_members_dict[CardID] 
+		if CardID in card_types_dict:	  			
+			fields_to_use = card_types_dict[CardID]
+		else:
+			CardID = 'Business'
+			fields_to_use = card_types_dict['Business']
 		html_template = lookup_html_template(CardID)
 		#card_types_list_members = card_types_list_all[CardID]
 		#card_types_dict_list_members = card_types_dict_list[CardID]
@@ -1834,7 +1838,7 @@ def card_definitions_v2():
 		'Event' : Event,
 		'Guided_tour' : Guided_tour,
 		'ICE' : ICE,
-		'Rota' : Rota,
+		#'Rota' : Rota,
 		'Stock' : Stock,
 		'Location' : Location,
 		'Go_to_URL' : Go_to_URL,
@@ -1851,7 +1855,7 @@ def card_definitions_v2():
 		'Event' : 'Event',
 		'Guided_tour' : 'Guided tour',
 		'ICE' : 'ICE',
-		'Rota' : 'Rota',
+		#'Rota' : 'Rota',
 		'Stock' : 'Stock',
 		'Location' : 'Location',
 		'Go_to_URL' : 'Go to URL',
