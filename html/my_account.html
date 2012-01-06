@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}{% endblock %}
+{% block title %}My Account{% endblock %}
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav"> 
+	<li><a href="/">Home</a></li>
+
+
+	</ul>
+ </div>{% endblock %}
+{% block page_heading %}<h1>My Account</h1>{% endblock %}
+
+{% block content %}
+<h4>Hello {{ nickname }}!</h4>
+<p>Q-action takes your details from your Google account and ID. Updating your password, email address and other personal details should be made through the standard Google interface. This can be reached through the links on the Google home page.</p>
+
+<div class = "account_details">
+<h4>The following details are associated with your q-action account and are managed by us.</h4>
+
+{% if days_to_end_of_trial < 50  and days_to_end_of_trial > 0  and days_to_end_of_subscription < 1 %}
+
+<p>You have {{days_to_end_of_trial}} day{{ days_to_end_of_trial|pluralize }} of your Q-Action Free trial left.
+</p>
+{% endif %}
+{% if days_to_end_of_subscription < 50 and days_to_end_of_subscription > 0  %}
+<p>You have {{days_to_end_of_subscription }} day{{ days_to_end_of_subscription|pluralize }} of your Q-Action subscription left.
+</p>
+{% endif %}
+<p>
+{% if count_my_records > page_limit %} Lucky you!{% endif %}
+
+Your page allowance is currently set to {{page_limit}} cards.</p>
+{% if suspend_account == 'True' %}
+<h1> Your account is currently suspended! </h1>
+{% endif %}
+
+<p>Opt in to contact: {{opt_in_to_contact }}</p>
+
+</div>
+
+
+
+
+{% endblock %}
+
+{% block footer %}
+
+
+
+{% endblock %}
