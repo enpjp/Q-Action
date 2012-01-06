@@ -1109,6 +1109,7 @@ def get_a_record_from_key(self, arg_my_key):
 		card_types_dict = card_definitions_data['card_type_dict']
 		card_types_list_all = card_definitions_data['card_list_members']
 		field_widget = card_definitions_data['field_widget']
+		card_name_dict = card_definitions_data['card_name_dict']
 		
 		all_fields = card_definitions_data['all_fields']
 		card_types_list_members_dict = card_definitions_data['card_dict_members_list']
@@ -1122,9 +1123,11 @@ def get_a_record_from_key(self, arg_my_key):
 		card_types_list_members =  card_types_list_members_dict[CardID] 
 		if CardID in card_types_dict:	  			
 			fields_to_use = card_types_dict[CardID]
+			card_name = card_name_dict[CardID]
 		else:
 			CardID = 'Business'
 			fields_to_use = card_types_dict['Business']
+			card_name = 'Business'
 		html_template = lookup_html_template(CardID)
 		#card_types_list_members = card_types_list_all[CardID]
 		#card_types_dict_list_members = card_types_dict_list[CardID]
@@ -1150,6 +1153,7 @@ def get_a_record_from_key(self, arg_my_key):
 			'Google_analytics' : Google_analytics,
 			'Stat_counter' : Stat_counter,
 			'CardID' : CardID,
+			'card_name' : card_name,
 			'domain' : domain
     		    	}
 		template_values.update(my_new_template)
