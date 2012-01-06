@@ -36,10 +36,29 @@ Your page allowance is currently set to {{page_limit}} cards.</p>
 <h1> Your account is currently suspended! </h1>
 {% endif %}
 
-<p>Opt in to contact: {{opt_in_to_contact }}</p>
+
+{% if opt_in_to_contact == "True" %}
+<p>You have opted to receive emails from us about q-action. To opt out select the button below. </p>
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
+	</ul>
+ </div>
+
+{% endif %}
+
+{% if opt_in_to_contact  != "True" %}
+<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
+	</ul>
+ </div>
+
+{% endif %}
 
 </div>
-
 
 
 
