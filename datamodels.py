@@ -122,6 +122,7 @@ class account_manager(db.Model):
     	Date_created = db.DateTimeProperty(auto_now_add=True)
 	account_valid  = db.BooleanProperty(False)
 	suspend_account = db.BooleanProperty(False)
+	opt_in_to_contact = db.BooleanProperty(False)
 	page_limit = db.StringProperty(multiline=False)
 	renewal_date = db.DateTimeProperty()
 	free_trial_end = db.DateTimeProperty()

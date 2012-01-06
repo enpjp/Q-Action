@@ -43,12 +43,13 @@ def main():
 					('/qr_code_private_page.html', qr_code_private_page_v1),
 					('/edit_landing_page.html', edit_landing_page_form),
 					('/update_contact.html', update_contact),
-
+					('/my_account.html', my_account),	
 					('/info/.*.html', InfoPage),
 					('/download.csv', download_csv_files),	
 					('/choose.html', ChooseFileToUpload),
 					('/upload.html', PostToDatabase_V1),
-					('/subscribe/buy_subscription.html', BuySubscriptionPage),				
+					('/subscribe/buy_subscription.html', BuySubscriptionPage),
+								
 					('/.*', qr_code_landing_page_v1),	
 
 							],

@@ -969,6 +969,39 @@ class PostToDatabase_V1(webapp.RequestHandler):
 
 
 
+# Edit my account details
+class my_account(webapp.RequestHandler):
+    def get(self):
+## User control -------------------------------------------------------
+        user = users.get_current_user()
+	login_url = users.create_login_url(self.request.uri)
+	logout_url = users.create_logout_url(self.request.uri)
+        if user:
+ 	    #self.response.out.write(""" <div class="login"><!-- login text here here --> You are logged-in as: %s <a href="%s">Logout</a><br></div>  """ % (user.nickname(), logout_url) )
+	    logon_message = "You are logged-in as:"
+	    user_nickname_or_url = user.nickname()
+	    #Need to add this for account control:
+	    check_account(self)
+        else:
+	 # Un-comment  this line to prevent access to the page
+            self.redirect(users.create_login_url(self.request.uri))
+	 # use this line to allow none signed in access
+	    logon_message = "You will need to sign in with a valid gmail account to use this software."
+	    user_nickname_or_url = """<a class= "login" href="%s">Login</a>""" % login_url
+
+## end user control ---------------------------------------------------------------
+	account_info = check_account(self)
+	# Check to see if None has been returned if so assume account not enabled
+	if not account_info:
+       		self.redirect( '/info/account_not_enabled.html')
+		return
+	# Check to see if the account is valid
+	if not account_info['account_valid'] :
+       		self.redirect( '/info/account_not_enabled.html')
+		return
+	template_values = account_info	
+	path = os.path.join(os.path.dirname(__file__), 'html/my_account.html')
+        self.response.out.write(template.render(path, template_values))
 
 ############################################################################################
 ###########################################################################################
@@ -1380,7 +1413,7 @@ def get_account_record(self, my_user_id):
 		email = my_account_query.email
 		nickname = my_account_query.nickname
 		owner = my_account_query.owner
-
+		opt_in_to_contact = my_account_query.opt_in_to_contact
 
 
 	else:
@@ -1388,7 +1421,7 @@ def get_account_record(self, my_user_id):
 		suspend_account = False
 		renewal_date = datetime.now()
 		Date_created = datetime.now()
-
+		opt_in_to_contact = False
 		free_trial_end = datetime.today()
 		# Need some logic around the free trial - if december then increment the year and set the month to 1
 		free_trial_period = timedelta(30)
@@ -1434,6 +1467,7 @@ def get_account_record(self, my_user_id):
 		'user_id' : user_id,
 		'email' : email,
 		'nickname' : nickname,
+		'opt_in_to_contact' : opt_in_to_contact,
 		#'owner' : owner
 
 		}

@@ -217,6 +217,14 @@ background: #c6baa1;
 }
 
 
+div.account_details{
+background: #c6baa1;
+margin: 5px;
+padding: 5px;
+}
+
+
+
 .edit-menu ul.nav a,
 .black-menu ul.nav a {
 color: #ffffff;
