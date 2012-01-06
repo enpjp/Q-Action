@@ -990,6 +990,15 @@ class my_account(webapp.RequestHandler):
 	    user_nickname_or_url = """<a class= "login" href="%s">Login</a>""" % login_url
 
 ## end user control ---------------------------------------------------------------
+	template_values = {
+ 
+		'login_url' : login_url,
+		'logout_url' : logout_url,
+		'logon_message' : logon_message,
+		'user_nickname_or_url' : user_nickname_or_url
+		}
+
+
 	account_info = check_account(self)
 	# Check to see if None has been returned if so assume account not enabled
 	if not account_info:
@@ -999,7 +1008,29 @@ class my_account(webapp.RequestHandler):
 	if not account_info['account_valid'] :
        		self.redirect( '/info/account_not_enabled.html')
 		return
-	template_values = account_info	
+	template_values.update(account_info)	
+	#Use query string to make it easy to update the status of options
+	#Parse the query string...
+	my_query = self.request.query
+	my_query_urlparse = cgi.parse_qs(my_query)
+
+	if "opt_in_to_contact" in my_query_urlparse:
+		opt_in_to_contact_value = my_query_urlparse["opt_in_to_contact"]
+		opt_in_to_contact = opt_in_to_contact_value[0]
+		template_values.update({'opt_in_to_contact' : "%s" % opt_in_to_contact})
+		db.run_in_transaction(update_account,self, template_values)
+	else:
+		opt_in_to_contact = account_info['opt_in_to_contact']
+		template_values.update({'opt_in_to_contact' : "%s" % opt_in_to_contact})			
+	
+	# If opt_in_to_contact is not in the query string then no action is required.
+	
+
+	
+
+
+
+
 	path = os.path.join(os.path.dirname(__file__), 'html/my_account.html')
         self.response.out.write(template.render(path, template_values))
 
@@ -1377,7 +1408,10 @@ def check_account(self):
 
 #This does the actual creation of an account with a status dependent upon the limit imposed and returns
 def get_account_record(self, my_user_id):
+	# This is our default state for opt-in
+	opt_in_to_contact = False
 	#What is our limit? set this as a global at the head of the page
+
 	free_trial_end = 0
 	today = datetime.today()
 	user_id = my_user_id
@@ -1451,8 +1485,8 @@ def get_account_record(self, my_user_id):
 		days_to_end_of_subscription = (renewal_date - today)
 	except:
 		days_to_end_of_subscription = (today - today)
-	if not opt_in_to_contact:
-		opt_in_to_contact = False
+
+
 	# It is better to create an account and mark it false rather than not to create it at all.
 	# Using templates makers it easier to manage the database
 	account_template = { 
@@ -1512,7 +1546,16 @@ def update_account(self,arg_account_template):
 		account_manager_records.nickname = nickname
 		account_manager_records.email = email
 		account_manager_records.user_id = user_id
-		account_manager_records.suspend_account = arg_account_template['suspend_account']		
+		account_manager_records.suspend_account = arg_account_template['suspend_account']
+	
+	if 'opt_in_to_contact' in arg_account_template:
+			#opt_in_to_contact_value = arg_account_template['opt_in_to_contact']
+			opt_string = "%s" % arg_account_template['opt_in_to_contact']
+			if opt_string == "True":				
+				account_manager_records.opt_in_to_contact = True
+			else:
+				account_manager_records.opt_in_to_contact = False
+						
 
 
 	#if 'new_account' in arg_account_template:	
