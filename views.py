@@ -1451,7 +1451,8 @@ def get_account_record(self, my_user_id):
 		days_to_end_of_subscription = (renewal_date - today)
 	except:
 		days_to_end_of_subscription = (today - today)
-
+	if not opt_in_to_contact:
+		opt_in_to_contact = False
 	# It is better to create an account and mark it false rather than not to create it at all.
 	# Using templates makers it easier to manage the database
 	account_template = { 
