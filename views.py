@@ -44,21 +44,21 @@ def max_account_limit():
 	return 50
 
 def default_pages():
-	return "50"
+	return "2"
 
 
 def set_domain(arg_url):
-	#if arg_url.find("q-action")>1:
-	#	domain = "https://q-action.appspot.com"
+	if arg_url.find("q-action")>1:
+		domain = "https://q-action.appspot.com"
 	#elif arg_url.find("q-address")>1:
 	#	domain = "https://q-address.appspot.com"
 	#elif arg_url.find("8082")>1:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8082"
-	#else:
+	else:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8083"
-	domain = arg_url
+		domain = arg_url
 	return domain
 
 class HomePage(webapp.RequestHandler):
@@ -558,6 +558,7 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 
 	full_url=self.request.url
 	domain = set_domain(full_url)
+
 	my_landing_page_dict_list = []
 	template_values = get_a_record_from_path(self)
 	if not template_values:	
