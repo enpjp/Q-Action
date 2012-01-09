@@ -1156,6 +1156,7 @@ def get_a_record_from_key(self, arg_my_key):
 			Second_initial = "%s." % Middle_Name[0]	
 		domain = set_domain(self.request.url)
 		Key_Name = arg_my_key
+		# set correct domain
 		my_qr_data = "%s/%s"  %("http://q-action.appspot.com",Key_Name)
 		
 
