@@ -145,12 +145,14 @@ class InfoPage(webapp.RequestHandler):
 		Date_created = account_info['Date_created']
 		days_to_end_of_subscription = account_info['days_to_end_of_subscription']
 		Date_created_date_string = str(Date_created)
+		check_key_free = hashlib.sha224('Free subscription %s %s' %(user_id, Date_created_date_string )).hexdigest()
 		check_key_annual = hashlib.sha224('Annual subscription %s %s' %(user_id, Date_created_date_string )).hexdigest()
 		check_key_basic_plus = hashlib.sha224('Basic Account Plus %s %s' %(user_id, Date_created_date_string )).hexdigest()
 		check_key_premium = hashlib.sha224('Premium subscription %s %s' %(user_id, Date_created_date_string)).hexdigest()
 	else:
 		login_check = "False"
 		user_id = False
+		check_key_free = "None"
 		check_key_annual = "None"
 		check_key_premium = "None"
 		check_key_basic_plus = "None"
@@ -160,6 +162,7 @@ class InfoPage(webapp.RequestHandler):
 	#	'my_qr_code': my_qr_code,
 		'login_check' : login_check,
 		'days_to_end_of_subscription' : int(days_to_end_of_subscription),
+		'check_key_free' : check_key_free,
 		'check_key_annual' : check_key_annual,
 		'check_key_basic_plus' : check_key_basic_plus,		
 		'check_key_premium' : check_key_premium,
@@ -250,10 +253,14 @@ class BuySubscriptionPage(webapp.RequestHandler):
 	
 	# Check the value of the key corresponds to the value of the hashed user key:
 	Date_created_date_string = str(Date_created)
-
+	check_key_free = hashlib.sha224('Free subscription %s %s' %(account_user_id, Date_created_date_string )).hexdigest()
 	check_key_annual = hashlib.sha224('Annual subscription %s %s' %(account_user_id, Date_created_date_string )).hexdigest()
 	check_key_basic_plus = hashlib.sha224('Basic Account Plus %s %s' %(account_user_id, Date_created_date_string )).hexdigest()
 	check_key_premium = hashlib.sha224('Premium subscription %s %s' %(account_user_id, Date_created_date_string)).hexdigest()
+
+
+			
+
 	try:
 		real_key_value = key_value[0]
 	except:
@@ -265,30 +272,76 @@ class BuySubscriptionPage(webapp.RequestHandler):
 				renewal_date = today
 		except:
 			renewal_date = today
-		subscription_period = timedelta(365)
+		subscription_period = timedelta(366)
 		renewal_date = renewal_date + subscription_period
-		success_message = 'Basic Account'
-		#update annual subscription
-		template_values.update({'renewal_date': renewal_date})		
-		template_values.update({'renewal_confirm_date': today})
-		#update_account(self,template_values)
-		db.run_in_transaction(update_account,self, template_values)
+		if (renewal_date - today) > timedelta(700):
+			success_message = 'Early'
+		else:
+			success_message = 'Basic Account'
+
+			#update annual subscription
+			template_values.update({'success_message': success_message})	
+			template_values.update({'renewal_date': renewal_date})		
+			template_values.update({'renewal_confirm_date': today})
+			#update_account(self,template_values)
+			db.run_in_transaction(update_account,self, template_values)
+
+	elif check_key_free == real_key_value:
+		#Add a minimum of one year to the account renewal...
+		if renewal_date < today:
+			renewal_date = today
+		subscription_period = timedelta(366)
+		renewal_date = renewal_date + subscription_period
+				#Test how long to the next subscription
+		if (renewal_date - today) > timedelta(700):
+			success_message = 'Early'
+		else:
+			success_message = 'Free subscription'
+			#update annual subscription page_limit
+			template_values.update({'opt_in_to_contact': "True"})	
+			template_values.update({'success_message': success_message})	
+			template_values.update({'page_limit': "2"})	
+			template_values.update({'renewal_date': renewal_date})		
+			template_values.update({'renewal_confirm_date': today})
+			#update_account(self,template_values)
+			db.run_in_transaction(update_account,self, template_values)
+
 
 	elif check_key_basic_plus == real_key_value:
 		#Add a minimum of one year to the account renewal...
 		if renewal_date < today:
 			renewal_date = today
-		subscription_period = timedelta(365)
+		subscription_period = timedelta(366)
 		renewal_date = renewal_date + subscription_period
-		success_message = 'Basic Account Plus'
-		#update annual subscription page_limit
+		if (renewal_date - today) > timedelta(700):
+			success_message = 'Early'
+		else:
+			success_message = 'Basic Account Plus'
+			#update annual subscription page_limit
+			template_values.update({'success_message': success_message})	
+			template_values.update({'page_limit': "1000"})	
+			template_values.update({'renewal_date': renewal_date})		
+			template_values.update({'renewal_confirm_date': today})
+			#update_account(self,template_values)
+			db.run_in_transaction(update_account,self, template_values)
 
-		template_values.update({'page_limit': "1000"})	
-		template_values.update({'renewal_date': renewal_date})		
-		template_values.update({'renewal_confirm_date': today})
-		#update_account(self,template_values)
-		db.run_in_transaction(update_account,self, template_values)
-
+	elif check_key_premium == real_key_value:
+		#Add a minimum of one year to the account renewal...
+		if renewal_date < today:
+			renewal_date = today
+		subscription_period = timedelta(366)
+		renewal_date = renewal_date + subscription_period
+		if (renewal_date - today) > timedelta(700):
+			success_message = 'Early'
+		else:
+			success_message = 'Premium Account'
+			#update annual subscription page_limit
+			template_values.update({'success_message': success_message})	
+			template_values.update({'page_limit': "10000"})	
+			template_values.update({'renewal_date': renewal_date})		
+			template_values.update({'renewal_confirm_date': today})
+			#update_account(self,template_values)
+			db.run_in_transaction(update_account,self, template_values)
 
 	else:
 		success_message = 'Fail'
@@ -1582,8 +1635,8 @@ def update_account(self,arg_account_template):
 		account_manager_records.renewal_confirm_date = arg_account_template['renewal_confirm_date']
 	if 'page_limit' in arg_account_template:
 		account_manager_records.page_limit = arg_account_template['page_limit']
-
-
+	if 'success_message' in arg_account_template:
+		account_manager_records.success_message = arg_account_template['success_message']
 
 
 	account_manager_records.suspend_account = arg_account_template['suspend_account']

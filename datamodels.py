@@ -128,6 +128,7 @@ class account_manager(db.Model):
 	free_trial_end = db.DateTimeProperty()
 	total_scan_counter = db.StringProperty(multiline=False)
 	renewal_confirm_date = db.DateTimeProperty()
+	success_message = db.StringProperty(multiline=False)
 
 class q_action_manager(db.Model):
 	system_scan_counter = db.StringProperty(multiline=False)

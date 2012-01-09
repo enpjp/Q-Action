@@ -19,6 +19,13 @@
 
 <h2>Your Subscription</h2>
 
+
+{% if success_message == "Free subscription" %}
+Thank you for subscribing to our Free account. You may upgrade subscription for Q-Action at any time.
+<p>Your next renewal is {{ renewal_year }}-{{ renewal_month }}-{{ renewal_day }} </p>
+
+{% endif %}
+
 {% if success_message == "Basic Account" %}
 Thank you for purchasing a Basic Account subscription for Q-Action.
 <p>Your next renewal is {{ renewal_year }}-{{ renewal_month }}-{{ renewal_day }} </p>
@@ -41,6 +48,12 @@ Deep sorrow. Your valued attempt to purchase a Q-Action subscription has gone wr
 </p>
 {% endif %}
 
+{% if success_message == "Early" %}
+<p>
+Whoops! You have a long Q-Action subscription already running. Please contact us if you really do need to modify your subscription and we will sort things out for you. In the meantime you can rest assured that you have not been charged for this transaction.
+
+</p>
+{% endif %}
 
 
 
