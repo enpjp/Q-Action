@@ -33,6 +33,7 @@ from datetime import date
 from datetime import timedelta
 import urllib
 import cgi
+import random
 # Import from our sub files
 
 from datamodels import *
@@ -353,8 +354,11 @@ class create_landing_page(webapp.RequestHandler):
 	
 	if number_of_records < int(account_info['page_limit']):
 		# Create new contact
-		Key_Name = hashlib.sha224(os.urandom(20)).hexdigest()
-		Key_Name = Key_Name[0:10]
+		# New function for random keystring caps, lowercase and numeric 10^640 cards available
+		Key_Name_string = random_list_characters(10)
+		#Key_Name = hashlib.sha224(os.urandom(20)).hexdigest()
+		#Key_Name = Key_Name[0:10]
+		Key_Name = Key_Name_string
 		#Test if key name exists, if it does go home!
 		my_test_query = db.GqlQuery('SELECT * FROM place_address WHERE Key_Name = :1', Key_Name)
 		if my_test_query.count() > 0:
@@ -403,6 +407,7 @@ class create_landing_page(webapp.RequestHandler):
 		template_values.update(html_template)		
 		template_values.update({'list_card_types_dict' : list_card_types_dict })
 		template_values.update({'list_card_types_as_list' : list_card_types_as_list })
+		template_values.update({'Key_Name_string' : Key_Name_string })
 		#Forward to the edit form
 		path = os.path.join(os.path.dirname(__file__), 'html/edit_landing_page.html')
         	self.response.out.write(template.render(path, template_values))
@@ -2245,3 +2250,78 @@ def page_not_exist(self):
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
 	self.response.out.write(template.render(path, template_values))
  	return
+
+def random_list_characters(arg_length):
+	# Create a list of characters that can be used in the QR code address
+	character_list = []
+	character_list.append('0')
+	character_list.append('1')
+	character_list.append('2')
+	character_list.append('3')
+	character_list.append('4')
+	character_list.append('5')
+	character_list.append('6')
+	character_list.append('7')
+	character_list.append('8')
+	character_list.append('9')
+	character_list.append('a')
+	character_list.append('b')
+	character_list.append('c')
+	character_list.append('d')
+	character_list.append('e')
+	character_list.append('f')
+	character_list.append('g')
+	character_list.append('h')
+	character_list.append('i')
+	character_list.append('j')
+	character_list.append('k')
+	character_list.append('l')
+	character_list.append('m')
+	character_list.append('n')
+	character_list.append('o')
+	character_list.append('p')
+	character_list.append('q')
+	character_list.append('r')
+	character_list.append('s')
+	character_list.append('t')
+	character_list.append('u')
+	character_list.append('v')
+	character_list.append('w')
+	character_list.append('x')
+	character_list.append('y')
+	character_list.append('z')
+	character_list.append('A')
+	character_list.append('B')
+	character_list.append('C')
+	character_list.append('D')
+	character_list.append('E')
+	character_list.append('F')
+	character_list.append('G')
+	character_list.append('H')
+	character_list.append('I')
+	character_list.append('J')
+	character_list.append('K')
+	character_list.append('L')
+	character_list.append('M')
+	character_list.append('N')
+	character_list.append('O')
+	character_list.append('P')
+	character_list.append('Q')
+	character_list.append('R')
+	character_list.append('S')
+	character_list.append('T')
+	character_list.append('U')
+	character_list.append('V')
+	character_list.append('W')
+	character_list.append('X')
+	character_list.append('Y')
+	character_list.append('Z')
+	# Now we have the list of characters
+	my_random_string = "".join(random.choice(character_list) for i in range(10))
+	
+	
+        return my_random_string
+
+
+	
+	
