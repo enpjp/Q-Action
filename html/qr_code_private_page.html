@@ -9,14 +9,13 @@
 	</ul>
  </div>
 
-<div> </div>
 <div class="black-menu">
 	<ul class = "nav">
 {% if logon_message != "You will need to sign in with a valid gmail account to use this software." %}	
 	<li><a href="/landing_page_list.html">My Cards</a></li>
 {% endif %}
 	</ul>
- </div>
+</div>
 
 {% endblock %}
 {% block page_heading %}{% endblock %}
@@ -36,10 +35,10 @@ Scan Counter: {{scan_counter}}
 
 <div class="black-menu">
 	<ul class = "nav"> 
-	<li><a href="{{edit_my_record}}&no_scan=True">Edit Card</a></li>
+	<li><a href="{{edit_my_record}}&amp;no_scan=True">Edit Card</a></li>
 	</ul>
- </div>
 </div>
+
 
 {% endblock %}
 
