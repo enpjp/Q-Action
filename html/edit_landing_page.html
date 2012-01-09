@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block head_tags_extra %}<link rel="profile" href="http://microformats.org/profile/hcard"/>
+<link rel="stylesheet" type="text/css" media="all" href="/javascript/jsdatepick-calendar/jsDatePick_ltr.min.css" />
+<script type="text/javascript" src="/javascript/jsdatepick-calendar/jsDatePick.min.1.3.js"></script>
+<script type="text/javascript" src="/javascript/button_colour.js"></script>
+
+{% endblock %}
+{% block title %}{{ current_card_type }}{% endblock %}
+{% block main-menu %}{% endblock %}
+
+{% block page_heading %}<div class="card"><h1>{{ current_card_type }}</h1>{% endblock %}
+{% block content %}
+
+<div class="content_container">
+
+<form  id='Edit_card' action="/update_contact.html" enctype="multipart/form-data" method="post">
+<div class='field' >
+<div class = 'field_description'>Select Card Type:</div>  
+<select name='CardID'  id='CardID'  onchange= "document.getElementById('Edit_card').submit();"  >
+
+
+{% for key in make_card_list %}
+
+	<option  value="{{ key.0 }}"
+		{% if CardID == key.0 %}
+		selected="selected"
+		{% endif %}> {{ key.1 }}</option>
+
+{% endfor %}
+</select>
+</div>
+
+
+
+{% include "generic_edit_form_fragment.html" %}
+
+<div class="note">
+<p>Your unique key for this page is: {{ Key_Name }}.</p>
+
+<p>
+{% if count_my_records > page_limit %} Lucky you!{% endif %}
+
+You currently have {{count_my_records}} card{{ count_my_records|pluralize }}. Your allowance is currently set to {{page_limit}} cards.</p>
+</div>
+<div class="edit-menu">
+	<ul class = "nav">
+{% if  current_card_type  !=  "Not in use" %}
+	<li><a id= "save_button" onclick= "document.getElementById('Edit_card').submit();">Save</a></li>
+{% endif %}
+<!--	<li><a href="/landing_page_list.html?no_scan=True" >Finish</a></li> -->
+	<li><a id= "view_button" href="/qr_code_private_page.html?key_string={{Key_Name}}&amp;no_scan=True">View</a></li> 
+{% if  current_card_type  !=  "Not in use" %}
+{% if count_my_records < page_limit %}
+	<li><a id= "copy_button" onclick= "copy_card('{{Copy_Card_Key_Name}}');">Copy</a></li>
+{% endif %}	{% endif %}	
+	</ul>
+
+
+ </div>
+
+</form>
+
+</div>
+</div>
+{% endblock %}
+
+{% block footer %}
+
+
+
+{% endblock %}
