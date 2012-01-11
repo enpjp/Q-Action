@@ -1360,6 +1360,9 @@ def postContact_V2(self,arg_data_fields):
 	for field_name in all_field_dict:
 		#field_name_value = getattr(my_query, field_name,"")
 		#my_new_template.update({field_name : field_name_value} )
+
+		field_value = field_dict[field_name]
+		field_value = field_value[:400]
 		setattr(my_place, field_name, field_dict[field_name])
 
 	my_place.put()
@@ -1373,6 +1376,7 @@ def postContact_V3(self,arg_data_fields):
 			# Clear out all non ASCII characters
 			field_name = field_name.decode( 'unicode-escape' ).encode( 'ascii' )
 			field_clean =''.join([x for x in field_dict[field_name] if ord(x) < 128])
+			field_clean = field_clean[:400]
 			setattr(arg_data_query, field_name, field_clean)
 		arg_data_query.put()
 			
