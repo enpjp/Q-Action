@@ -9,8 +9,11 @@
 // This function toggles the buttons by changing the style
 	function state_changed(){
 		document.getElementById("save_button").setAttribute("style", "background:#fab019");
+		document.getElementById("save_button").style.cursor="pointer";
 		document.getElementById("view_button").setAttribute("style", "background:#999999");
-		document.getElementById("copy_button").setAttribute("style", "background:#999999");		
+		document.getElementById("view_button").style.cursor="text";
+		document.getElementById("copy_button").setAttribute("style", "background:#999999");
+		document.getElementById("copy_button").style.cursor="text";		
 }
 	function copy_card(arg_key_name){
 	var current_value

@@ -389,6 +389,7 @@ background: #999999;
 
 #save_button {
 background: #999999;
+cursor: text;
 }
 
 div.note {
