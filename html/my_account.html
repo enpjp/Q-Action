@@ -7,7 +7,6 @@
 	<ul class = "nav"> 
 	<li><a href="/">Home</a></li>
 
-
 	</ul>
  </div>{% endblock %}
 {% block page_heading %}<h1>My Account</h1>{% endblock %}
@@ -36,27 +35,106 @@ Your page allowance is currently set to {{page_limit}} cards.</p>
 <h1> Your account is currently suspended! </h1>
 {% endif %}
 
-
-{% if opt_in_to_contact == "True" %}
-<p><strong>You have opted to receive emails from us about q-action. To opt out select the button below.</strong></p>
-<div class="black-menu">
-	<ul class = "nav"> 
-	<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
-	</ul>
- </div>
-
+{% if success_message == "Free subscription" %}
+<p><strong>You have opted to for a free subscription and will receive occasional emails from us about your experience with q-action. Non-Free subscriptions can choose to opt out.</strong></p>
+{% endif %}
+{% if success_message == "Trial" %}
+<p><strong>You are using out 30 day trial account and may receive occasional emails from us about your experience with q-action. Non-Free subscriptions can choose to opt out.</strong></p>
 {% endif %}
 
-{% if opt_in_to_contact  != "True" %}
-<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+{% if success_message == "Free subscription" %}
+	{% if opt_in_to_contact == "True" %}
+	<p><strong>You have opted to receive emails from us about q-action. To opt out select the button below.</strong></p>
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
+		</ul>
+	 </div>
 
-<div class="black-menu">
-	<ul class = "nav"> 
-	<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
-	</ul>
- </div>
+	{% endif %}
 
+	{% if opt_in_to_contact  != "True" %}
+	<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
 {% endif %}
+
+{% if success_message == "Basic Account" %}
+	{% if opt_in_to_contact == "True" %}
+	<p><strong>You have opted to receive emails from us about q-action. To opt out select the button below.</strong></p>
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+
+	{% if opt_in_to_contact  != "True" %}
+	<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+{% endif %}
+
+{% if success_message == "Basic Account Plus" %}
+	{% if opt_in_to_contact == "True" %}
+	<p><strong>You have opted to receive emails from us about q-action. To opt out select the button below.</strong></p>
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+
+	{% if opt_in_to_contact  != "True" %}
+	<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+{% endif %}
+
+
+{% if success_message == "Premium Account" %}
+	{% if opt_in_to_contact == "True" %}
+	<p><strong>You have opted to receive emails from us about q-action. To opt out select the button below.</strong></p>
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=False">Opt out</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+
+	{% if opt_in_to_contact  != "True" %}
+	<p>You have not opted to receive emails from us about q-action. To opt in select the button below. </p>
+
+	<div class="black-menu">
+		<ul class = "nav"> 
+		<li><a href="/my_account.html?opt_in_to_contact=True">Opt in</a></li>
+		</ul>
+	 </div>
+
+	{% endif %}
+{% endif %}
+
 
 </div>
 

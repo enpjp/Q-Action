@@ -1469,7 +1469,7 @@ def check_account(self):
 #This does the actual creation of an account with a status dependent upon the limit imposed and returns
 def get_account_record(self, my_user_id):
 	# This is our default state for opt-in
-	opt_in_to_contact = False
+	opt_in_to_contact = True
 	#What is our limit? set this as a global at the head of the page
 
 	free_trial_end = 0
@@ -1508,14 +1508,16 @@ def get_account_record(self, my_user_id):
 		nickname = my_account_query.nickname
 		owner = my_account_query.owner
 		opt_in_to_contact = my_account_query.opt_in_to_contact
+		success_message = my_account_query.success_message
 
 
 	else:
 		new_account = True
 		suspend_account = False
+		success_message ='Trial'
 		renewal_date = datetime.now()
 		Date_created = datetime.now()
-		opt_in_to_contact = False
+		opt_in_to_contact = True
 		free_trial_end = datetime.today()
 		# Need some logic around the free trial - if december then increment the year and set the month to 1
 		free_trial_period = timedelta(30)
@@ -1552,6 +1554,7 @@ def get_account_record(self, my_user_id):
 	account_template = { 
 		'new_account' : new_account,
 		'account_valid' : account_valid,
+		'success_message' : success_message,
 		'page_limit' : page_limit,
 		'suspend_account' : suspend_account,
 		'renewal_date' : renewal_date,
@@ -1657,6 +1660,8 @@ def create_account(self,arg_account_template):
 	account_manager_records.renewal_date = arg_account_template['renewal_date']
 	account_manager_records.free_trial_end = arg_account_template['free_trial_end']
 	account_manager_records.suspend_account = arg_account_template['suspend_account']
+	account_manager_records.success_message = arg_account_template['success_message']
+	account_manager_records.opt_in_to_contact = arg_account_template['opt_in_to_contact']
 	account_manager_records.put()
 
 def mark_up_coder(arg_string):
