@@ -6,7 +6,23 @@
 
 {% endblock %}
 {% block title %}{{ current_card_type }}{% endblock %}
-{% block main-menu %}{% endblock %}
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+ </div>
+
+<div class="black-menu">
+	<ul class = "nav">
+{% if logon_message != "You will need to sign in with a valid gmail account to use this software." %}	
+	<li><a href="/landing_page_list.html">My Cards</a></li>
+{% endif %}
+	</ul>
+</div>
+
+
+{% endblock %}
 
 {% block page_heading %}<div class="card"><h1>{{ current_card_type }}</h1>{% endblock %}
 {% block content %}
@@ -39,8 +55,9 @@
 
 <p>
 {% if count_my_records > page_limit %} Lucky you!{% endif %}
-
+{% if count_my_records > 0 %} 
 You currently have {{count_my_records}} card{{ count_my_records|pluralize }}. Your allowance is currently set to {{page_limit}} cards.</p>
+{% endif %}
 </div>
 <div class="edit-menu">
 	<ul class = "nav">
