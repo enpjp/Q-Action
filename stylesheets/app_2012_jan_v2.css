@@ -87,6 +87,20 @@ float: left;
 
 }
 
+
+a.link_text {
+text-decoration: none;
+font-weight: bold;
+color: #fab019;
+
+}
+
+a.link_text:hover{
+
+color: #4d5364;
+
+}
+
 ul.nav a,
 ul.nav_faq a, 
 ul.nav_help a,
@@ -104,6 +118,7 @@ text-decoration: none;
 width: 220px;
 font-size:25px;
 text-align:center;
+cursor:pointer;
 }
 /* This sets the width of the nav_faq buttons to something too wide for smartphone screens
 ul.nav_faq a {
@@ -231,6 +246,7 @@ color: #ffffff;
 background: #fab019;
 margin-bottom: 5px;
 margin-right: 5px;
+cursor: pointer;
 }
 
 
