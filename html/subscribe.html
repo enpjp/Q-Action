@@ -17,8 +17,13 @@
 
 {% block content %}
 
-<p>You have {{ days_to_end_of_subscription }} days to the end of your current subscription. If you chose to upgrade now your enhancements will be added to your current subscription period. </p>
-
+{% if login_check == "True"  %}	
+<p>You have {{ days_to_end_of_subscription }} days to the end of your current subscription. If you chose to upgrade now your enhancements will be added to your current subscription period. 
+</p>
+{% endif %}
+{% if login_check == "False"  %}	
+<p>You must be logged-in to purchase or upgrade a subscription.</p>
+{% endif %}
 <h3>Free Account</h3>
 
 <ul>
