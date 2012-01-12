@@ -1363,7 +1363,11 @@ def postContact_V2(self,arg_data_fields):
 		#my_new_template.update({field_name : field_name_value} )
 
 		field_value = field_dict[field_name]
-		field_value = field_value[:400]
+		#Clip string to 499 characters and Text_message to 1000
+		if field_name == 'Text_message':
+			field_value = field_value[:1000]
+		else:
+			field_value = field_value[:499]
 		setattr(my_place, field_name, field_dict[field_name])
 
 	my_place.put()
@@ -1377,7 +1381,11 @@ def postContact_V3(self,arg_data_fields):
 			# Clear out all non ASCII characters
 			field_name = field_name.decode( 'unicode-escape' ).encode( 'ascii' )
 			field_clean =''.join([x for x in field_dict[field_name] if ord(x) < 128])
-			field_clean = field_clean[:400]
+			if field_name == 'Text_message':
+				field_clean = field_clean[:1000]
+			else:
+				field_clean = field_clean[:499]
+
 			setattr(arg_data_query, field_name, field_clean)
 		arg_data_query.put()
 			
