@@ -1314,8 +1314,9 @@ def get_a_record_from_key(self, arg_my_key):
 			else:
 				field_widget_type = 'text'
 				page_title_lookup = "No Title!"
-				
+			# This code has the details needed to edit the form page_title_lookup is the name in the link_button	
 			edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible, field_widget_type, page_title_lookup ])
+			#This code has the details for display
 			display_field_in_form.update({name_of_field :value_of_field })
 		for field_type in all_template_values :
 			if field_type not in card_types_dict[CardID]:
@@ -2220,12 +2221,17 @@ def get_mini_web_list(self,arg_userID):
 			for field_name in all_field_dict:
 				field_name_value = getattr(my_place, field_name,"")
 				card_fields_values.update({field_name : field_name_value} )
+			LabelID = card_fields_values['LabelID']
+			LabelID = LabelID.decode( 'unicode-escape' ).encode( 'ascii' )
 			Cardtitle = card_fields_values['Cardtitle']
 			Cardtitle = Cardtitle.decode( 'unicode-escape' ).encode( 'ascii' )
 			Key_Name_String =  my_place.Key_Name_String
 			Key_Name_String = Key_Name_String.decode( 'unicode-escape' ).encode( 'ascii' )
 			#mini_web_dict.update({Cardtitle: my_place.Key_Name_String})
-			mini_web_dict.update({Key_Name_String : Cardtitle})
+			if len(LabelID) > 1:
+				mini_web_dict.update({Key_Name_String : LabelID})
+			else:
+				mini_web_dict.update({Key_Name_String : Cardtitle})
 			
 	
 	return mini_web_dict	
