@@ -41,7 +41,9 @@ class place_address(db.Model):
 	Home_Phone = db.StringProperty(multiline=False)
 	Mobile_Phone = db.StringProperty(multiline=False)
     	Web_url = db.StringProperty(multiline=False)
-    	Text_message = db.StringProperty(multiline=True)
+    	#Text_message = db.StringProperty(multiline=True)
+	# String property is limited to less than 500 characters. Text has no limit
+	Text_message = db.TextProperty()
 	Auto_forward = db.StringProperty(multiline=False)
 	Google_analytics = db.StringProperty(multiline=False)
 	Stat_counter = db.StringProperty(multiline=False)
