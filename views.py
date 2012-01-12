@@ -1298,7 +1298,8 @@ def get_a_record_from_key(self, arg_my_key):
 				if CardID == 'Mini_web':
 					mini_web_list = get_mini_web_list(self,my_id_to_check)
 					template_values.update({'mini_web_list' : mini_web_list })
-
+					# Can't remember what problem the code below was meant to solve but it must have been something to do with blank titles.
+					# But I now want to overwrite the page title with labelID if LabelID not blank	
 					if value_of_field in mini_web_list:
 						page_title_lookup = mini_web_list[value_of_field]
 						if len(value_of_field) < 1:
