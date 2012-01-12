@@ -52,13 +52,14 @@ def set_domain(arg_url):
 		domain = "https://q-action.appspot.com"
 	#elif arg_url.find("q-address")>1:
 	#	domain = "https://q-address.appspot.com"
-	#elif arg_url.find("8082")>1:
+	elif arg_url.find("localhost")>1:
 		#domain = "http://192.168.1.13:8082"
-	#	domain = "http://localhost:8082"
+		domain = "localhost:8083"
 	else:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8083"
-		domain = arg_url
+	#	domain = arg_url
+		domain = "https://q-action.appspot.com"
 	return domain
 
 class HomePage(webapp.RequestHandler):
@@ -1210,7 +1211,7 @@ def get_a_record_from_key(self, arg_my_key):
 		domain = set_domain(self.request.url)
 		Key_Name = arg_my_key
 		# set correct domain
-		my_qr_data = "%s/%s"  %("http://q-action.appspot.com",Key_Name)
+		my_qr_data = "%s/%s"  %(domain,Key_Name)
 		
 
 
