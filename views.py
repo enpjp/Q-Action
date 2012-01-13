@@ -542,7 +542,13 @@ class edit_landing_page_form(webapp.RequestHandler):
 		make_card_list.append([card_type,list_name_dict[card_type]])
 	# Now to introduce some blacklist checking
 	if current_card_type == 'Go to URL' :
-		template_values.update({'Blacklist_status' : 'good' })
+		# Create a lookup object
+		client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
+		#url_to_test = 'http://www.google.com/'
+		url_to_test = template_values['Auto_forward']
+		results_dict = client.lookup(*[url_to_test])
+		results = results_dict[url_to_test]
+		template_values.update({'Blacklist_status' : results })
 
 
 
