@@ -54,8 +54,8 @@ def set_domain(arg_url):
 	#elif arg_url.find("q-address")>1:
 	#	domain = "https://q-address.appspot.com"
 	elif arg_url.find("localhost")>1:
-		#domain = "http://192.168.1.13:8082"
-		domain = "localhost:8083"
+		domain = "http://192.168.1.13:8083"
+		#domain = "localhost:8083"
 	else:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8083"
@@ -186,7 +186,9 @@ class InfoPage(webapp.RequestHandler):
 	"expert.html",
 	"download_complete.html",
 	"upload_complete.html",
-	"expired.html"]
+	"expired.html",
+	"not_in_use.html"
+	]
 	white_list = set(valid_list)
 	path = os.path.join(os.path.dirname(__file__), 'html/%s' % my_clean_path)
 	if os.path.exists(path) and my_clean_path in white_list :
@@ -667,12 +669,18 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 	# Combines two dictionaries
 	template_values.update(account_status)
 	if ('%s' % account_status['suspend_account']) == 'True':
-		self.redirect( '/info/expired.html')		
-	landing_page = template_values['Auto_forward']
+		self.redirect( '/info/expired.html')
+
+	if template_values['CardID'] == 'Go to URL':	
+		self.redirect( '/info/not_in_use.html')
+		
+
 	# Test to see if autoforwarding is enabled go there
-	if len(landing_page) > 4:
+	if template_values['CardID'] == 'Go_to_URL':
+		landing_page = template_values['Auto_forward']
+		if len(landing_page) > 4:
 	
-		self.redirect( '%s' % landing_page)
+			self.redirect( '%s' % landing_page)
 	#If not go to the landing page
 	else:
 		path = os.path.join(os.path.dirname(__file__), 'html/landing.html')
@@ -2009,8 +2017,8 @@ def card_definitions_v2():
 
 	Not_in_use = {}
 	Not_in_use_list = [
-		['Cardtitle', 'Not in use'],
-
+		#['Cardtitle', 'Not in use'],
+		['Cardtitle', 'Card Title'],
 		]
 	for  field in Not_in_use:
 		Not_in_use.update({field[0] : field[1] })	

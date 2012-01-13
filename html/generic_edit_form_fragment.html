@@ -86,7 +86,7 @@
 {% else %}
 	{% if key.1 ==  "Cardtitle" %}
 
-		{% if  current_card_type  ==  "Not in use" %}
+		{% if  current_card_type  ==  "Not in use never ever" %}
 		<input type='hidden' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' />
 		{% else %}
 	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'>(Note that cards are sorted by Card Title in the list view.) {{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>

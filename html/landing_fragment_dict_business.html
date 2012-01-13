@@ -13,7 +13,7 @@
 {% endif %}
 
 {% if display_field_in_form.Qualifications != "" %}
-<div class="fn n">{{display_field_in_form.Qualifications}}</div>
+<span class="fn n">{{display_field_in_form.Qualifications}}</span>
 {% endif %}
 
 {% if display_field_in_form.Type != "" %}
@@ -54,7 +54,7 @@
 </span><br />
 {% endif %}
 {% if display_field_in_form.Tel2 != "" %}
-
+<br />
 <span class="tel">
  	<span class="type">Mobile</span>:
  	<span class="value">{{display_field_in_form.Tel2}}</span>
@@ -86,13 +86,12 @@
 <div>Alternative web site: {{display_field_in_form.URL2}} </div>
 {% endif %}
 
-
 {% if display_field_in_form.URLsocialnets != "" %}
-<div>Alternative web site: Social network and conferencing names: {{display_field_in_form.URLsocialnets }} </div>
+<div>Other: {{display_field_in_form.URLsocialnets }} </div>
 {% endif %}
 
 
-
+<br />
 
 {% if display_field_in_form.Text_message != "" %}
 <div class ="Text_message">
@@ -103,15 +102,15 @@
 {% if display_field_in_form.Email_address != "" %}
 
 {% if display_field_in_form.Web_url != "" %}
-<div><a class ='link_button' href= "{{display_field_in_form.Web_url}}">My Website</a> </div>
+<div><a class ='link_button' href= "{{display_field_in_form.Web_url}}">Website</a> </div>
 {% endif %}
 
 
 
-<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email_address }}"> My Work Email </a></div>
+<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email_address }}">Work Email </a></div>
 {% endif %}
 
 {% if display_field_in_form.Email2 != "" %}
-<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}"> My Home Email </a> </div>
+<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}">Home Email </a> </div>
 {% endif %}
 

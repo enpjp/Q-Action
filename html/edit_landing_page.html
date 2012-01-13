@@ -28,7 +28,7 @@
 {% block content %}
 
 <div class="content_container">
-
+CardID: {{ CardID }}
 <form  id='Edit_card' action="/update_contact.html" enctype="multipart/form-data" method="post">
 <div class='field' >
 <div class = 'field_description'>Select Card Type:</div>  
@@ -61,7 +61,7 @@ You currently have {{count_my_records}} card{{ count_my_records|pluralize }}. Yo
 </div>
 <div class="edit-menu">
 	<ul class = "nav">
-{% if  current_card_type  !=  "Not in use" %}
+{% if  current_card_type  !=  "Not in use never ever" %}
 	<li><a id= "save_button" onclick= "document.getElementById('Edit_card').submit();">Save</a></li>
 {% endif %}
 <!--	<li><a href="/landing_page_list.html?no_scan=True" >Finish</a></li> -->
