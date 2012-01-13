@@ -38,6 +38,7 @@ import random
 
 from datamodels import *
 
+from safebrowsinglookup import SafebrowsinglookupClient
 
 #What the current maximum number of accounts set this as a global at the head of the page
 def max_account_limit():
@@ -539,6 +540,12 @@ class edit_landing_page_form(webapp.RequestHandler):
 
 	for card_type in list_card_types_as_list:
 		make_card_list.append([card_type,list_name_dict[card_type]])
+	# Now to introduce some blacklist checking
+	if current_card_type == 'Go to URL' :
+		template_values.update({'Blacklist_status' : 'good' })
+
+
+
 	template_values.update({'make_card_list' : make_card_list })	
 	template_values.update({'current_card_type' : current_card_type })	
 	#'card_type_dict'
