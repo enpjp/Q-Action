@@ -113,7 +113,9 @@ Warning- Forwarding Visitors this web site may harm their computer. The location
 {% endfor %}
 <div>
 {% for key in hidden_edit_field_in_form %}
-<input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '30' onfocus= "state_changed();" />
+<input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = 
+{% if key.1  ==  "Sparegoto1" %}'{{ Blacklist_status }}'  
+{% else %}'{{ key.2 }}'{% endif %} size = '30' onfocus= "state_changed();" />
 {% endfor %}
 </div>
 

@@ -551,6 +551,8 @@ class edit_landing_page_form(webapp.RequestHandler):
 		results_dict = client.lookup(*[url_to_test])
 		results = results_dict[url_to_test]
 		template_values.update({'Blacklist_status' : results })
+		#Use sparegoto1 to store the black list result.
+		#this is best done in the edit form 
 
 
 
