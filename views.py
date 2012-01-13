@@ -2194,14 +2194,15 @@ def lookup_html_template(arg_CardID):
 	display_template_dict = {
 	'Business' : 'landing_fragment_dict_business.html',
 	'Mini_web' : 'landing_fragment_dict_mini_web.html',
-	'Guided_tour' : 'landing_fragment_dict_guided_tour.html'
+	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
+	'Blank' : 'landing_fragment_dict_blank.html
 	}
 
 	edit_template_dict = {
 	'Business' : 'generic_edit_form_fragment.html'
 	}
 
-################# dont edit these by mistake!
+################# don't edit these by mistake!
 	if arg_CardID in display_template_dict:
 		display_template = display_template_dict[arg_CardID]
 	else:
