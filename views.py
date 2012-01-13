@@ -2195,7 +2195,7 @@ def lookup_html_template(arg_CardID):
 	'Business' : 'landing_fragment_dict_business.html',
 	'Mini_web' : 'landing_fragment_dict_mini_web.html',
 	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
-	'Blank' : 'landing_fragment_dict_blank.html
+	'Blank' : 'landing_fragment_dict_blank.html'
 	}
 
 	edit_template_dict = {
