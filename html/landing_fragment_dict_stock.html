@@ -1,8 +1,8 @@
 {% for  value in edit_field_in_form  %}
 	{% if value.2 != "" %}
 		{% if value.0 != "Card Title" %}
-			{% if value.1 != "LabelID" %}
-			<div class = 'value'><span class = "field_label">{{value.0}}:</span> {{ value.2 }} </div>
+			{% if value.1 != "LabelID" %}	
+			<div class = 'value'>{{ value.2 }} </div>
 			{% endif %}
 		{% endif %}
 	{% endif %}

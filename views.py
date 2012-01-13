@@ -1945,8 +1945,8 @@ def card_definitions_v2():
 	Location_list = [
 		['Cardtitle', 'Card Title'],
 		['Locationname' , 'You are here'],
-		['Latlong' , 'Location coordinates'],
-		['W_address_Post_Code' , 'Post Code for Sat nav'],
+		['Latlong' , 'Co-ordinates'],
+		['W_address_Post_Code' , 'Satnav Post Code'],
 		['Text_message' , 'Information'],
 		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
@@ -2195,7 +2195,9 @@ def lookup_html_template(arg_CardID):
 	'Business' : 'landing_fragment_dict_business.html',
 	'Mini_web' : 'landing_fragment_dict_mini_web.html',
 	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
-	'Blank' : 'landing_fragment_dict_blank.html'
+	'Blank' : 'landing_fragment_dict_blank.html',
+	'Stock' : 'landing_fragment_dict_stock.html',
+	'Location' : 'landing_fragment_dict_location.html',		
 	}
 
 	edit_template_dict = {
