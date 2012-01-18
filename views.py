@@ -1247,8 +1247,18 @@ def get_a_record_from_key(self, arg_my_key):
 		# If the account is suspended go home
 		if account_details['suspend_account']:
 			self.redirect( '/')	
-	
-		my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
+		# The PIL module is not currently working on the development system on way round this is to use a try/except as a clunky way round it
+		# Also need to leave some breadcrumbs so we know which method has been used....
+		#my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
+		try:
+			my_qr_code = qrcode.make("%s" % my_qr_data)
+			chart_made_by = "qrcode v2.0"
+
+		except:
+			my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
+			chart_made_by = "Google Chart"
+
+
 		edit_my_record = "/edit_landing_page.html?key_string=%s"  %( Key_Name)
 			
 		zero = 0
@@ -1299,6 +1309,7 @@ def get_a_record_from_key(self, arg_my_key):
 			'Auto_forward' : Auto_forward,
 			'my_qr_code' : my_qr_code,
 			'my_qr_data' : my_qr_data,
+			'chart_made_by' : chart_made_by,
 			'zero' : zero,
 			'Google_analytics' : Google_analytics,
 			'Stat_counter' : Stat_counter,
