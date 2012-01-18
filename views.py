@@ -35,7 +35,7 @@ import urllib
 import cgi
 import random
 
-import qrcode
+#import qrcode
 # Import from our sub files
 
 from datamodels import *
