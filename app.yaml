@@ -1,7 +1,14 @@
 application: q-action
 version: beta-3
-runtime: python
+runtime: python27
 api_version: 1
+threadsafe: false
+
+libraries:
+- name: PIL
+  version: latest
+
+
 
 builtins:
 - remote_api: on

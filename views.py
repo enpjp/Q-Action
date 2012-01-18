@@ -23,6 +23,7 @@ from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
+
 from urlparse import urlparse
 import hashlib
 import re
@@ -34,6 +35,8 @@ from datetime import timedelta
 import urllib
 import cgi
 import random
+from google.appengine.api import images
+
 
 import qrcode
 # Import from our sub files
@@ -1257,7 +1260,7 @@ def get_a_record_from_key(self, arg_my_key):
 		except:
 			my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
 			chart_made_by = "Google Chart"
-
+		my_qr_code = qrcode.make("%s" % my_qr_data)
 
 		edit_my_record = "/edit_landing_page.html?key_string=%s"  %( Key_Name)
 			

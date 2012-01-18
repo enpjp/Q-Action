@@ -4,6 +4,8 @@ try:
 except ImportError:
     import Image, ImageDraw
 
+from google.appengine.api import images
+
 from qrcode import constants, exceptions, util
 
 
