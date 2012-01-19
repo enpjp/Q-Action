@@ -1758,10 +1758,11 @@ def card_definitions_v2():
 		['Email_address' , 'Work email'],
 		['Email2' , 'Home email'],
 		['Web_url' , 'Website'],
+		['LabelID' , 'Label for MiniWeb button and Website button'],
 		['URL2' , 'Alternative web site'],
 		['URLsocialnets' , 'Social network and conferencing names'],
 		['Text_message' , 'Marketing message'],
-		['LabelID' , 'Label for MiniWeb button'],
+
 		['scan_counter' , "Scan counter" ],	
 		#['Sparebusiness1' , '(None - spare field)'],
 		#['Sparebusiness2' , '(None - spare field)'],
