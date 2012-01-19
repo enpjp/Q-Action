@@ -1342,7 +1342,15 @@ def get_a_record_from_key(self, arg_my_key):
 
 			else:
 				field_widget_type = 'text'
-				page_title_lookup = "No Title! why"
+				#page_title_lookup = "No Title! why"
+				
+				if len(my_query.LabelID) < 1:
+					page_title_lookup = "No Title!123"		
+				else:
+					page_title_lookup = my_query.LabelID	
+
+
+
 			# This code has the details needed to edit the form page_title_lookup is the name in the link_button	
 			edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible, field_widget_type, page_title_lookup ])
 			#This code has the details for display
@@ -1355,7 +1363,7 @@ def get_a_record_from_key(self, arg_my_key):
 				text_or_visible = "hidden"
 				hidden_edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible  ])
 		template_values.update(html_template)
-		 
+		template_values.update({'page_title_lookup' : page_title_lookup }) 
 		template_values.update({'field_widget' : field_widget })
 		template_values.update({'display_field_in_form' : display_field_in_form })			
 		template_values.update({'hidden_edit_field_in_form' : hidden_edit_field_in_form })		
