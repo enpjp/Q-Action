@@ -1335,8 +1335,8 @@ def get_a_record_from_key(self, arg_my_key):
 							page_title_lookup = "No Title!"				
 				# If the card is not a mini_web but contains a url_link we can still use the mini_web button label
 				else:
-					if len(value_of_field) < 1:
-						page_title_lookup = "No Title!123"		
+					if len(my_query.LabelID) < 1:
+						page_title_lookup = "Link"
 					else:
 						page_title_lookup = my_query.LabelID		
 
@@ -1345,7 +1345,7 @@ def get_a_record_from_key(self, arg_my_key):
 				#page_title_lookup = "No Title! why"
 				
 				if len(my_query.LabelID) < 1:
-					page_title_lookup = "No Title!123"		
+					page_title_lookup = "Link"	
 				else:
 					page_title_lookup = my_query.LabelID	
 
