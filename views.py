@@ -1885,7 +1885,8 @@ def card_definitions_v2():
 		['First_Name' , 'First name'],
 		['Middle_Name' , 'Middle name or initial'],
 		['Last_Name' , 'Family name'],
-		['Email2' , 'Home email'],
+		['Organisation' , 'Organisation'],
+		['Email2' , 'Email'],
 		#['Reminderdate' , 'Send me a reminder to update on'],
 		['Locationname' , 'Location name'],
 		['Latlong' , 'Location coordinates'],
@@ -2205,7 +2206,9 @@ def lookup_html_template(arg_CardID):
 	'Blank' : 'landing_fragment_dict_blank.html',
 	'Stock' : 'landing_fragment_dict_stock.html',
 	'Location' : 'landing_fragment_dict_location.html',
-	'Service' : 'landing_fragment_dict_service.html',		
+	'Service' : 'landing_fragment_dict_service.html',	
+	'Offer' : 'landing_fragment_dict_offer.html',	
+	'ICE' : 'landing_fragment_dict_ice.html',			
 	}
 
 	edit_template_dict = {

@@ -1,0 +1,17 @@
+{% for  value in edit_field_in_form  %}
+	{% if value.2 != "" %}
+		{% if value.0 != "Card Title" %}
+			{% if value.1 != "LabelID" and value.1 != "scan_counter" and value.1 != "Web_url" %}
+
+			<div> <div class = 'value'>{{ value.2 }} </div></div>
+
+			{% endif %}
+		{% endif %}
+	{% endif %}
+{% if value.1 in field_widget %}
+	{% if value.4 == "url_link" %}
+<a class ='link_button' href= "{{  value.2 }}"> {{  value.5 }}</a>
+	{% endif %}{% endif %}
+{% endfor %}
+
+
