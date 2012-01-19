@@ -1723,7 +1723,8 @@ def mark_up_coder(arg_string):
 		#arg_string.replace("/&/g","&amp;")
 	replace_mark_up_list = {
 		"&lt;br &frasl;&gt;" 	: "<br />",
-		
+		"&lt;&frasl;br&gt;" 	: "<br />",
+		"&lt;&frasl;BR&gt;" 	: "<br />",		
 			} 
 	for k, v in replace_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 

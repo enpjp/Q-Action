@@ -1,7 +1,10 @@
-{% for  value in edit_field_in_form  %}
-	{% if value.2 != "" %}
-		{% if value.0 != "Card Title" %}	
-			<div class = 'value'>{{ value.2 }} </div>
-		{% endif %}
-	{% endif %}
-{% endfor %}
+
+{% if my_place.Text_message != "" %}
+<div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div>
+{% endif %}
+
+
+
+
+
+
