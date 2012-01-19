@@ -632,10 +632,11 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 
 	my_landing_page_dict_list = []
 	template_values = get_a_record_from_path(self)
-	template_values.update({'my_place' : template_values})
+
 	if not template_values:	
 		page_not_exist(self)
 		return
+	template_values.update({'my_place' : template_values})
 	#Parse the query string...
 	my_query = self.request.query
 	my_query_urlparse = cgi.parse_qs(my_query)
