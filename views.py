@@ -2219,7 +2219,8 @@ def lookup_html_template(arg_CardID):
 	'Location' : 'landing_fragment_dict_location.html',
 	'Service' : 'landing_fragment_dict_service.html',	
 	'Offer' : 'landing_fragment_dict_offer.html',	
-	'ICE' : 'landing_fragment_dict_ice.html',			
+	'ICE' : 'landing_fragment_dict_ice.html',	
+	'Membership': 'landing_fragment_dict_membership.html',		
 	}
 
 	edit_template_dict = {

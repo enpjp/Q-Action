@@ -1,0 +1,52 @@
+{% if my_place.Organisation != "" %}
+<div class="fn org">{{my_place.Organisation}}</div>
+{% endif %}
+{% if my_place.Web_url != "" %}
+<div class = 'value'> {{my_place.Web_url}}</div>
+{% endif %}
+	{% if my_place.First_Name != "" or my_place.Middle_Name != "" or my_place.Last_Name != ""  %}
+<div class = "field_label">Name:</div>
+<div>
+	<span class="fn n" lang="no">
+	<span class="given-name">{{my_place.Persontitle}}</span>
+	 <span class="given-name">{{my_place.First_Name}}</span> 
+	 <span class="additional-name">{{my_place.Middle_Name}}</span>
+	 <span class="family-name">{{my_place.Last_Name}}</span>
+	</span>
+
+</div>
+	{% endif %}
+
+{% if my_place.Type != "" %}
+<div><div class = "field_label">Type of Membership:</div> <div class = 'value'>{{my_place.Type}}</div>
+{% endif %}
+{% if my_place.ItemID != "" %}
+<div><div class = "field_label">Membership ID:</div> <div class = 'value'>{{my_place.ItemID}}</div>
+{% endif %}
+{% if my_place.Endate != "" %}
+<div><div class = "field_label">Membership Expires:</div> <div class = 'value'>{{my_place.Endate}}</div>
+{% endif %}
+{% if my_place.Startdate != "" %}
+<div><div class = "field_label">Member Since:</div> <div class = 'value'>{{my_place.Startdate}}</div>
+{% endif %}
+
+
+
+{% if my_place.Text_message != "" %}
+<div><div class = "field_label">Notes:</div> <div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div>
+{% endif %}
+{% if my_place.URL2l != "" %}
+
+<div><div class = "field_label">URL:</div><br />
+<a class ='link_button' href= "{{my_place.URL2}}">Member Account</a>
+{% endif %}
+
+
+{% if my_place.Web_url != "" %}
+<a class ='link_button' href= "{{my_place.Web_url}}"> {{  page_title_lookup }}</a>
+{% endif %}
+
+
+
+
+
