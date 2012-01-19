@@ -1332,11 +1332,16 @@ def get_a_record_from_key(self, arg_my_key):
 							page_title_lookup = "No Title!"		
 						else:
 							page_title_lookup = "No Title!"				
-
+				# If the card is not a mini_web but contains a url_link we can still use the mini_web button label
+				else:
+					if len(value_of_field) < 1:
+						page_title_lookup = "No Title!123"		
+					else:
+						page_title_lookup = my_query.LabelID		
 
 			else:
 				field_widget_type = 'text'
-				page_title_lookup = "No Title!"
+				page_title_lookup = "No Title! why"
 			# This code has the details needed to edit the form page_title_lookup is the name in the link_button	
 			edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible, field_widget_type, page_title_lookup ])
 			#This code has the details for display
@@ -1808,8 +1813,8 @@ def card_definitions_v2():
 		['Tel2' , 'Alternate number'],
 		['Email_address' , 'Contact email'],
 		['Web_url' , 'Contact web site'],
+		['LabelID' , 'Label for MiniWeb button and Contact web site button'],
 		['Text_message' , 'Description and notes'],
-		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
 		#['LabelID' , 'Label to print with code'],
 		#['Spareservice1' , '(None - spare field)'],
@@ -2199,7 +2204,8 @@ def lookup_html_template(arg_CardID):
 	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
 	'Blank' : 'landing_fragment_dict_blank.html',
 	'Stock' : 'landing_fragment_dict_stock.html',
-	'Location' : 'landing_fragment_dict_location.html',		
+	'Location' : 'landing_fragment_dict_location.html',
+	'Service' : 'landing_fragment_dict_service.html',		
 	}
 
 	edit_template_dict = {
