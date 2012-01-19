@@ -201,6 +201,8 @@ class InfoPage(webapp.RequestHandler):
 			'pageTitle': pageTitle, 
 			'my_url' : my_url,
 			'my_path' : my_path,
+			'full_url' : 'fred',
+			'test' : 'test'
 
 
         	}
@@ -618,6 +620,8 @@ class page_not_found(webapp.RequestHandler):
 	pageTitle= 'Page Not Found'
         template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : 'fred',
+		'test' : 'test'
 
         }
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
@@ -2382,10 +2386,13 @@ def increment_page_counter(self,arg_key):
 
 
 def page_not_exist(self):
-
+	my_url = self.request.url
+	my_path = self.request.path
 	pageTitle= 'Page Not Found'
 	template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : my_url,
+		'my_path' : my_path
 
 	}
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')

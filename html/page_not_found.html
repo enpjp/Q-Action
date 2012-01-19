@@ -13,10 +13,11 @@
 
 {% block content %}
 
-<p>{{my_url}}</p>
+<p>({{ full_url }})</p>
 
-<p>{{my_key}}</p>
 
 <p>Whoops! Something has gone wrong and we cannot find the page you are looking for. This has been duly noted in the log and we will investigate the problem. </p>
+<p>If the path to the page looks a bit like a link to a website, but without the http:// then the error may be due to a link incorrectly entered into a card.</p>
+<p>(The path to the page that could not be found was: {{ my_path }}.)</p>
 
 {% endblock %}
