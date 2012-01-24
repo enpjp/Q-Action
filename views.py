@@ -1739,7 +1739,16 @@ def mark_up_coder(arg_string):
 		"&lt;&frasl;br&gt;" 	: "<br />",
 		"&lt;&frasl;BR&gt;" 	: "<br />",
 		"&lt;strong&gt;"  	: "<strong>",
-		"&lt;&frasl;strong&gt;"  : "</strong>",		
+		"&lt;&frasl;strong&gt;"  : "</strong>",	
+		"&lt;h1&gt;"		: "<h1>",
+		"&lt;&frasl;h1&gt;"	: "</h1>",
+		"&lt;h2&gt;"		: "<h2>",
+		"&lt;&frasl;h2&gt;"	: "</h2>",
+		"&lt;ul&gt;"		: "<ul>",
+		"&lt;&frasl;ul&gt;"	: "</ul>",
+		"&lt;li&gt;"		: "<li>",
+		"&lt;&frasl;li&gt;"		: "</li>",
+
 			} 
 	for k, v in replace_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
