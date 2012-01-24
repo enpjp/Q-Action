@@ -1737,7 +1737,9 @@ def mark_up_coder(arg_string):
 	replace_mark_up_list = {
 		"&lt;br &frasl;&gt;" 	: "<br />",
 		"&lt;&frasl;br&gt;" 	: "<br />",
-		"&lt;&frasl;BR&gt;" 	: "<br />",		
+		"&lt;&frasl;BR&gt;" 	: "<br />",
+		"&lt;strong&gt;"  	: "<strong>",
+		"&lt;&frasl;strong&gt;"  : "</strong>",		
 			} 
 	for k, v in replace_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
