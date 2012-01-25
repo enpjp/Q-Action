@@ -13,10 +13,11 @@
 
 {% block content %}
 
-<p>{{my_url}}</p>
+<p>({{ full_url }})</p>
 
-<p>{{my_key}}</p>
 
-<p>Whoops! Something has gone wrong and we cannot find the page you are looking for. This has been duly noted in the log and we will investigate the problem. </p>
+<p>Whoops! Something has gone wrong and we cannot find the page you are looking for. The most likely cause is that you forgot to put the http:// before the www. </p>
+<p>The URL you entered was: {{ my_path }} Is this correct? You could check it by copying and pasting into a browser.</p>
+<p>This error has been logged, so if there is a system fault we will automatically investigate the problem.</p>
 
 {% endblock %}

@@ -48,28 +48,28 @@
 {% endif %}
 
 {% if display_field_in_form.Tel1 != "" %}
-<span class="tel">
+<br /><div class="tel">
  	<span class="type">Work</span>:
  	<span class="value">{{display_field_in_form.Tel1}}</span>
-</span><br />
+</div>
 {% endif %}
 {% if display_field_in_form.Tel2 != "" %}
-<br />
-<span class="tel">
+
+<div class="tel">
  	<span class="type">Mobile</span>:
  	<span class="value">{{display_field_in_form.Tel2}}</span>
-</span><br />
+</div>
 {% endif %}
 
 {% if display_field_in_form.Tel3 != "" %}
-<span class="tel">
+<div class="tel">
  	<span class="type">Home</span>:
  	<span class="value">{{display_field_in_form.Tel3 }}</span>
-</span><br />
+</div>
 {% endif %}
 
 {% if display_field_in_form.Email_address != "" %}
-<div>Work email: {{display_field_in_form.Email_address }}</div>
+<br /><div>Work email: {{display_field_in_form.Email_address }}</div>
 {% endif %}
 
 {% if display_field_in_form.Email2 != "" %}
