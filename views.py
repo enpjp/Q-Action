@@ -203,6 +203,8 @@ class InfoPage(webapp.RequestHandler):
 			'pageTitle': pageTitle, 
 			'my_url' : my_url,
 			'my_path' : my_path,
+			'full_url' : 'fred',
+			'test' : 'test'
 
 
         	}
@@ -620,6 +622,8 @@ class page_not_found(webapp.RequestHandler):
 	pageTitle= 'Page Not Found'
         template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : 'fred',
+		'test' : 'test'
 
         }
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
@@ -634,9 +638,11 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 
 	my_landing_page_dict_list = []
 	template_values = get_a_record_from_path(self)
+
 	if not template_values:	
 		page_not_exist(self)
 		return
+	template_values.update({'my_place' : template_values})
 	#Parse the query string...
 	my_query = self.request.query
 	my_query_urlparse = cgi.parse_qs(my_query)
@@ -1345,11 +1351,24 @@ def get_a_record_from_key(self, arg_my_key):
 							page_title_lookup = "No Title!"		
 						else:
 							page_title_lookup = "No Title!"				
-
+				# If the card is not a mini_web but contains a url_link we can still use the mini_web button label
+				else:
+					if len(my_query.LabelID) < 1:
+						page_title_lookup = "Link"
+					else:
+						page_title_lookup = my_query.LabelID		
 
 			else:
 				field_widget_type = 'text'
-				page_title_lookup = "No Title!"
+				#page_title_lookup = "No Title! why"
+				
+				if len(my_query.LabelID) < 1:
+					page_title_lookup = "Link"	
+				else:
+					page_title_lookup = my_query.LabelID	
+
+
+
 			# This code has the details needed to edit the form page_title_lookup is the name in the link_button	
 			edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible, field_widget_type, page_title_lookup ])
 			#This code has the details for display
@@ -1362,7 +1381,7 @@ def get_a_record_from_key(self, arg_my_key):
 				text_or_visible = "hidden"
 				hidden_edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible  ])
 		template_values.update(html_template)
-		 
+		template_values.update({'page_title_lookup' : page_title_lookup }) 
 		template_values.update({'field_widget' : field_widget })
 		template_values.update({'display_field_in_form' : display_field_in_form })			
 		template_values.update({'hidden_edit_field_in_form' : hidden_edit_field_in_form })		
@@ -1730,7 +1749,19 @@ def mark_up_coder(arg_string):
 		#arg_string.replace("/&/g","&amp;")
 	replace_mark_up_list = {
 		"&lt;br &frasl;&gt;" 	: "<br />",
-		
+		"&lt;&frasl;br&gt;" 	: "<br />",
+		"&lt;&frasl;BR&gt;" 	: "<br />",
+		"&lt;strong&gt;"  	: "<strong>",
+		"&lt;&frasl;strong&gt;"  : "</strong>",	
+		"&lt;h1&gt;"		: "<h1>",
+		"&lt;&frasl;h1&gt;"	: "</h1>",
+		"&lt;h2&gt;"		: "<h2>",
+		"&lt;&frasl;h2&gt;"	: "</h2>",
+		"&lt;ul&gt;"		: "<ul>",
+		"&lt;&frasl;ul&gt;"	: "</ul>",
+		"&lt;li&gt;"		: "<li>",
+		"&lt;&frasl;li&gt;"		: "</li>",
+
 			} 
 	for k, v in replace_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
@@ -1765,10 +1796,11 @@ def card_definitions_v2():
 		['Email_address' , 'Work email'],
 		['Email2' , 'Home email'],
 		['Web_url' , 'Website'],
+		['LabelID' , 'Label for MiniWeb button and Website button'],
 		['URL2' , 'Alternative web site'],
 		['URLsocialnets' , 'Social network and conferencing names'],
 		['Text_message' , 'Marketing message'],
-		['LabelID' , 'Label for MiniWeb button'],
+
 		['scan_counter' , "Scan counter" ],	
 		#['Sparebusiness1' , '(None - spare field)'],
 		#['Sparebusiness2' , '(None - spare field)'],
@@ -1821,8 +1853,8 @@ def card_definitions_v2():
 		['Tel2' , 'Alternate number'],
 		['Email_address' , 'Contact email'],
 		['Web_url' , 'Contact web site'],
+		['LabelID' , 'Label for MiniWeb button and Contact web site button'],
 		['Text_message' , 'Description and notes'],
-		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
 		#['LabelID' , 'Label to print with code'],
 		#['Spareservice1' , '(None - spare field)'],
@@ -1893,7 +1925,8 @@ def card_definitions_v2():
 		['First_Name' , 'First name'],
 		['Middle_Name' , 'Middle name or initial'],
 		['Last_Name' , 'Family name'],
-		['Email2' , 'Home email'],
+		['Organisation' , 'Organisation'],
+		['Email2' , 'Email'],
 		#['Reminderdate' , 'Send me a reminder to update on'],
 		['Locationname' , 'Location name'],
 		['Latlong' , 'Location coordinates'],
@@ -2212,7 +2245,11 @@ def lookup_html_template(arg_CardID):
 	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
 	'Blank' : 'landing_fragment_dict_blank.html',
 	'Stock' : 'landing_fragment_dict_stock.html',
-	'Location' : 'landing_fragment_dict_location.html',		
+	'Location' : 'landing_fragment_dict_location.html',
+	'Service' : 'landing_fragment_dict_service.html',	
+	'Offer' : 'landing_fragment_dict_offer.html',	
+	'ICE' : 'landing_fragment_dict_ice.html',	
+	'Membership': 'landing_fragment_dict_membership.html',		
 	}
 
 	edit_template_dict = {
@@ -2373,10 +2410,13 @@ def increment_page_counter(self,arg_key):
 
 
 def page_not_exist(self):
-
+	my_url = self.request.url
+	my_path = self.request.path
 	pageTitle= 'Page Not Found'
 	template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : my_url,
+		'my_path' : my_path
 
 	}
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
