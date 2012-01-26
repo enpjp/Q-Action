@@ -1,7 +1,9 @@
 {% for  value in edit_field_in_form  %}
 	{% if value.2 != "" %}
-		
-			<div class = 'value'>{{value.0}} : {{ value.2 }} </div>
-		
+		{% if value.0 != "Card Title" %}
+			{% if value.1 != "LabelID" and value.1 != "scan_counter"%}
+			<div class = 'value'><span class = "field_label">{{value.0}}:</span> {{ value.2 }} </div>
+			{% endif %}
+		{% endif %}
 	{% endif %}
 {% endfor %}

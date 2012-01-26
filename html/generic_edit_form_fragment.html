@@ -86,20 +86,36 @@
 {% else %}
 	{% if key.1 ==  "Cardtitle" %}
 
-		{% if  current_card_type  ==  "Not in use" %}
+		{% if  current_card_type  ==  "Not in use never ever" %}
 		<input type='hidden' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' />
 		{% else %}
 	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'>(Note that cards are sorted by Card Title in the list view.) {{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>
 		{% endif %}
 	{% else %}
-<div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>
+<div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />  
+
+{% if key.1  ==  "Auto_forward" %}
+	{% if Blacklist_status  !=  "ok" %}
+	<div class ="field_left" >
+	<p>The URL ( {{ Auto_forward}}) is listed as {{ Blacklist_status }}.</p>
+<p><strong>Unless you are absolutely certain that this warning is in error you should not use this URL in conjunction with q-action! </strong></p>
+<p> 
+Warning- Forwarding Visitors this web site may harm their computer. The location appears to contain malicious code that could be downloaded to a computer without consent or it may be a forgery or imitation of another website, designed to trick users into sharing personal or financial information. You can learn more about harmful web content including viruses and other malicious code and how to protect your computer at: <a class="link_text" href = "http://www.stopbadware.org"> www.StopBadware.org</a> and <a class="link_text" href = "http://www.antiphishing.org"> www.antiphishing.org</a>.</p>
+
+	</div>
+	{% endif %}
+{% endif %}
+
+</div>
 
 	{% endif %}
 {% endif %}
 {% endfor %}
 <div>
 {% for key in hidden_edit_field_in_form %}
-<input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '30' onfocus= "state_changed();" />
+<input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = 
+{% if key.1  ==  "Sparegoto1" %}'{{ Blacklist_status }}'  
+{% else %}'{{ key.2 }}'{% endif %} size = '30' onfocus= "state_changed();" />
 {% endfor %}
 </div>
 

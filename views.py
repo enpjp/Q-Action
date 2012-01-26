@@ -38,6 +38,7 @@ import random
 
 from datamodels import *
 
+from safebrowsinglookup import SafebrowsinglookupClient
 
 #What the current maximum number of accounts set this as a global at the head of the page
 def max_account_limit():
@@ -53,8 +54,8 @@ def set_domain(arg_url):
 	#elif arg_url.find("q-address")>1:
 	#	domain = "https://q-address.appspot.com"
 	elif arg_url.find("localhost")>1:
-		#domain = "http://192.168.1.13:8082"
-		domain = "localhost:8083"
+		domain = "http://192.168.1.13:8083"
+		#domain = "localhost:8083"
 	else:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8083"
@@ -185,7 +186,9 @@ class InfoPage(webapp.RequestHandler):
 	"expert.html",
 	"download_complete.html",
 	"upload_complete.html",
-	"expired.html"]
+	"expired.html",
+	"not_in_use.html"
+	]
 	white_list = set(valid_list)
 	path = os.path.join(os.path.dirname(__file__), 'html/%s' % my_clean_path)
 	if os.path.exists(path) and my_clean_path in white_list :
@@ -198,6 +201,8 @@ class InfoPage(webapp.RequestHandler):
 			'pageTitle': pageTitle, 
 			'my_url' : my_url,
 			'my_path' : my_path,
+			'full_url' : 'fred',
+			'test' : 'test'
 
 
         	}
@@ -539,6 +544,20 @@ class edit_landing_page_form(webapp.RequestHandler):
 
 	for card_type in list_card_types_as_list:
 		make_card_list.append([card_type,list_name_dict[card_type]])
+	# Now to introduce some blacklist checking
+	if current_card_type == 'Go to URL' :
+		# Create a lookup object
+		client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
+		#url_to_test = 'http://www.google.com/'
+		url_to_test = template_values['Auto_forward']
+		results_dict = client.lookup(*[url_to_test])
+		results = results_dict[url_to_test]
+		template_values.update({'Blacklist_status' : results })
+		#Use sparegoto1 to store the black list result.
+		#this is best done in the edit form 
+
+
+
 	template_values.update({'make_card_list' : make_card_list })	
 	template_values.update({'current_card_type' : current_card_type })	
 	#'card_type_dict'
@@ -601,6 +620,8 @@ class page_not_found(webapp.RequestHandler):
 	pageTitle= 'Page Not Found'
         template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : 'fred',
+		'test' : 'test'
 
         }
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
@@ -615,9 +636,11 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 
 	my_landing_page_dict_list = []
 	template_values = get_a_record_from_path(self)
+
 	if not template_values:	
 		page_not_exist(self)
 		return
+	template_values.update({'my_place' : template_values})
 	#Parse the query string...
 	my_query = self.request.query
 	my_query_urlparse = cgi.parse_qs(my_query)
@@ -654,12 +677,18 @@ class qr_code_landing_page_v1(webapp.RequestHandler):
 	# Combines two dictionaries
 	template_values.update(account_status)
 	if ('%s' % account_status['suspend_account']) == 'True':
-		self.redirect( '/info/expired.html')		
-	landing_page = template_values['Auto_forward']
+		self.redirect( '/info/expired.html')
+
+	if template_values['CardID'] == 'Go to URL':	
+		self.redirect( '/info/not_in_use.html')
+		
+
 	# Test to see if autoforwarding is enabled go there
-	if len(landing_page) > 4:
+	if template_values['CardID'] == 'Go_to_URL':
+		landing_page = template_values['Auto_forward']
+		if len(landing_page) > 4:
 	
-		self.redirect( '%s' % landing_page)
+			self.redirect( '%s' % landing_page)
 	#If not go to the landing page
 	else:
 		path = os.path.join(os.path.dirname(__file__), 'html/landing.html')
@@ -1298,7 +1327,8 @@ def get_a_record_from_key(self, arg_my_key):
 				if CardID == 'Mini_web':
 					mini_web_list = get_mini_web_list(self,my_id_to_check)
 					template_values.update({'mini_web_list' : mini_web_list })
-
+					# Can't remember what problem the code below was meant to solve but it must have been something to do with blank titles.
+					# But I now want to overwrite the page title with labelID if LabelID not blank	
 					if value_of_field in mini_web_list:
 						page_title_lookup = mini_web_list[value_of_field]
 						if len(value_of_field) < 1:
@@ -1308,13 +1338,27 @@ def get_a_record_from_key(self, arg_my_key):
 							page_title_lookup = "No Title!"		
 						else:
 							page_title_lookup = "No Title!"				
-
+				# If the card is not a mini_web but contains a url_link we can still use the mini_web button label
+				else:
+					if len(my_query.LabelID) < 1:
+						page_title_lookup = "Link"
+					else:
+						page_title_lookup = my_query.LabelID		
 
 			else:
 				field_widget_type = 'text'
-				page_title_lookup = "No Title!"
+				#page_title_lookup = "No Title! why"
 				
+				if len(my_query.LabelID) < 1:
+					page_title_lookup = "Link"	
+				else:
+					page_title_lookup = my_query.LabelID	
+
+
+
+			# This code has the details needed to edit the form page_title_lookup is the name in the link_button	
 			edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible, field_widget_type, page_title_lookup ])
+			#This code has the details for display
 			display_field_in_form.update({name_of_field :value_of_field })
 		for field_type in all_template_values :
 			if field_type not in card_types_dict[CardID]:
@@ -1324,7 +1368,7 @@ def get_a_record_from_key(self, arg_my_key):
 				text_or_visible = "hidden"
 				hidden_edit_field_in_form.append([description_of_field, name_of_field , value_of_field, text_or_visible  ])
 		template_values.update(html_template)
-		 
+		template_values.update({'page_title_lookup' : page_title_lookup }) 
 		template_values.update({'field_widget' : field_widget })
 		template_values.update({'display_field_in_form' : display_field_in_form })			
 		template_values.update({'hidden_edit_field_in_form' : hidden_edit_field_in_form })		
@@ -1692,7 +1736,19 @@ def mark_up_coder(arg_string):
 		#arg_string.replace("/&/g","&amp;")
 	replace_mark_up_list = {
 		"&lt;br &frasl;&gt;" 	: "<br />",
-		
+		"&lt;&frasl;br&gt;" 	: "<br />",
+		"&lt;&frasl;BR&gt;" 	: "<br />",
+		"&lt;strong&gt;"  	: "<strong>",
+		"&lt;&frasl;strong&gt;"  : "</strong>",	
+		"&lt;h1&gt;"		: "<h1>",
+		"&lt;&frasl;h1&gt;"	: "</h1>",
+		"&lt;h2&gt;"		: "<h2>",
+		"&lt;&frasl;h2&gt;"	: "</h2>",
+		"&lt;ul&gt;"		: "<ul>",
+		"&lt;&frasl;ul&gt;"	: "</ul>",
+		"&lt;li&gt;"		: "<li>",
+		"&lt;&frasl;li&gt;"		: "</li>",
+
 			} 
 	for k, v in replace_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
@@ -1727,10 +1783,11 @@ def card_definitions_v2():
 		['Email_address' , 'Work email'],
 		['Email2' , 'Home email'],
 		['Web_url' , 'Website'],
+		['LabelID' , 'Label for MiniWeb button and Website button'],
 		['URL2' , 'Alternative web site'],
 		['URLsocialnets' , 'Social network and conferencing names'],
 		['Text_message' , 'Marketing message'],
-		['LabelID' , 'Label for MiniWeb button'],
+
 		['scan_counter' , "Scan counter" ],	
 		#['Sparebusiness1' , '(None - spare field)'],
 		#['Sparebusiness2' , '(None - spare field)'],
@@ -1783,8 +1840,8 @@ def card_definitions_v2():
 		['Tel2' , 'Alternate number'],
 		['Email_address' , 'Contact email'],
 		['Web_url' , 'Contact web site'],
+		['LabelID' , 'Label for MiniWeb button and Contact web site button'],
 		['Text_message' , 'Description and notes'],
-		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
 		#['LabelID' , 'Label to print with code'],
 		#['Spareservice1' , '(None - spare field)'],
@@ -1855,7 +1912,8 @@ def card_definitions_v2():
 		['First_Name' , 'First name'],
 		['Middle_Name' , 'Middle name or initial'],
 		['Last_Name' , 'Family name'],
-		['Email2' , 'Home email'],
+		['Organisation' , 'Organisation'],
+		['Email2' , 'Email'],
 		#['Reminderdate' , 'Send me a reminder to update on'],
 		['Locationname' , 'Location name'],
 		['Latlong' , 'Location coordinates'],
@@ -1922,8 +1980,8 @@ def card_definitions_v2():
 	Location_list = [
 		['Cardtitle', 'Card Title'],
 		['Locationname' , 'You are here'],
-		['Latlong' , 'Location coordinates'],
-		['W_address_Post_Code' , 'Post Code for Sat nav'],
+		['Latlong' , 'Co-ordinates'],
+		['W_address_Post_Code' , 'Satnav Post Code'],
 		['Text_message' , 'Information'],
 		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
@@ -1994,8 +2052,8 @@ def card_definitions_v2():
 
 	Not_in_use = {}
 	Not_in_use_list = [
-		['Cardtitle', 'Not in use'],
-
+		#['Cardtitle', 'Not in use'],
+		['Cardtitle', 'Card Title'],
 		]
 	for  field in Not_in_use:
 		Not_in_use.update({field[0] : field[1] })	
@@ -2171,14 +2229,21 @@ def lookup_html_template(arg_CardID):
 	display_template_dict = {
 	'Business' : 'landing_fragment_dict_business.html',
 	'Mini_web' : 'landing_fragment_dict_mini_web.html',
-	'Guided_tour' : 'landing_fragment_dict_guided_tour.html'
+	'Guided_tour' : 'landing_fragment_dict_guided_tour.html',
+	'Blank' : 'landing_fragment_dict_blank.html',
+	'Stock' : 'landing_fragment_dict_stock.html',
+	'Location' : 'landing_fragment_dict_location.html',
+	'Service' : 'landing_fragment_dict_service.html',	
+	'Offer' : 'landing_fragment_dict_offer.html',	
+	'ICE' : 'landing_fragment_dict_ice.html',	
+	'Membership': 'landing_fragment_dict_membership.html',		
 	}
 
 	edit_template_dict = {
 	'Business' : 'generic_edit_form_fragment.html'
 	}
 
-################# dont edit these by mistake!
+################# don't edit these by mistake!
 	if arg_CardID in display_template_dict:
 		display_template = display_template_dict[arg_CardID]
 	else:
@@ -2219,12 +2284,17 @@ def get_mini_web_list(self,arg_userID):
 			for field_name in all_field_dict:
 				field_name_value = getattr(my_place, field_name,"")
 				card_fields_values.update({field_name : field_name_value} )
+			LabelID = card_fields_values['LabelID']
+			LabelID = LabelID.decode( 'unicode-escape' ).encode( 'ascii' )
 			Cardtitle = card_fields_values['Cardtitle']
 			Cardtitle = Cardtitle.decode( 'unicode-escape' ).encode( 'ascii' )
 			Key_Name_String =  my_place.Key_Name_String
 			Key_Name_String = Key_Name_String.decode( 'unicode-escape' ).encode( 'ascii' )
 			#mini_web_dict.update({Cardtitle: my_place.Key_Name_String})
-			mini_web_dict.update({Key_Name_String : Cardtitle})
+			if len(LabelID) > 1:
+				mini_web_dict.update({Key_Name_String : LabelID})
+			else:
+				mini_web_dict.update({Key_Name_String : Cardtitle})
 			
 	
 	return mini_web_dict	
@@ -2327,10 +2397,13 @@ def increment_page_counter(self,arg_key):
 
 
 def page_not_exist(self):
-
+	my_url = self.request.url
+	my_path = self.request.path
 	pageTitle= 'Page Not Found'
 	template_values = {
 		'pageTitle': pageTitle, 
+		'full_url' : my_url,
+		'my_path' : my_path
 
 	}
 	path = os.path.join(os.path.dirname(__file__), 'html/page_not_found.html')
