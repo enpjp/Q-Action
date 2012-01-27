@@ -28,8 +28,9 @@
 {% block content %}
 
 <div class="content_container">
-CardID: {{ CardID }}
-<form  id='Edit_card' action="/update_contact.html" enctype="multipart/form-data" method="post">
+  <!-- CardID: {{ CardID }}
+  Your unique key for this page is: {{ Key_Name }}.  -->
+    <form  id='Edit_card' action="/update_contact.html" enctype="multipart/form-data" method="post">
 <div class='field' >
 <div class = 'field_description'>Select Card Type:</div>  
 <select name='CardID'  id='CardID'  onchange= "document.getElementById('Edit_card').submit();"  >
@@ -51,13 +52,9 @@ CardID: {{ CardID }}
 {% include "generic_edit_form_fragment.html" %}
 
 <div class="note">
-<p>Your unique key for this page is: {{ Key_Name }}.</p>
+<p>&nbsp;</p>
 
-<p>
-{% if count_my_records > page_limit %} Lucky you!{% endif %}
-{% if count_my_records > 0 %} 
-You currently have {{count_my_records}} card{{ count_my_records|pluralize }}. Your allowance is currently set to {{page_limit}} cards.</p>
-{% endif %}
+<p>&nbsp;</p>
 </div>
 <div class="edit-menu">
 	<ul class = "nav">
