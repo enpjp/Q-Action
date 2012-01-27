@@ -15,7 +15,7 @@
 	{% if key.4 == "Text_area" %}
 <div class='field' id='field_{{key.1}}' >
 <div class= "textarea_container"> <div class = 'field_description'>{{ key.0 }}: </div>  <textarea name="{{ key.1 }}"  id="{{ key.1 }}" rows="5" cols="30" onfocus= "state_changed();">{{ key.2 }}</textarea></div>
-</div>
+<div>Use <a class="link_text" href="info/helpfields.html"> tags </a>to format text </div></div>
 	{% endif %}
 	
 {% if key.4 == "mini_web" %}
@@ -89,7 +89,9 @@
 		{% if  current_card_type  ==  "Not in use never ever" %}
 		<input type='hidden' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' />
 		{% else %}
-	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'>(Note that cards are sorted by Card Title in the list view.) {{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" /></div>
+	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'> {{ key.0 }}:</div>
+	<input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />
+	<div> Card list sorted by this title</div></div>
 		{% endif %}
 	{% else %}
 <div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />  

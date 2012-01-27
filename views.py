@@ -189,6 +189,7 @@ class InfoPage(webapp.RequestHandler):
 	"download_complete.html",
 	"upload_complete.html",
 	"expired.html",
+	"helpfields.html",
 	"not_in_use.html"
 	]
 	white_list = set(valid_list)
