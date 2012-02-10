@@ -190,7 +190,20 @@ class InfoPage(webapp.RequestHandler):
 	"upload_complete.html",
 	"expired.html",
 	"helpfields.html",
-	"not_in_use.html"
+	"not_in_use.html",
+	"advert_mini_web.html",
+	"advert_business_card.html",
+	"advert_go_to.html",
+	"advert_location.html",
+	"advert_offer_general.html",
+	"advert_offer_estate_agent.html",
+	"advert_offer_travel_agent.html",
+	"advert_membership.html",
+	"advert_service.html",
+	"advert_guided_tour.html",	
+	"advert_stock.html",
+	"advert_living_documents.html"
+
 	]
 	white_list = set(valid_list)
 	path = os.path.join(os.path.dirname(__file__), 'html/%s' % my_clean_path)
