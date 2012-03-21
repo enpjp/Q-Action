@@ -1791,6 +1791,8 @@ def card_definitions_v2():
 	Business = {}
 	Business_list = [
 		['Cardtitle', 'Card Title'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Persontitle' , 'Title (Mr, Ms, Dr, Rev)'],
 		['First_Name' , 'First name'],
 		['Middle_Name' , 'Middle name or initial'],
@@ -2056,6 +2058,7 @@ def card_definitions_v2():
 	Mini_web = {}
 	Mini_web_list = [
 		['Cardtitle', 'Card Title'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Text_message' , 'Message'],
 		['mini_web_01' , 'Page 1'],
 		['mini_web_02' , 'Page 2'],

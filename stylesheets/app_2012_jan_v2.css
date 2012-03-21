@@ -10,6 +10,33 @@ body {
 
 div.page {
 max-width: 1400px;
+background: white;
+}
+
+.img_wrapper {
+background-image: url('/images/drop_shadow.png');
+background-repeat:no-repeat;
+background-position: right bottom; 
+float: left;
+line-height: 0;
+margin-left: 20px;
+margin-top: 20px;
+
+}
+
+div.container {
+
+clear: both;
+}
+
+
+
+img.business_card_image {
+width: 200px;
+padding: 4px;
+position: relative;
+left:-15px;
+top:-15px;
 }
 
 div.banner_image {
@@ -61,6 +88,7 @@ background-position:bottom;
 body.white_page {
 background-image: none;
 background: white;
+min-height: 300px;
 }
 
  ul.nav img {
@@ -329,6 +357,7 @@ margin-top: 50px;
 }
 
 div.page-bottom {
+height: 20px;
 margin-top: 50px;
 border-top: 5px solid #373c47;
 }

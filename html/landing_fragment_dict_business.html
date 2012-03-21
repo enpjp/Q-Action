@@ -1,7 +1,22 @@
+{% block head_tags_extra %}<meta name="description" content="Q-Action: On-line bisness cards for everyone." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
 
 
-
-
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+<div class ="img_wrapper"> 
+<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " alt="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " />
+</div></div>
+{% endif %}
+<div class ="container">
 <div id="address" class="vcard">
 {% if display_field_in_form.First_Name != "" or display_field_in_form.Middle_Name != "" or display_field_in_form.Last_Name != ""  %}
 <span class="fn n" lang="no">
@@ -113,4 +128,5 @@
 {% if display_field_in_form.Email2 != "" %}
 <div><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}">Home Email </a> </div>
 {% endif %}
+</div>
 
