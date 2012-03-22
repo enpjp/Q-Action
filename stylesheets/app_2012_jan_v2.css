@@ -157,6 +157,7 @@ width: 500px;
 a.top {
 color: #ffffff;
 background: #15213e;
+
 }
 
 a.login
@@ -188,7 +189,42 @@ background: #15213e;
 margin-bottom: 5px;
 margin-right: 5px;
 }
+/* This is to set a shadow for the main menu */
 
+.main-menu ul.nav li,
+ .black-menu ul.nav li,
+ .edit-menu ul.nav li,
+ div.login,
+div.drop_shadow {
+background-image: url('/images/menu_button_shadow.png');
+background-repeat:no-repeat;
+background-position: right bottom; 
+background-size: 245px 50px;
+}
+
+div.drop_shadow {
+
+width: 265px;
+height: 55px;
+}
+
+ul.nav_faq li{
+
+background-image: url('/images/menu_button_shadow.png');
+background-size:240px 60px;
+background-repeat:no-repeat;
+background-position: right bottom; 
+}
+
+div.login {
+width: 255px;
+height: 55px;
+
+}
+
+a.login {
+margin-right: 5px;
+}
 
 a.link_button {
 color: #ffffff;
@@ -238,7 +274,7 @@ text-align:center;
 .black-menu ul.nav a,
 .faq_menu ul.nav a {
 color: #ffffff;
-background: #4d5364;
+background: #4d5364; 
 margin-bottom: 5px;
 margin-right: 5px;
 }

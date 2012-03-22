@@ -1,5 +1,5 @@
 application: q-action
-version: beta-5
+version: version-1.0
 runtime: python
 api_version: 1
 
