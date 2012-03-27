@@ -1829,7 +1829,8 @@ def card_definitions_v2():
 	Membership = {}
 	Membership_list = [
 		['Cardtitle', 'Card Title'],
-
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		#['Reminderdate' , 'Send expiry reminder to me on'],
 		['Organisation' , 'Organisation or branch'],
 		['Web_url','Organisation Website'],
@@ -1860,6 +1861,8 @@ def card_definitions_v2():
 		#['Reminderdate' , 'Send email reminder on'],
 		['Make' , 'Product or service name'],
 		['Type' , 'Model or type'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Datecreated' , 'Date made'],
 		['Datewarrexp' , 'Warranty ends'],
 		['Startdate' , 'Last service done'],
@@ -1884,6 +1887,8 @@ def card_definitions_v2():
 	Offer = {}
 	Offer_list = [	
 		['Cardtitle', 'Card Title'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Make' , 'Item make'],
 		['Type' , 'Item model'],
 		['Offers' , 'Offer'],
@@ -1921,6 +1926,8 @@ def card_definitions_v2():
 
 		['Cardtitle', 'Card Title'],
 		['Locationname' , 'Location name'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Text_message' , 'Description'],
 		['Web_url' , 'Link to further info'],
 		['LabelID' , 'Label for MiniWeb button'],
@@ -2042,6 +2049,8 @@ def card_definitions_v2():
 	Blank_list = [
 		['Cardtitle', 'Card Title'],
 		#['Reminderdate' , 'Remind me to update this card on'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Text_message' , 'Message'],
 		['LabelID' , 'Label for MiniWeb button'],
 		['scan_counter' , "Scan counter" ],
@@ -2058,6 +2067,7 @@ def card_definitions_v2():
 	Mini_web = {}
 	Mini_web_list = [
 		['Cardtitle', 'Card Title'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
 		['Text_message' , 'Message'],
 		['mini_web_01' , 'Page 1'],
