@@ -393,7 +393,7 @@ margin-top: 50px;
 }
 
 div.page-bottom {
-height: 20px;
+height: 120px;
 margin-top: 50px;
 border-top: 5px solid #373c47;
 }
@@ -413,8 +413,12 @@ div.page-bottom-item a,
 div.page-bottom-image a{
 color: #373c47;
 text-decoration: none;
-
 }
+
+div.page-bottom-item img {
+float: right;
+}
+
 
 div.field,
 div.field_left, 
