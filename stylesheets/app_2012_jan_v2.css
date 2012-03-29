@@ -39,6 +39,10 @@ left:-15px;
 top:-15px;
 }
 
+div.banner_container {
+margin-top: 5px;
+}
+
 div.banner_image {
  /*background-image: url('/images/clapboard_5.png');*/
  background-image: url('/images/q_logo_v2.png');
@@ -217,12 +221,14 @@ background-position: right bottom;
 }
 
 div.login {
+padding-top: 5px;
 width: 255px;
 height: 55px;
 
 }
 
 a.login {
+margin-bottom: 5px;
 margin-right: 5px;
 }
 
@@ -477,7 +483,7 @@ max-width: 200px;
 
 }
 
-div.value {
-
+img.app_engine_logo {
+float: right;
 }
 

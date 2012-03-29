@@ -13,7 +13,8 @@
  </div>
 {% endblock %}
 
-{% block page_heading %}<h1>Subscribe</h1>{% endblock %}
+{% block page_heading %}<h1>Subscribe<img class="app_engine_logo" src="https://developers.google.com/appengine/images/appengine-noborder-120x30.gif" 
+alt="Powered by Google App Engine" /></h1>{% endblock %}
 
 {% block content %}
 
@@ -21,9 +22,22 @@
 <p>You have {{ days_to_end_of_subscription }} days to the end of your current subscription. If you chose to upgrade now your enhancements will be added to your current subscription period. 
 </p>
 {% endif %}
+<p>We suggest that you first sign up for a free account. You can then create two Q-Action pages to test. When you want more pages you can upgrade at any time to one of the paid accounts and you will keep your pages and data. Unlike some of our competitors we do not host any third party advertisements as we do not like them either. So please, feel free to sign up and try out Q-Action without worry or obligation.</p>
+
+
 {% if login_check == "False"  %}	
-<p>You must be logged-in to purchase or upgrade a subscription.</p>
+<p>You will need to log in via Google as the system is built using Google apps. You may already have a registration (for example if you have a gmail address). If you don&apos;t, it is quick and easy to register a Google account and then login to Q-Action.</p>
 {% endif %}
+
+
+
+
+
+
+
+
+
+
 <h3>Free Account</h3>
 
 <ul>
@@ -31,6 +45,17 @@
 <li>2 pages</li>
 <li>100 hits per day per page</li>
 </ul>
+{% if login_check == "False"  %}	
+
+	<div class="black-menu">
+		<ul class = "nav">
+		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Get 1 year Free</a>{% endautoescape %}</li>
+		</ul>
+	 </div>
+
+
+{% endif %}
+
 
 {% if login_check == "True"  %}	
 	<div class="black-menu">
@@ -68,7 +93,11 @@
 
 {% endif %}
 {% if login_check == "False"  %}	
-<p><strong>You must create an account and be logged in to buy a subscription. </strong></p>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Get Basic Account</a>{% endautoescape %}</li>
+		</ul>
+	 </div>
 {% endif %}
 
 
@@ -98,7 +127,11 @@
 
 {% endif %}
 {% if login_check == "False"  %}	
-<p><strong>You must create an account and be logged in to buy a subscription. </strong></p>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Basic Account Plus</a>{% endautoescape %}</li>
+		</ul>
+	 </div>
 {% endif %}
 
 
@@ -133,7 +166,11 @@
 
 {% endif %}
 {% if login_check == "False"  %}	
-<p><strong>You must create an account and be logged in to buy a subscription. </strong></p>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Premium Account</a>{% endautoescape %}</li>
+		</ul>
+	 </div></p>
 {% endif %}
 
 <h3>Custom Account</h3>
