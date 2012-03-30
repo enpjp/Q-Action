@@ -29,15 +29,21 @@
 <div class ="img_wrapper">
 <img class= "business_card_image" src="{{my_qr_code|safe}}" alt="QR Code to link to this page" title="QR Code to link to this page" />
 <!--{{ chart_made_by }}-->
+
+
 </div>
 </div>
 
 <div class ="container">
 <p>This qr code links to: <br /><a href="/{{ Key_Name }}?no_scan=True" > {{domain}}/{{ Key_Name }}</a>.</p>
-<p>Download a copy by using "right-click" and the "save image as" options in your web browser.</p>
+
 Scan Counter: {{scan_counter}}
 </div>
-
+<div class="black-menu">
+	<ul class = "nav"> 
+	<li><a href="{{my_qr_code|safe}}">Save QR Code</a></li>
+	</ul>
+</div>
 
 <div class="black-menu">
 	<ul class = "nav"> 

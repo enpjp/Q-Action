@@ -1498,7 +1498,7 @@ def make_qr_image(my_qr_data):
 	buf= StringIO.StringIO()
 	my_qr_code_image.save(buf, format= 'PNG')
 	my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
-	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
+	#img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
 
 	#my_qr_code_dict.update({
 	#'my_qr_code_image', my_qr_code_image,
