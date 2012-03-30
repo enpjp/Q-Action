@@ -17,11 +17,11 @@
 #os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 # Note this must be the first line
 import os
-os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-from google.appengine.dist import use_library
-use_library('django', '1.3')
+#os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+#from google.appengine.dist import use_library
+#use_library('django', '1.3')
 
-from django.conf import settings
+#from django.conf import settings
 from google.appengine.dist import use_library
 #settings._target = None
 
