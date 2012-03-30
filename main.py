@@ -16,9 +16,19 @@
 #Not needed
 #os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 # Note this must be the first line
+import os
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 from google.appengine.dist import use_library
-use_library('django', '1.2')
+use_library('django', '1.3')
 
+from django.conf import settings
+from google.appengine.dist import use_library
+#settings._target = None
+
+
+
+
+from django.http import HttpResponse
 
 from google.appengine.ext import webapp
 #from google.appengine.ext.webapp import util
@@ -39,6 +49,9 @@ def main():
 					('/create.html', create_landing_page),
 					#('/admin/create.html', admin_create_landing_page),
 					('/work_to_do.html', work_to_do_page),
+					('/qr_code.png', get_qr_image),
+					('/qr_code.jpeg', get_qr_image),
+					('/qr_code.bmp', get_qr_image),
 					('/landing_page_list.html', landing_page_list),	
 					('/qr_code_private_page.html', qr_code_private_page_v1),
 					('/edit_landing_page.html', edit_landing_page_form),

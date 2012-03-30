@@ -18,11 +18,25 @@
 import os
 import csv
 import unicodedata
+
 from google.appengine.api import users
 from google.appengine.ext import webapp
 from google.appengine.ext.webapp import util
 from google.appengine.ext import db
 from google.appengine.ext.webapp import template
+
+# Force Django to reload its settings.
+#from django.conf import settings
+#import django.core.handlers.wsgi
+#import django.core.signals
+#import django.db
+#import django.dispatch.dispatcher
+
+
+
+from django.http import HttpResponse
+
+
 from urlparse import urlparse
 import hashlib
 import re
@@ -34,6 +48,17 @@ from datetime import timedelta
 import urllib
 import cgi
 import random
+import StringIO
+
+#from django.utils.httpwrappers import HttpResponse
+
+import qrcode
+from qrcode import constants
+
+try:
+	from PIL import Image, ImageDraw
+except ImportError:
+	import Image, ImageDraw
 
 #import qrcode
 # Import from our sub files
@@ -56,8 +81,8 @@ def set_domain(arg_url):
 	#elif arg_url.find("q-address")>1:
 	#	domain = "https://q-address.appspot.com"
 	elif arg_url.find("localhost")>1:
-		domain = "http://192.168.1.13:8083"
-		#domain = "localhost:8083"
+		#domain = "http://192.168.1.13:8083"
+		domain = "http://localhost:8080"
 	else:
 		#domain = "http://192.168.1.13:8082"
 	#	domain = "http://localhost:8083"
@@ -1271,12 +1296,23 @@ def get_a_record_from_key(self, arg_my_key):
 		# Also need to leave some breadcrumbs so we know which method has been used....
 		#my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
 		try:
-			my_qr_code = qrcode.make("%s" % my_qr_data)
-			chart_made_by = "qrcode v2.0"
+			my_png_recode = make_qr_image(my_qr_data)
+			my_qr_code = "data:image/png;base64,%s" % my_png_recode			 			    	
+			#qr = qrcode.QRCode(
+			#version=1,
+			#error_correction= 2,
+			#box_size=10,
+		    	#)
+		    	#qr.add_data("%s" % my_qr_data)
+		    	#qr.make(fit=True)			
+			#response = HttpResponse(mimetype="image/png")
+			#my_qr_code = qr.make_image()
+
+			chart_made_by = "This code made by qrcode v2.0"
 
 		except:
 			my_qr_code = "https://chart.googleapis.com/chart?chs=150x150&amp;cht=qr&amp;chl=%s" % my_qr_data
-			chart_made_by = "Google Chart"
+			chart_made_by = "This code made by Google Chart"
 
 
 		edit_my_record = "/edit_landing_page.html?key_string=%s"  %( Key_Name)
@@ -1410,8 +1446,67 @@ def get_a_record_from_key(self, arg_my_key):
 		return template_values
 
 
+#create a QR code image
+def get_qr_image(self):
+	#Parse the url string...
+
+	my_url = self.url
+	domain = set_domain(my_url)	
+	my_query_urlparse = cgi.parse_qs(my_url)
+
+	if "qr_code" in my_query_urlparse:
+		qr_code_value = my_query_urlparse["qr_code"]
+		qr_code = qr_code_value[0]
+
+	else:
+		qr_code = ""
+	# This is set up user scanning while elimiating self scans
+	# Will be included on the card list page.
 
 
+	# qr = qrcode.QRCode(version=1,error_correction= 2, box_size=10,)
+    	# qr.add_data("%s%s" % (domain, qr_code))
+    	# qr.make(fit=True)			
+	# my_qr_code = qr.make_image()
+
+    	# image_new = Image.new("RGB", (800, 600), "red")
+	my_qr_data = "%s%s" % (domain, qr_code)
+	my_png_recode = make_qr_image(my_qr_data)
+
+    # serialize to HTTP response)
+	self.response.headers['Content-Type'] = "text/html"	
+	#self.response.headers['Content-Type'] = "image/png"	
+	#buf= StringIO.StringIO()
+	#my_qr_code.save(buf, format= 'PNG')
+	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
+	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
+	#img_tag_recode = "data:image/png;base64,%s" % my_png_recode
+	#img_tag_recode = my_qr_code_dict['img_tag_recode']
+	self.response.out.write(img_tag_recode)
+	#buf.close()
+
+	return
+
+
+#create a QR code image
+def make_qr_image(my_qr_data):
+	my_qr_code_dict = {}
+	qr = qrcode.QRCode(version=1,error_correction= 2, box_size=10,)
+    	qr.add_data("%s" % (my_qr_data))
+    	qr.make(fit=True)			
+	my_qr_code_image = qr.make_image()
+	buf= StringIO.StringIO()
+	my_qr_code_image.save(buf, format= 'PNG')
+	my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
+	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
+
+	#my_qr_code_dict.update({
+	#'my_qr_code_image', my_qr_code_image,
+	#'my_png_recode' , my_png_recode,
+	#'img_tag_recode', img_tag_recode
+	#})
+	buf.close()
+	return my_png_recode
 
 
 
