@@ -590,12 +590,16 @@ class edit_landing_page_form(webapp.RequestHandler):
 		# Create a lookup object
 
 		try: 
-			client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
+
 			#url_to_test = 'http://www.google.com/'
 			url_to_test = template_values['Auto_forward']
-			results_dict = client.lookup(*[url_to_test])
-			results = results_dict[url_to_test]
-
+			if len(url_to_test) > 5:
+				client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
+				results_dict = client.lookup(*[url_to_test])
+				results = results_dict[url_to_test]
+			else:
+				results = "error"
+			
 			if results == "error":
 				template_values.update({'Blacklist_status' : "ok" })			
 			else:
