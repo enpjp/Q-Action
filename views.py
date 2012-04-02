@@ -41,6 +41,7 @@ from urlparse import urlparse
 import hashlib
 import re
 import time
+from types import *
 
 from datetime import datetime
 from datetime import date
@@ -1287,9 +1288,11 @@ def get_a_record_from_key(self, arg_my_key):
 		# Build up a title for the page
 		First_initial = ""
 		Second_initial = ""
-		if len(First_Name) >0:
+		#if len(First_Name) >0:
+		if type(First_Name) is StringType:
 			First_initial = "%s." % First_Name[0]
-		if len(Middle_Name) >0:
+		if type(First_Name) is StringType:
+		#if len(Middle_Name) >0:
 			Second_initial = "%s." % Middle_Name[0]	
 		domain = set_domain(self.request.url)
 		Key_Name = arg_my_key
@@ -1407,16 +1410,19 @@ def get_a_record_from_key(self, arg_my_key):
 					# But I now want to overwrite the page title with labelID if LabelID not blank	
 					if value_of_field in mini_web_list:
 						page_title_lookup = mini_web_list[value_of_field]
-						if len(value_of_field) < 1:
+						#if len(value_of_field) < 1:
+						if type(value_of_field) is NoneType:
 							page_title_lookup = "No Title!"							
 					else:
-						if len(value_of_field) < 1:
+						#if len(value_of_field) < 1:
+						if type(value_of_field) is NoneType:
 							page_title_lookup = "No Title!"		
 						else:
 							page_title_lookup = "No Title!"				
 				# If the card is not a mini_web but contains a url_link we can still use the mini_web button label
 				else:
-					if len(my_query.LabelID) < 1:
+					#if len(my_query.LabelID) < 1:
+					if type(my_query.LabelID) is NoneType:
 						page_title_lookup = "Link"
 					else:
 						page_title_lookup = my_query.LabelID		
@@ -1424,8 +1430,8 @@ def get_a_record_from_key(self, arg_my_key):
 			else:
 				field_widget_type = 'text'
 				#page_title_lookup = "No Title! why"
-				
-				if len(my_query.LabelID) < 1:
+				if type(my_query.LabelID) is NoneType:				
+				#if len(my_query.LabelID) < 1:
 					page_title_lookup = "Link"	
 				else:
 					page_title_lookup = my_query.LabelID	
@@ -1547,6 +1553,7 @@ def postContact_V2(self,arg_data_fields):
 			field_value = field_value[:1000]
 		else:
 			field_value = field_value[:499]
+		#if len(field_value) > 0: 
 		setattr(my_place, field_name, field_dict[field_name])
 
 	my_place.put()
@@ -1864,7 +1871,9 @@ def mark_up_coder(arg_string):
 		"<" 	: "&lt;",
 		">"  	: "&gt;"
 			} 
-	new_string = arg_string
+	new_string = arg_string	
+	if type(new_string) is not StringType:
+		new_string = " "
 	for k, v in escape_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
 		#new_string = new_string.replace("%s" % k,"%s" % v)
