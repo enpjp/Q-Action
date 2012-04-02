@@ -588,12 +588,21 @@ class edit_landing_page_form(webapp.RequestHandler):
 	# Now to introduce some blacklist checking
 	if current_card_type == 'Go to URL' :
 		# Create a lookup object
-		client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
-		#url_to_test = 'http://www.google.com/'
-		url_to_test = template_values['Auto_forward']
-		results_dict = client.lookup(*[url_to_test])
-		results = results_dict[url_to_test]
-		template_values.update({'Blacklist_status' : results })
+
+		try: 
+			client = SafebrowsinglookupClient('ABQIAAAApOes0Y8ln8kiFlx2i-CcwxRE3mZAINZOZCBnLenrXP6vqBqqEA')
+			#url_to_test = 'http://www.google.com/'
+			url_to_test = template_values['Auto_forward']
+			results_dict = client.lookup(*[url_to_test])
+			results = results_dict[url_to_test]
+
+			if results == "error":
+				template_values.update({'Blacklist_status' : "ok" })			
+			else:
+				template_values.update({'Blacklist_status' : results })
+
+		except:
+				template_values.update({'Blacklist_status' : "ok" })	
 		#Use sparegoto1 to store the black list result.
 		#this is best done in the edit form 
 
