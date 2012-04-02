@@ -945,6 +945,14 @@ class update_contact(webapp.RequestHandler):
 	self.redirect( '/edit_landing_page.html?key_string=%s&no_scan=True' % template_fields['Key_Name'])
 #		path = os.path.join(os.path.dirname(__file__), 'html/edit_landing_page.html')
 
+
+class download_image_file(webapp.RequestHandler): 
+    def get(self):
+
+	self.response.headers['Content-Type'] = 'text/csv'
+
+	return 
+
 # Download CSV file of the current user set of cards
 class download_csv_files(webapp.RequestHandler): 
     def get(self):
@@ -1177,6 +1185,11 @@ class my_account(webapp.RequestHandler):
 
 	path = os.path.join(os.path.dirname(__file__), 'html/my_account.html')
         self.response.out.write(template.render(path, template_values))
+
+#class create_png_image(webapp.RequestHandler):
+#    def get(self):
+
+
 
 ############################################################################################
 ###########################################################################################
@@ -1465,7 +1478,7 @@ def get_a_record_from_key(self, arg_my_key):
 		return template_values
 
 
-#create a QR code image
+#create a QR code image to download
 def get_qr_image(self):
 	#Parse the url string...
 
@@ -1479,32 +1492,59 @@ def get_qr_image(self):
 
 	else:
 		qr_code = ""
-	# This is set up user scanning while elimiating self scans
-	# Will be included on the card list page.
 
+	my_qr_data = "%s%s" % (domain, qr_code)
+	my_png_recode = make_png_qr_image(my_qr_data)
 
-	# qr = qrcode.QRCode(version=1,error_correction= 2, box_size=10,)
-    	# qr.add_data("%s%s" % (domain, qr_code))
-    	# qr.make(fit=True)			
-	# my_qr_code = qr.make_image()
+    # serialize to HTTP response)
+	#self.response.headers['Content-Type'] = "text/html"
+	self.response.headers['Content-Type'] = "application/octet-stream"	
+	#self.response.headers['Content-Type'] = "image/png"	
+	#buf= StringIO.StringIO()
+	#my_qr_code.save(buf, format= 'PNG')
+	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
+	#img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
+	#img_tag_recode = "data:image/png;base64,%s" % my_png_recode
+	#img_tag_recode = my_qr_code_dict['img_tag_recode']
+	self.response.out.write(my_png_recode)
+	#buf.close()
+	return
 
-    	# image_new = Image.new("RGB", (800, 600), "red")
+#create a QR code image to display
+def display_qr_image(self):
+	#Parse the url string...
+
+	my_url = self.url
+	domain = set_domain(my_url)	
+	my_query_urlparse = cgi.parse_qs(my_url)
+
+	if "qr_code" in my_query_urlparse:
+		qr_code_value = my_query_urlparse["qr_code"]
+		qr_code = qr_code_value[0]
+
+	else:
+		qr_code = ""
+
 	my_qr_data = "%s%s" % (domain, qr_code)
 	my_png_recode = make_qr_image(my_qr_data)
 
     # serialize to HTTP response)
-	self.response.headers['Content-Type'] = "text/html"	
+	self.response.headers['Content-Type'] = "text/html"
+	#self.response.headers['Content-Type'] = "application/octet-stream"	
 	#self.response.headers['Content-Type'] = "image/png"	
 	#buf= StringIO.StringIO()
-	#my_qr_code.save(buf, format= 'PNG')
+	#my_png_recode.save(buf, format= 'PNG')
 	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
 	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
 	#img_tag_recode = "data:image/png;base64,%s" % my_png_recode
 	#img_tag_recode = my_qr_code_dict['img_tag_recode']
 	self.response.out.write(img_tag_recode)
 	#buf.close()
-
 	return
+
+
+
+
 
 
 #create a QR code image
@@ -1526,6 +1566,25 @@ def make_qr_image(my_qr_data):
 	#})
 	buf.close()
 	return my_png_recode
+
+
+#create a QR png code image
+def make_png_qr_image(my_qr_data):
+	my_qr_code_dict = {}
+	qr = qrcode.QRCode(version=1,error_correction= 2, box_size=10,)
+    	qr.add_data("%s" % (my_qr_data))
+    	qr.make(fit=True)			
+	my_qr_code_image = qr.make_image()
+	buf= StringIO.StringIO()
+	my_qr_code_image.save(buf, format= 'PNG')
+	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
+	my_png_recode = buf.getvalue()
+	buf.close()
+	return my_png_recode
+
+
+
+
 
 
 
