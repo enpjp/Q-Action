@@ -22,7 +22,7 @@ import os
 #use_library('django', '1.3')
 
 #from django.conf import settings
-from google.appengine.dist import use_library
+#from google.appengine.dist import use_library
 #settings._target = None
 
 
