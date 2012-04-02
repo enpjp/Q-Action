@@ -1553,8 +1553,9 @@ def postContact_V2(self,arg_data_fields):
 			field_value = field_value[:1000]
 		else:
 			field_value = field_value[:499]
-		#if len(field_value) > 0: 
-		setattr(my_place, field_name, field_dict[field_name])
+		#if len(field_value) > 0:
+		if type(field_value) is not NoneType: 
+			setattr(my_place, field_name, field_dict[field_name])
 
 	my_place.put()
 
@@ -1873,7 +1874,7 @@ def mark_up_coder(arg_string):
 			} 
 	new_string = arg_string	
 	if type(new_string) is not StringType:
-		new_string = " "
+		new_string = ""
 	for k, v in escape_mark_up_list.iteritems():
 		new_string = re.sub(k, v, new_string) 
 		#new_string = new_string.replace("%s" % k,"%s" % v)
