@@ -51,7 +51,7 @@ def main():
 					('/work_to_do.html', work_to_do_page),
 					('/qr_code', get_qr_image),
 					('/qr_code_display', display_qr_image),
-					('/qr_code.bmp', get_qr_image),
+					('/qr_code.png', get_qr_image),
 					('/landing_page_list.html', landing_page_list),	
 					('/qr_code_private_page.html', qr_code_private_page_v1),
 					('/edit_landing_page.html', edit_landing_page_form),
