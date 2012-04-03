@@ -1,8 +1,30 @@
+{% block head_tags_extra %}<meta name="description" content="Q-Action: On-line business cards for everyone." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
+
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+<div class ="img_wrapper"> 
+<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " alt="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " />
+</div></div>
+{% endif %}
+
+
+
+<div class ="container">
 {% if my_place.Organisation != "" %}
+<div class = "field_label">Organisation/Branch:</div>
 <div class="fn org">{{my_place.Organisation}}</div>
 {% endif %}
 {% if my_place.Web_url != "" %}
-<div class = 'value'> {{my_place.Web_url}}</div>
+<div class = "field_label">Website:</div><div class = 'value'> {{my_place.Web_url}}</div>
 {% endif %}
 	{% if my_place.First_Name != "" or my_place.Middle_Name != "" or my_place.Last_Name != ""  %}
 <div class = "field_label">Name:</div>
@@ -35,18 +57,26 @@
 {% if my_place.Text_message != "" %}
 <div><div class = "field_label">Notes:</div> <div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div>
 {% endif %}
-{% if my_place.URL2l != "" %}
-
-<div><div class = "field_label">URL:</div><br />
-<a class ='link_button' href= "{{my_place.URL2}}">Member Account</a>
+<br />
+{% if my_place.URL2 != "" %}
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "{{my_place.URL2}}">Member Account</a></li>
+		</ul>
+	 </div>
 {% endif %}
 
 
 {% if my_place.Web_url != "" %}
-<a class ='link_button' href= "{{my_place.Web_url}}"> {{  page_title_lookup }}</a>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "{{my_place.Web_url}}"> Website</a></li>
+		</ul>
+	 </div>
+
 {% endif %}
 
 
-
+</div>
 
 
