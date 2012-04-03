@@ -114,19 +114,31 @@
 </div>
 {% endif %}
 
-{% if display_field_in_form.Email_address != "" %}
+
 
 {% if display_field_in_form.Web_url != "" %}
-<div><a class ='link_button' href= "{{display_field_in_form.Web_url}}">Website</a> </div>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "{{display_field_in_form.Web_url}}">Website</a></li>
+		</ul>
+	 </div>
 {% endif %}
 
 
-
-<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email_address }}">Work Email </a></div>
+{% if display_field_in_form.Email_address != "" %}
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "mailto:{{display_field_in_form.Email_address }}">Work Email </a></li>
+		</ul>
+	 </div>
 {% endif %}
 
 {% if display_field_in_form.Email2 != "" %}
-<div><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}">Home Email </a> </div>
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "mailto:{{display_field_in_form.Email2 }}">Home Email </a></li>
+		</ul>
+	 </div>
 {% endif %}
 </div>
 

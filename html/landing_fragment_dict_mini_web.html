@@ -10,6 +10,15 @@
 
 {% endblock %}
 
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+<div class ="img_wrapper"> 
+<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " alt="{{display_field_in_form.Sparebusiness1}}" title = "{{display_field_in_form.Persontitle}} {{display_field_in_form.First_Name}} {{display_field_in_form.Middle_Name}} {{display_field_in_form.Last_Name}} " />
+</div></div>
+{% endif %}
+
+
+
 
 <div class="black-menu">
 	<ul class = "nav">
