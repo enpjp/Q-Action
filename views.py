@@ -1189,6 +1189,64 @@ class my_account(webapp.RequestHandler):
 #class create_png_image(webapp.RequestHandler):
 #    def get(self):
 
+#create a QR code image to display
+
+class display_qr_image(webapp.RequestHandler):
+  def get(self):
+	full_url=self.request.url
+	domain = set_domain(full_url)
+	#Parse the url string...
+	my_query_string = self.request.query
+	#my_url = self.url
+	#domain = set_domain(my_url)	
+	#my_query_urlparse = cgi.parse_qs(my_url)
+	my_query_urlparse = cgi.parse_qs(my_query_string)
+
+	if "code" in my_query_urlparse:
+		qr_code_value = my_query_urlparse["code"]
+		qr_code = qr_code_value[0]
+
+	else:
+		qr_code = "not_found"
+
+	my_qr_data = "%s/%s" % (domain, qr_code)
+	my_png_recode = make_qr_image(my_qr_data)
+
+    # serialize to HTTP response)
+	self.response.headers['Content-Type'] = "text/html"
+
+	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
+
+	self.response.out.write(img_tag_recode)
+	#buf.close()
+	return
+
+#create a QR code image to download
+class get_qr_image(webapp.RequestHandler):
+  def get(self):
+
+	full_url=self.request.url
+	domain = set_domain(full_url)
+	#Parse the url string...
+	my_query_string = self.request.query
+
+	my_query_urlparse = cgi.parse_qs(my_query_string)
+
+	if "code" in my_query_urlparse:
+		qr_code_value = my_query_urlparse["code"]
+		qr_code = qr_code_value[0]
+
+	else:
+		qr_code = "noy_found"
+
+	my_qr_data = "%s/%s" % (domain, qr_code)
+	my_png_recode = make_png_qr_image(self,my_qr_data)
+	self.response.headers['Content-Type'] = "application/octet-stream"	
+
+	self.response.out.write(my_png_recode)
+	#buf.close()
+	return
+
 
 
 ############################################################################################
@@ -1478,69 +1536,6 @@ def get_a_record_from_key(self, arg_my_key):
 		return template_values
 
 
-#create a QR code image to download
-def get_qr_image(self):
-	#Parse the url string...
-
-	my_url = self.url
-	domain = set_domain(my_url)	
-	my_query_urlparse = cgi.parse_qs(my_url)
-
-	if "qr_code" in my_query_urlparse:
-		qr_code_value = my_query_urlparse["qr_code"]
-		qr_code = qr_code_value[0]
-
-	else:
-		qr_code = ""
-
-	my_qr_data = "%s%s" % (domain, qr_code)
-	my_png_recode = make_png_qr_image(my_qr_data)
-
-    # serialize to HTTP response)
-	#self.response.headers['Content-Type'] = "text/html"
-	self.response.headers['Content-Type'] = "application/octet-stream"	
-	#self.response.headers['Content-Type'] = "image/png"	
-	#buf= StringIO.StringIO()
-	#my_qr_code.save(buf, format= 'PNG')
-	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
-	#img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
-	#img_tag_recode = "data:image/png;base64,%s" % my_png_recode
-	#img_tag_recode = my_qr_code_dict['img_tag_recode']
-	self.response.out.write(my_png_recode)
-	#buf.close()
-	return
-
-#create a QR code image to display
-def display_qr_image(self):
-	#Parse the url string...
-
-	my_url = self.url
-	domain = set_domain(my_url)	
-	my_query_urlparse = cgi.parse_qs(my_url)
-
-	if "qr_code" in my_query_urlparse:
-		qr_code_value = my_query_urlparse["qr_code"]
-		qr_code = qr_code_value[0]
-
-	else:
-		qr_code = ""
-
-	my_qr_data = "%s%s" % (domain, qr_code)
-	my_png_recode = make_qr_image(my_qr_data)
-
-    # serialize to HTTP response)
-	self.response.headers['Content-Type'] = "text/html"
-	#self.response.headers['Content-Type'] = "application/octet-stream"	
-	#self.response.headers['Content-Type'] = "image/png"	
-	#buf= StringIO.StringIO()
-	#my_png_recode.save(buf, format= 'PNG')
-	#my_png_recode = buf.getvalue().encode('base64').replace('\n', '')
-	img_tag_recode = '<img src="data:image/png;base64,%s"/>' % my_png_recode
-	#img_tag_recode = "data:image/png;base64,%s" % my_png_recode
-	#img_tag_recode = my_qr_code_dict['img_tag_recode']
-	self.response.out.write(img_tag_recode)
-	#buf.close()
-	return
 
 
 
@@ -1569,8 +1564,8 @@ def make_qr_image(my_qr_data):
 
 
 #create a QR png code image
-def make_png_qr_image(my_qr_data):
-	my_qr_code_dict = {}
+def make_png_qr_image(self,my_qr_data):
+	#my_qr_code_dict = {}
 	qr = qrcode.QRCode(version=1,error_correction= 2, box_size=10,)
     	qr.add_data("%s" % (my_qr_data))
     	qr.make(fit=True)			
