@@ -8,7 +8,7 @@ libraries:
 - name: PIL
   version: latest
 - name: django
-  version: 1.3
+  version: 1.4
 
 
 builtins:
@@ -20,6 +20,15 @@ handlers:
 
 - url: /javascript
   static_dir: javascript
+
+- url: /favicon\.ico
+  static_files: /images/favicon.ico
+  upload: static/images/favicon\.ico
+
+- url: /apple-touch-icon*\.png
+  static_files: /images/apple-touch-icon*\.png
+  upload: /images/apple-touch-icon*\.png
+
 
 - url: /images
   static_dir: images
