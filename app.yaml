@@ -1,5 +1,5 @@
 application: q-action
-version: version-1-3
+version: version-1-4
 runtime: python27
 api_version: 1
 threadsafe: false
@@ -8,7 +8,7 @@ libraries:
 - name: PIL
   version: latest
 - name: django
-  version: 1.4
+  version: 1.3
 
 
 builtins:
@@ -22,13 +22,20 @@ handlers:
   static_dir: javascript
 
 - url: /favicon\.ico
-  static_files: /images/favicon.ico
+  static_files: static/images/favicon.ico
   upload: static/images/favicon\.ico
 
-- url: /apple-touch-icon*\.png
-  static_files: /images/apple-touch-icon*\.png
-  upload: /images/apple-touch-icon*\.png
+- url: /apple-touch-icon-114x114-precomposed\.png
+  static_files: static/images/apple-touch-icon-72x72-precomposed.png
+  upload: static/images/apple-touch-icon-72x72-precomposed\.png
 
+- url: /apple-touch-icon-72x72-precomposed\.png
+  static_files: static/images/apple-touch-icon-72x72-precomposed.png
+  upload: static/images/apple-touch-icon-72x72-precomposed\.png
+
+- url: /apple-touch-icon-57x57-precomposed\.png
+  static_files: static/images/apple-touch-icon-72x72-precomposed.png
+  upload: static/images/apple-touch-icon-72x72-precomposed\.png
 
 - url: /images
   static_dir: images
