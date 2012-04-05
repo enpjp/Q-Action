@@ -1,22 +1,80 @@
-{% for  value in edit_field_in_form  %}
-	{% if value.2 != "" %}
-		{% if value.0 != "Card Title" %}
-			{% if value.1 != "LabelID" and value.1 != "scan_counter" and value.1 != "Web_url" %}
+<!--
+	Offer_list = [	
+		['Cardtitle', 'Card Title'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Make' , 'Item make'],
+		['Type' , 'Item model'],
+		['Offers' , 'Offer'],
+		['Text_message' , 'Description'],
+		['Web_url' , 'Buy now button'],
+		['scan_counter' , "Scan counter" ],
+		['LabelID' , 'Label for MiniWeb button'],
+		#['LabelID' , 'Label to print with code'],
+		#['Spareoffer1' , '(None - spare field)'],
+		#['Spareoffer2' , '(None - spare field)']
+		]
 
-			<div> <div class = 'value'>{{ value.2 }} </div></div>
 
-			{% endif %}
-		{% endif %}
-	{% endif %}
-{% if value.1 in field_widget %}
-	{% if value.4 == "url_link" %}
-<div class="black-menu">
-	<ul class = "nav">
-<li><a class ='link_button' href= "{{  value.2 }}"> {{  value.5 }}</a></li>
+-->
 
+
+{% block head_tags_extra %}<meta name="description" content="Q-Action: Offer card." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
+
+
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+	<div class ="img_wrapper"> 
+	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "Offer card image " alt="Offer card image " />
+	</div>
+</div>
+{% endif %}
+
+<div class ="container">
+{% if display_field_in_form.Make != "" %}
+<div>
+	<div class = "field_label">Make:</div>{{display_field_in_form.Make }}
+</div>
+{% endif %}
+
+
+{% if display_field_in_form.Type != "" %}
+<div>
+	<div class = "field_label">Model:</div>{{display_field_in_form.Type }}
+</div>
+{% endif %}
+
+{% if display_field_in_form.Offers != "" %}
+<div>
+	<div class = "field_label">Offer:</div>{{display_field_in_form.Offers }}
+</div>
+{% endif %}
+
+
+{% if display_field_in_form.Text_message != "" %}
+<div>
+	<div class = "field_label">Description:</div>{{display_field_in_form.Text_message }}
+</div>
+{% endif %}
+
+
+{% if display_field_in_form.Web_url != "" %}
+	<div class="black-menu">
+		<ul class = "nav">
+		<li><a class ='link_button' href= "{{display_field_in_form.Web_url}}">Buy now</a></li>
 		</ul>
 	 </div>
-	{% endif %}{% endif %}
-{% endfor %}
+{% endif %}
 
+
+</div>
 
