@@ -114,7 +114,7 @@ class HomePage(webapp.RequestHandler):
 	    user_nickname_or_url = """<a class= "login" href="%s">Login or Register</a>""" % login_url
 
 ## end user control ---------------------------------------------------------------
-	pageTitle= 'Home'
+	pageTitle= 'Q-Action'
 
         template_values = {
 	#	'my_qr_code': my_qr_code,
