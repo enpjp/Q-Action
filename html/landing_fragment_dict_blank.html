@@ -1,10 +1,44 @@
+<!--
+		['Cardtitle', 'Card Title'],
+		#['Reminderdate' , 'Remind me to update this card on'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Text_message' , 'Message'],
+		['LabelID' , 'Label for MiniWeb button'],
+		['scan_counter' , "Scan counter" ],
+		#['LabelID' , 'Label to print with code'],
+		#['Spareblank1' , '(None - spare field)'],
+		#['Spareblank2' , '(None - spare field)'],
+-->
 
-{% if my_place.Text_message != "" %}
-<div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div>
+
+{% block head_tags_extra %}<meta name="description" content="Q-Action: Offer card." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
+
+
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+	<div class ="img_wrapper"> 
+	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "Offer card image " alt="Offer card image " />
+	</div>
+</div>
 {% endif %}
 
+<div class ="container">
+{% if display_field_in_form.Text_message != "" %}
+<div>
+<!--	<div class = "field_label">Description:</div> -->
+{{display_field_in_form.Text_message }}
+</div>
+{% endif %}
 
-
-
-
+</div>
 
