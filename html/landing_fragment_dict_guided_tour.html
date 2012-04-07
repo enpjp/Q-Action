@@ -1,23 +1,40 @@
+{% block head_tags_extra %}<meta name="description" content="Q-Action: Guided Tour card." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
+
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+	<div class ="img_wrapper"> 
+	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "User chosen image image " alt="User chosen image " />
+	</div>
+</div>
+{% endif %}
+
+
+<div class ="container">
 
 {% if my_place.Locationname != "" %}
 <div><div class = "field_label">Location:</div><div class = 'value'>{{my_place.Locationname}}</div></div>
 {% endif %}
 
-{% if my_place.Text_message != "" %}
-<div><div class = "field_label">Description:</div>
-<div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div></div>
-{% endif %}
 
 {% if my_place.Text_message != "" %}
 <div><div class = "field_label">Description:</div>
 <div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div></div>
 {% endif %}
-{{  page_title_lookup }}
+
 {% if my_place.Web_url != "" %}
 <div><div class = "field_label">Further Information:</div>
 <br /><div class = 'value'><a class ='link_button' href= "{{my_place.Web_url}}"> {{  page_title_lookup }}</a></div>
 {% endif %}
 
-
+</div>
 
 

@@ -1,22 +1,71 @@
-{% for  value in edit_field_in_form  %}
-	{% if value.2 != "" %}
-		{% if value.0 != "Card Title" %}
-			{% if value.1 != "LabelID" and value.1 != "scan_counter" and value.1 != "Web_url" %}
+<!--
+		['ItemID' , 'Stock number (eg. SKU or UPC)'],
+		['Make' , 'Make'],
+		['Type' , 'Model, type, colour'],
+		['Organisation' , 'Supplier'],
+		['Datecreated' , 'Date made'],
+		['Status' , 'Status (eg. reserved, sold, discontinued, damaged)'],
+		['Web_url' , 'Link to on-line catalogue or stock system'],
+		['Datesold' , 'Date sold'],
+		['Price1' , 'Cost price'],
+		['Price2' , 'Retail price'],
+		['Price3' , 'Discounted price'],
+		['Text_message' , 'Details'],
 
-			<div><div class = "field_label">{{value.0}}:</div> <div class = 'value'>{{ value.2 }} </div></div>
-
-			{% endif %}
-		{% endif %}
-	{% endif %}
-{% if value.1 in field_widget %}
-	{% if value.4 == "url_link" %}
-
-<div class = "field_label">{{value.0}}:</div>
-<div>External link: {{ value.2 }} </div>
-<a class ='link_button' href= "{{  value.2 }}"> {{  value.5 }}</a>
+-->
 
 
-	{% endif %}{% endif %}
-{% endfor %}
+<div class ="container">
 
+{% if my_place.ItemID != "" %}
+<div><div class = "field_label">Stock number:</div><div class = 'value'>{{my_place.ItemID}}</div></div>
+{% endif %}
+
+{% if my_place.Make != "" %}
+<div><div class = "field_label">Make:</div><div class = 'value'>{{my_place.Make}}</div></div>
+{% endif %}
+
+{% if my_place.Type != "" %}
+<div><div class = "field_label">Type:</div><div class = 'value'>{{my_place.Type}}</div></div>
+{% endif %}
+
+{% if my_place.Organisation != "" %}
+<div><div class = "field_label">Supplier:</div><div class = 'value'>{{my_place.Organisation}}</div></div>
+{% endif %}
+
+{% if my_place.Datecreated != "" %}
+<div><div class = "field_label">Date Made:</div><div class = 'value'>{{my_place.Datecreated}}</div></div>
+{% endif %}
+
+{% if my_place.Status != "" %}
+<div><div class = "field_label">Status:</div><div class = 'value'>{{my_place.Status}}</div></div>
+{% endif %}
+
+{% if my_place.Datesold != "" %}
+<div><div class = "field_label">Date Sold:</div><div class = 'value'>{{my_place.Datesold}}</div></div>
+{% endif %}
+
+{% if my_place.Price1 != "" %}
+<div><div class = "field_label">Cost Price:</div><div class = 'value'>{{my_place.Price1}}</div></div>
+{% endif %}
+
+{% if my_place.Price2 != "" %}
+<div><div class = "field_label">Retail Price:</div><div class = 'value'>{{my_place.Price2}}</div></div>
+{% endif %}
+
+{% if my_place.Price3 != "" %}
+<div><div class = "field_label">Discounted Price:</div><div class = 'value'>{{my_place.Price3}}</div></div>
+{% endif %}
+
+{% if my_place.Text_message != "" %}
+<div><div class = "field_label">Description:</div>
+<div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div></div>
+{% endif %}
+
+{% if my_place.Web_url != "" %}
+<div><div class = "field_label">Further Information:</div>
+<br /><div class = 'value'><a class ='link_button' href= "{{my_place.Web_url}}"> {{  page_title_lookup }}</a></div>
+{% endif %}
+
+</div>
 

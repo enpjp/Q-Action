@@ -12,7 +12,7 @@
 -->
 
 
-{% block head_tags_extra %}<meta name="description" content="Q-Action: Offer card." />
+{% block head_tags_extra %}<meta name="description" content="Q-Action: Blank card." />
  {% if display_field_in_form.Sparebusiness2 != ""  %}
 <style type="text/css">
    body {
@@ -27,7 +27,7 @@
 {% if display_field_in_form.Sparebusiness1 != ""  %}
 <div class ="container">
 	<div class ="img_wrapper"> 
-	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "Offer card image " alt="Offer card image " />
+	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "User chosen image image " alt="User chosen image " />
 	</div>
 </div>
 {% endif %}
@@ -36,7 +36,7 @@
 {% if display_field_in_form.Text_message != "" %}
 <div>
 <!--	<div class = "field_label">Description:</div> -->
-{{display_field_in_form.Text_message }}
+{% autoescape off %}{{display_field_in_form.Text_message }}{% endautoescape %}
 </div>
 {% endif %}
 

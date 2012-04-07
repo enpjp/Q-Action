@@ -1,9 +1,38 @@
-{% for  value in edit_field_in_form  %}
-	{% if value.2 != "" %}
-		{% if value.0 != "Card Title" %}
-			{% if value.1 != "LabelID" and value.1 != "scan_counter" %}
-			<div><div class = "field_label">{{value.0}}:</div> <div class = 'value'>{{ value.2 }} </div></div>
-			{% endif %}
-		{% endif %}
-	{% endif %}
-{% endfor %}
+<!--
+		['Cardtitle', 'Card Title'],
+		['Locationname' , 'You are here'],
+		['Latlong' , 'Co-ordinates'],
+		['W_address_Post_Code' , 'Satnav Post Code'],
+		['Text_message' , 'Information'],
+
+
+
+
+-->
+
+
+
+
+<div class ="container">
+{% if my_place.Locationname != "" %}
+<div><div class = "field_label">You are here:</div> <div class = 'value'>{{my_place.Locationname}}</div>
+{% endif %}
+
+{% if my_place.Locationname != "" %}
+<div><div class = "field_label">Co-ordinates:</div> <div class = 'value'>{{my_place.Latlong}}</div>
+{% endif %}
+
+{% if my_place.Locationname != "" %}
+<div><div class = "field_label">Satnav Post Code:</div> <div class = 'value'>{{my_place.W_address_Post_Code}}</div>
+{% endif %}
+
+
+
+{% if display_field_in_form.Text_message != "" %}
+<div><br/>
+<!--	<div class = "field_label">Description:</div> -->
+{% autoescape off %} {{display_field_in_form.Text_message }} {% endautoescape %}
+</div>
+{% endif %}
+
+</div>

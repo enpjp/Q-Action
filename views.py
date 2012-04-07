@@ -1241,8 +1241,8 @@ class get_qr_image(webapp.RequestHandler):
 
 	my_qr_data = "%s/%s" % (domain, qr_code)
 	my_png_recode = make_png_qr_image(self,my_qr_data)
-	self.response.headers['Content-Type'] = "application/octet-stream"	
-
+	#self.response.headers['Content-Type'] = "application/octet-stream"	
+	self.response.headers['Content-Type'] = "image/png"
 	self.response.out.write(my_png_recode)
 	#buf.close()
 	return

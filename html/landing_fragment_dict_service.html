@@ -1,22 +1,90 @@
-{% for  value in edit_field_in_form  %}
-	{% if value.2 != "" %}
-		{% if value.0 != "Card Title" %}
-			{% if value.1 != "LabelID" and value.1 != "scan_counter" and value.1 != "Web_url" %}
+<!--
+		['Make' , 'Product or service name'],
+		['Type' , 'Model or type'],
+		['Sparebusiness1' , 'Your photo. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Sparebusiness2' , 'Image for background. (Must begin with http:// or https:// and end with .png, jpg or jpeg)'],
+		['Datecreated' , 'Date made'],
+		['Datewarrexp' , 'Warranty ends'],
+		['Startdate' , 'Last service done'],
+		['Endate' , 'Next Service due'],
+		['Organisation' , 'Service organisation or engineer name'],
+		['Tel1' , 'Contact number'],
+		['Tel2' , 'Alternate number'],
+		['Email_address' , 'Contact email'],
+		['Web_url' , 'Contact web site'],
+		['LabelID' , 'Label for MiniWeb button and Contact web site button'],
+		['Text_message' , 'Description and notes'],
 
-			<div><div class = "field_label">{{value.0}}:</div> <div class = 'value'>{{ value.2 }} </div></div>
+-->
+{% block head_tags_extra %}<meta name="description" content="Q-Action: On-line business cards for everyone." />
+ {% if display_field_in_form.Sparebusiness2 != ""  %}
+<style type="text/css">
+   body {
+	background-image: url('{{Sparebusiness2}}');
+	background-repeat:no-repeat;
+}
+ </style>
+{% endif %}
+{% endblock %}
 
-			{% endif %}
-		{% endif %}
-	{% endif %}
-{% if value.1 in field_widget %}
-	{% if value.4 == "url_link" %}
+{% if display_field_in_form.Sparebusiness1 != ""  %}
+<div class ="container">
+	<div class ="img_wrapper"> 
+	<img class= "business_card_image" src="{{display_field_in_form.Sparebusiness1}}" title = "User chosen image image " alt="User chosen image " />
+	</div>
+</div>
+{% endif %}
 
-<div class = "field_label">{{value.0}}:</div>
-<div>External link: {{ value.2 }} </div>
-<a class ='link_button' href= "{{  value.2 }}"> {{  value.5 }}</a>
+<div class ="container">
+{% if my_place.Make != "" %}
+<div><div class = "field_label">Make:</div><div class = 'value'>{{my_place.Make}}</div></div>
+{% endif %}
+
+{% if my_place.Type != "" %}
+<div><div class = "field_label">Type:</div><div class = 'value'>{{my_place.Type}}</div></div>
+{% endif %}
+
+{% if my_place.Datecreated != "" %}
+<div><div class = "field_label">Date Made:</div><div class = 'value'>{{my_place.Datecreated}}</div></div>
+{% endif %}
+
+{% if my_place.Datewarrexp != "" %}
+<div><div class = "field_label">Warrenty Exp:</div><div class = 'value'>{{my_place.Datewarrexp}}</div></div>
+{% endif %}
+
+{% if my_place.Startdate != "" %}
+<div><div class = "field_label">Last Service:</div><div class = 'value'>{{my_place.Startdate}}</div></div>
+{% endif %}
+
+{% if my_place.Endate != "" %}
+<div><div class = "field_label">Next Service:</div><div class = 'value'>{{my_place.Endate}}</div></div>
+{% endif %}
+
+{% if my_place.Organisation != "" %}
+<div><div class = "field_label">Organisation:</div><div class = 'value'>{{my_place.Organisation}}</div></div>
+{% endif %}
+
+{% if my_place.Tel1 != "" %}
+<div><div class = "field_label">Contact Number:</div><div class = 'value'>{{my_place.Tel1}}</div></div>
+{% endif %}
+
+{% if my_place.Tel2 != "" %}
+<div><div class = "field_label">Alternate Number:</div><div class = 'value'>{{my_place.Tel2}}</div></div>
+{% endif %}
+
+{% if my_place.Email_address != "" %}
+<div><div class = "field_label">Email:</div><div class = 'value'>{{my_place.Email_address}}</div></div>
+{% endif %}
 
 
-	{% endif %}{% endif %}
-{% endfor %}
+{% if my_place.Text_message != "" %}
+<div><div class = "field_label">Description:</div>
+<div class = 'value'>{% autoescape off %} {{my_place.Text_message}} {% endautoescape %}</div></div>
+{% endif %}
 
+{% if my_place.Web_url != "" %}
+<div><div class = "field_label">Further Information:</div>
+<br /><div class = 'value'><a class ='link_button' href= "{{my_place.Web_url}}"> {{  page_title_lookup }}</a></div>
+{% endif %}
 
+</div>

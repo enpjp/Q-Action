@@ -62,7 +62,7 @@
 
 {% if display_field_in_form.Text_message != "" %}
 <div>
-	<div class = "field_label">Description:</div>{{display_field_in_form.Text_message }}
+	<div class = "field_label">Description:</div>{% autoescape off %}{{display_field_in_form.Text_message }} {% endautoescape %}
 </div>
 {% endif %}
 
