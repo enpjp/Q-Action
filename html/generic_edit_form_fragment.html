@@ -77,6 +77,9 @@
 		});state_changed();' /></div>
 	{% endif %}
 
+	{% if key.4 == "scan_counter" %}
+<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }}:</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();"  /><div>Insert zero to reset</div></div>
+	{% endif %}
 
 
 

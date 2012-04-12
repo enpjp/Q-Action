@@ -53,7 +53,7 @@
 
 {% if logon_message != "You will need to sign in with a valid gmail account to use this software." %}
 {% autoescape off %}	
-<div class="login">{{logon_message|fix_ampersands}} {{user_nickname_or_url|fix_ampersands}} <a class="login" href="{{logout_url|fix_ampersands}}">Logout</a><br />
+<div > {{logon_message|fix_ampersands}} <a class="link_text" href="/my_account.html">{{user_nickname_or_url|fix_ampersands}} </a><br />
 </div> {% endautoescape %}
 <!--	<div class="banner_image_small"></div> -->
 
