@@ -22,7 +22,7 @@ alt="Powered by Google App Engine" /></h1>{% endblock %}
 <p>You have {{ days_to_end_of_subscription }} days to the end of your current subscription. If you chose to upgrade now your enhancements will be added to your current subscription period. 
 </p>
 {% endif %}
-<p>We suggest that you first sign up for a free account. You can then create two Q-Action pages to test. When you want more pages you can upgrade at any time to one of the paid accounts and you will keep your pages and data. Unlike some of our competitors we do not host any third party advertisements as we do not like them either. So please, feel free to sign up and try out Q-Action without worry or obligation.</p>
+<p>We suggest that you first sign up for a free account. You can then create two Q-Action pages to test. When you want more pages you can upgrade at any time to one of the paid accounts and you will keep your pages and data. We don&apos;t carry advertising and we won&apos;t share your details. So please, feel free to sign up and try out Q-Action without worry or obligation.</p>
 
 
 {% if login_check == "False"  %}	
@@ -49,7 +49,7 @@ alt="Powered by Google App Engine" /></h1>{% endblock %}
 
 	<div class="black-menu">
 		<ul class = "nav">
-		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Get 1 year Free</a>{% endautoescape %}</li>
+		<li>{% autoescape off %}<a class="login" href="{{login_url|fix_ampersands}}">Free Subscription</a>{% endautoescape %}</li>
 		</ul>
 	 </div>
 
@@ -60,7 +60,7 @@ alt="Powered by Google App Engine" /></h1>{% endblock %}
 {% if login_check == "True"  %}	
 	<div class="black-menu">
 		<ul class = "nav">
-		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_free}}"> Get 1 year Free</a></li>
+		<li><a href="/subscribe/buy_subscription.html?key_value={{check_key_free}}">Free Subscription</a></li>
 		</ul>
 	 </div>
 {% endif %}

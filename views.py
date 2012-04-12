@@ -228,7 +228,8 @@ class InfoPage(webapp.RequestHandler):
 	"advert_service.html",
 	"advert_guided_tour.html",	
 	"advert_stock.html",
-	"advert_living_documents.html"
+	"advert_living_documents.html",
+	"how_to.html"
 
 	]
 	white_list = set(valid_list)
