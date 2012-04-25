@@ -94,7 +94,13 @@
 		{% else %}
 	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'> {{ key.0 }}:</div>
 	<input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />
-	<div> Card list sorted by this title</div></div>
+	<div> Hidden field to sort your cards. </div></div>
+
+<div class = 'field_left'>
+<p>The following fields will not appear if you leave them empty. </p>
+</div>
+
+
 		{% endif %}
 	{% else %}
 <div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />  
