@@ -13,54 +13,102 @@
 </div>
 {% endblock %}
 
-{% block page_heading %}<h2>Help with editing cards </h2>
+{% block page_heading %}<h2>Help for editing </h2>
 {% endblock %}
 
 {% block content %}
 <div class='anchor_menu'>
 <ul class='nav_faq'>
-<li><a href="#freetext">Free text field</a> </li>
+
+	<li><a href="#type">Select Card Type</a> </li>
+	<li><a href="#title">Card Title</a> </li>
+	<li><a href="#navbutton">Label for Navigation Button</a> </li>
+	<li><a href="#analytics">Web Analytics Code</a> </li>
+	<li><a href="#counter">Scan Counter</a> </li>
+	<li><a href="#photo">Your Photo</a> </li>
+	<li><a href="#background">Image for Background</a> </li>
+	<li><a href="#freetext">Free Text Fields</a> </li>
+	<li><a href="#target">Target Website</a> </li>
+	<li><a href="#buynow">Buy Now Button</a> </li>
+	<li><a href="#coordinates">Location Coordinates</a> </li>
+	<li><a href="#webpage">Select Mini Web Page</a> </li>
+
+
 </ul>
 </div>
-<h2><a id='freetext'> Free text field</a></h2>
-<p>Unlike most Q-Action text, which is formatted for you, this field's text you are free to format yourself, using web formatting commands. They look scary but are quite easy: just take a deep breath and follow the guidelines below.</p>
-<p>Each formatting command consists of some characters enclosed in angled brackets. You'll find these angled brackets hiding in your PC keyboard - probably bottom right, but phones don't usually have them at all so you may have to input them through a menu as special characters, or copy and paste them from this page.</p>
-<p>A formatting command looks like this &lt;h1&gt;. These are known as tags. Each format command has two tags, one to show where it starts, and one with a slash added to show where it stops. For example, to display a price in bold you might put &lt;strong&gt; &pound;9.99 &lt;/strong&gt; .</p>
-<p>The line break tag &lt;br /&gt; is a singleton as it is not really an on or off switch - it just starts a new line. You need to use this tag instead of pressing enter in the text editor. Although the enter key may appear to put your edited text on a new line, this won't be recognised by the user's browser.</p>
-<p>The commands you can use are: </p>
-<p>&lt;h1&gt; = start heading style 1</p>
-<p> &lt;/h1&gt; = end heading style 1</p>
-<p> &lt;h2&gt;  = start heading style 2</p>
-<p>&lt;/h2&gt; = end heading style 2</p>
-<p>&lt;strong&gt;  = switch on bold type</p>
-<p>&lt;/strong&gt; = switch off bold type</p>
-<p>&lt;br /&gt; = Line break (carriage return)</p>
-<p>If you are feeling adventurous you can create a bullet list. You have to start the list with the &lt;ul&gt; tag then start and end each line with the &lt;li&gt; and &lt;/li&gt; . Finally you end the list with &lt;/ul&gt;.</p>
-<p>Here is an example:</p>
-<h1>This text in the editor...</h1>
-<p> &lt;h1&gt;Corner Cafe&lt;/h1&gt; &lt;br /&gt; </p>
-<p>&lt;h2&gt;Offer of the week&lt;/h2&gt; &lt;br /&gt;  </p>
-<p>Buy one get &lt;strong&gt;two&lt;/strong&gt; free on the following: &lt;br /&gt;</p>
-<p> &lt;ul&gt; </p>
-<p>&lt;li&gt;Capuccino Grande&lt;/li&gt; </p>
-<p>&lt;li&gt;Skinny Latte&lt;/li&gt; </p>
-<p>&lt;li&gt;Americano&lt;/li&gt; </p>
-<p>&lt;/ul&gt; &lt;br /&gt; </p>
-<p>Offer ends Friday </p>
-<h1>...displays like this </h1>
-<h1>Corner Cafe</h1> <br />
-<h2>Offer of the week</h2> <br />
-Buy one get <strong>two</strong> free on the following: <br />
-<ul>
-<li>Capuccino Grande</li> 
-<li>Skinny Latte</li>
-<li>Americano</li>
-</ul>
 
-<br />
-Offer ends Friday
 
+<h2><a id='type'>Select Card Type</a></h2>
+<p>This pre-formats the card for a specific purpose. You can change type at any time. The Blank card gives you an unstructured page to lay out yourself.</p>
 
 <div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='title'>Card Title</a></h2>
+<p>A unique name you want to give this card for your own purposes. It will not appear to end users, but it will be used in the &lsquo;My Cards&rsquo; list which will be sorted alphabetically by this name.</span></b> </p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='navbutton'>Label for Navigation Button</a></h2>
+<p>This text will appear in this page's navigation button if you include it in a Q-Action mini-web site.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='analytics'>Web Analytics Code</a></h2>
+<p>The HTML code snippet for any web analytics service (eg. Google Analytics) that you use to track visitors. </p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='counter'>Scan Counter</a></h2>
+<p>Leave blank. This will automatically count visits to your action card, excluding ones you make while logged on. Put zero at any time to reset.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='photo'>Your Photo</a></h2>
+<p>Put the URL of an on-line photograph. For example one you have uploaded to Flickr, Picasa, Dropbox, or similar cloud-based photo or file storage. Minimising the photo size for web will help speed up your page. Put the full URL including http://</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='background'>Image for Background</a></h2>
+<p>Put the URL of an on-line image or graphic. For example one you have uploaded to Flickr, Picasa, Dropbox, or similar cloud-based photo or file storage. Minimising the image size for web will help speed up your page. Put the full URL including http://</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='freetext'>Free Text Fields</a></h2>
+<p>Write your text, then highlight portions that you want to format and click the formatting buttons.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='target'>Target Website</a></h2>
+<p>Put the full URL (including http:// or similar) of the site you want the user to be sent to.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='buynow'>Buy Now Button</a></h2>
+<p>Put the full URL of the item on your e-commerce site so that it takes the user directly to the specific product.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='coordinates'>Location Coordinates</a></h2>
+<p>Put the latitude and longitude or grid ref. For compatibility with future functionality we suggest the following format: 00.00N 000.00E (Note: degrees and decimal degrees, not degrees and minutes). We recommend WGS84 as the datum.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+<h2><a id='webpage'>Select Mini Web Page</a></h2>
+<p>The drop down boxes list the other pages you have created, using your titles, or the card ID if no title was given. By selecting a  page you make it a sub-page of your Mini Web Site. Each action page has a field called 'Label for Navigation Button' so you can specify what text will appear inside its navigation button. If you leave it blank it will use the card title. If that is blank it will use the card's system ID. </p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
+
 
 {% endblock %}

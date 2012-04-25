@@ -10,13 +10,125 @@
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
- </div>
+</div>
 {% endblock %}
 
-{% block page_heading %}<h2>How To</h2>{% endblock %}
+{% block page_heading %}<h2>How to...</h2>{% endblock %}
 
 {% block content %}
+<div class='anchor_menu'>
+<ul class='nav_faq'>
+<li><a href="#get_started">Get Started</a> </li>
+<li><a href="#create_edit">Create or edit pages</a> </li>
+<li><a href="#understand_qr">Understand Q-Action QR codes</a> </li>
+<li><a href="#print">Print a QR code</a> </li>
+<li><a href="#image">Include an image</a> </li>
+<li><a href="#mini_web">Build a mini-web site</a> </li>
+<li><a href="#multiple_cards">Make multiple cards</a> </li>
+<li><a href="#share_doc">Share documents music or video</a> </li>
+<li><a href="#other">Do other stuff</a> </li>
 
-<h4>write here!</h4>
+</ul>
+</div>
+
+<h2><a id='get_started'>
+Get Started
+</a></h2>
+
+<p>For both the paid and the free service you will need a Google or Gmail account because the Google App Engine looks after the identity, security, and payment for Q-Action. If you don't have a Google account, click on Login/Register and it will take you to a Google registration process - it's all free.</p> 
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='create_edit'>
+Create or edit pages
+</a></h2>
+
+<p>Once logged in, you can see the yellow 'My cards' button that takes you to a list of your pages. Click 'New Card' and then choose the type of card from the drop-down list. This will change the fields to appropriate ones. If you are not sure, then experiment as you can change the card type at any time - the QR code won't change. Then fill in the appropriate fields using the help text for guidance. Any fields you leave blank will not appear to the user.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='understand_qr'>
+Understand Q-Action QR codes
+</a></h2>
+
+<p>Each page or 'action card' that you create has a unique and permanent URL and associated QR code readable by any smart-phone or computer with a camera and QR reader app. The QR code takes the user to your action card page, or to where your action card says they should go. You can change the content or function of the action card and even change its type, but the URL and QR Code, which you may have put onto printed materials or signboards, remains the same.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='print'>
+Print a QR code
+</a></h2>
+
+<p>Click the 'View Card' button to see a preview of your card and its URL and QR code. The main ways of getting the image for printing are:</p>
+
+<ul>
+  <li>You can right click on the image and use 'copy' and 'paste'</li>
+  <li>You can right click on the image and use 'Save image as..' or similar command to save it to your computer/phone</li>
+  <li>You can click the 'Save QR code' button to save to your computer as a png image file </li>
+</ul>
+<p>You can then insert the file into a document or similar.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='image'>
+Include an image or background
+</a></h2>
+
+<p>Some action cards have fields where you can include a photograph image, which will be at the top of your page, or a background image. To do this you should put the image onto one of the hosting services. Make sure you have set the image share to 'public'. Copy the public link URL (most services provide you with an easy way to do this) and paste the URL into the action card image field. When you save and view the card the image should now appear.</p>
+<p>Tip: Try to reduce your image to a typical web size (say 20Kb - 50K) to speed your page's loading.</p>
+<p>Tip: See a list of <a class="link_text" href="http://en.wikipedia.org/wiki/List_of_photo_sharing_websites">image hosting services </a></p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='mini_web'>
+Build a mini-web site
+</a></h2>
+
+<p><p>You can link a number of Q-Action cards together using a Mini-web card as a 'home page'. This page will contain buttons linking to the sub-pages, which will also have a 'Back' button to return users to the navigation 'home page'.</p>
+
+<p>The first step is to create the pages of your web site as action cards. These can be a mix of any types of action card. If you use a 'Goto' card type to link to photo galleries, videos, on-line documents, and external web sites then you will not have a 'back' button, but the user can use their browser back button. Put the text that you want to appear in the navigation button for that page in the 'Label for mini-web button' field - if you don't do this, the system will use the card title.</p>
+
+<p>Next create a mini-web action card and choose the pages you want to include in your mini-web site from the drop-down list of existing pages. Finally, add some welcome text and an image if you wish.</p>
+
+<p>They can be used for promoting local services, such as the cafe just round the corner, with the added twist that you can promote specific offers that you can change as often as you want. They can be used to give site information and maps. Remember, you can put multiple copies of the same tag at different locations, or you can have several tags at one location, each showing different information.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='multiple_cards'>
+Make multiple cards
+</a></h2>
+
+<p>For card types such as business, membership, or stock, you may want to generate a lot of similar cards but each one unique. There are currently two steps to do this:</p>
+
+<blockquote>
+  <p>Create one card with the basic details and after saving it use the 'Copy' button to produce more cards with the same details. (We hope to soon make a widget to automatically generate a chosen number of cards.)</p>
+  <p>Under 'Expert Features' on the 'My Cards' page, download all your cards as a CSV file using the 'Download CSV file' button. This file can be read into a spreadsheet or database. It contains al the possible fields for all your cards. The unique details can then be inserted into the appropriate fields, often using copy/paste. Then use  'Upload CSV file' to insert the data into your cards.</p>
+</blockquote>
+<p>Tip: The field names in the CSV file are system names that are not easy to understand. Complete one card fully so that you can see which fields are which from the data in the downloaded CSV file.</p>
+
+<p>Tip: It is important not to change the column headers or the row headers as these identify to the system what goes where, so it won't upload without them. You can delete whole columns and whole rows.</p>
+
+<p>Tip: To make the Card Title for each card meaningful you can use a spreadsheet formula to reproduce or concatenate fields such as 'First name' and 'Last name'. Put the equals sign in the Title cell, then point to the cell you want to reproduce and hit enter, then copy and paste the formula into the other rows. For concatenation use the formula =A1&B1 to join fields A1 and B1. To insert a space would be =A1&" "&B1.</p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='share_doc'>
+Share documents music or video
+</a></h2>
+
+<p>A 'Goto' card directs the user to any web address you specify, so you can use any browser-based document viewing/editing service (Google Docs, Huddle, Office Web Apps) to show documents directly to users in their browser. Likewise any cloud-based file sharing (Google Drive, Dropbox, SugarSync) to enable users to download files or open them in a native application.</p> 
+<p>This technique can be used for many many purposes, such as sharing meeting agendas or minutes, duty rotas, monthly statistics, or providing sound (MP3) or video (MP4) files to create audio and video tours, or just for cool entertainment. See more ideas in our <a href="http://q-action.blogspot.co.uk/" title="Link to Tips and Wrinkles blog" target="_blank">blog</a></p> 
+
+<div><a class="top" href="#top">Top</a></div>
+
+<h2><a id='other'>
+Do other stuff
+</a></h2>
+
+<p>We are constantly updating our <a class="link_text" href="http://q-action.blogspot.co.uk/">blog</a> with new ideas for Q-Action and QR codes. Have a look and subscribe for updates. </p>
+
+<div><a class="top" href="#top">Top</a></div>
+
+
 
 {% endblock %}
