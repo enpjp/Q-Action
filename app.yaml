@@ -51,5 +51,8 @@ handlers:
 - url: ./info/.*
   script: main.py
 
+- url: ./help/.*
+  script: main.py
+
 - url: .*
   script: main.py
