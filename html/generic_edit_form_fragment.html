@@ -7,21 +7,21 @@
 
 {% if key.1 in field_widget %}
 	{% if key.4 == "url_link" %}
-<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }} (include http:// https:// etc.):</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();"  /></div>
+<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }} (include http:// https:// etc.):</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'   /></div>
 	{% endif %}
 
 
 
 	{% if key.4 == "Text_area" %}
 <div class='field' id='field_{{key.1}}' >
-<div class= "textarea_container"> <div class = 'field_description'>{{ key.0 }}: </div>  <textarea name="{{ key.1 }}"  id="{{ key.1 }}" rows="5" cols="30" onfocus= "state_changed();">{{ key.2 }}</textarea></div>
+<div class= "textarea_container"> <div class = 'field_description'>{{ key.0 }}: </div>  <textarea name="{{ key.1 }}"  id="{{ key.1 }}" rows="5" cols="30" >{{ key.2 }}</textarea></div>
 <!--<div>Use <a class="link_text" href="info/helpfields.html#freetext"> tags </a>to format text </div>--></div>
 	{% endif %}
 	
 {% if key.4 == "mini_web" %}
 <div class = 'field' id='field_{{key.1}}'>  
 		<div class = 'field_description'>Select Mini Web Page:</div>
-	<select name='{{ key.1 }}'  id='{{ key.1 }}' onfocus= "state_changed();" >
+	<select name='{{ key.1 }}'  id='{{ key.1 }}'  >
 
 	{% for page, value in mini_web_list.items %}
 	{% if Key_Name != page %}
@@ -78,7 +78,7 @@
 	{% endif %}
 
 	{% if key.4 == "scan_counter" %}
-<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }}:</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();"  /><div>Insert zero to reset</div></div>
+<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }}:</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'   /><div>Insert zero to reset</div></div>
 	{% endif %}
 
 
@@ -93,7 +93,7 @@
 		<input type='hidden' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' />
 		{% else %}
 	<div class='field {{ key.1 }}'id='field_{{key.1}}'><div class = 'field_description'> {{ key.0 }}:</div>
-	<input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />
+	<input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'  />
 	<div> Hidden field to sort your cards. </div></div>
 
 <div class = 'field_left'>
@@ -103,7 +103,7 @@
 
 		{% endif %}
 	{% else %}
-<div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41' onfocus= "state_changed();" />  
+<div class='field {{ key.1 }}'id='field_{{key.1}}'> <div class = 'field_description'>{{ key.0 }}:</div><input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'  />  
 
 {% if key.1  ==  "Auto_forward" %}
 	{% if Blacklist_status  !=  "ok" %}
@@ -126,8 +126,14 @@ Warning- Forwarding Visitors this web site may harm their computer. The location
 {% for key in hidden_edit_field_in_form %}
 <input type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = 
 {% if key.1  ==  "Sparegoto1" %}'{{ Blacklist_status }}'  
-{% else %}'{{ key.2 }}'{% endif %} size = '30' onfocus= "state_changed();" />
+{% else %}'{{ key.2 }}'{% endif %} size = '30'  />
 {% endfor %}
 </div>
 
+<script type="text/javascript">
+// jQuery('div').css("border","3px solid red");
+jQuery(':input').focus(function(){
+	state_changed();
+});//
+</script>
 
