@@ -4,17 +4,33 @@
 
 {% block logon %}{% endblock %}
 
-
 {% block main-menu %}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+ 
+	jQuery('.back').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+</script>
 <div class="main-menu">
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
 </div>
+<div class="black-menu">
+	<ul class = "nav">
+	<li><a class="back" href="#">Back</a></li>
+	</ul>
+</div>
+
 {% endblock %}
 
+{% block page_heading %}<h2><a id='target'>Target Website</a></h2>{% endblock %}
 
-<h2><a id='target'>Target Website</a></h2>
+{% block content %}
+
 <p>Put the full URL (including http:// or similar) of the site you want the user to be sent to.</p>
 
 

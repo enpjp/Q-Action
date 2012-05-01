@@ -6,15 +6,32 @@
 
 
 {% block main-menu %}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+ 
+	jQuery('.back').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+</script>
 <div class="main-menu">
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
 </div>
+<div class="black-menu">
+	<ul class = "nav">
+	<li><a class="back" href="#">Back</a></li>
+	</ul>
+</div>
+
 {% endblock %}
 
+{% block page_heading %}<h2><a id='type'>Select Card Type</a></h2>{% endblock %}
 
-<h2><a id='type'>Select Card Type</a></h2>
+{% block content %}
+
 <p>This pre-formats the card for a specific purpose. You can change type at any time. The Blank card gives you an unstructured page to lay out yourself.</p>
 
 

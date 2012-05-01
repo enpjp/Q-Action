@@ -6,17 +6,32 @@
 
 
 {% block main-menu %}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+ 
+	jQuery('.back').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+</script>
 <div class="main-menu">
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
 </div>
+<div class="black-menu">
+	<ul class = "nav">
+	<li><a class="back" href="#">Back</a></li>
+	</ul>
+</div>
+
 {% endblock %}
 
+{% block page_heading %}<h2><a id='coordinates'>Location Coordinates</a></h2>{% endblock %}
 
-<h2><a id='coordinates'>Location Coordinates</a></h2>
+{% block content %}
+
 <p>Put the latitude and longitude or grid ref. For compatibility with future functionality we suggest the following format: 00.00N 000.00E (Note: degrees and decimal degrees, not degrees and minutes). We recommend WGS84 as the datum.</p>
-
-
 
 {% endblock %}

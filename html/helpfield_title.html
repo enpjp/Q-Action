@@ -5,16 +5,33 @@
 {% block logon %}{% endblock %}
 
 
-{% block main-menu %}
+{{% block main-menu %}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+ 
+	jQuery('.back').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+</script>
 <div class="main-menu">
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
 </div>
+<div class="black-menu">
+	<ul class = "nav">
+	<li><a class="back" href="#">Back</a></li>
+	</ul>
+</div>
+
 {% endblock %}
+{% block page_heading %}<h2><a id='title'>Card Title</a></h2>{% endblock %}
+
+{% block content %}
 
 
-<h2><a id='title'>Card Title</a></h2>
 <p>A unique name you want to give this card for your own purposes. It will not appear to end users, but it will be used in the &lsquo;My Cards&rsquo; list which will be sorted alphabetically by this name.</span></b> </p>
 
 

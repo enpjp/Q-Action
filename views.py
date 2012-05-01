@@ -249,8 +249,23 @@ class InfoPage(webapp.RequestHandler):
 	"advert_guided_tour.html",	
 	"advert_stock.html",
 	"advert_living_documents.html",
-	"how_to.html"
+	"how_to.html",
+	'helpfield_type.html',
+	'helpfield_title.html',
+	'helpfield_photo.html',	
+	'helpfield_navbutton.html',
+	'helpfield_analytics.html',
+	'helpfield_counter.html',
+	'helpfield_background.html',
+	'helpfield_freetext.html',
+	'helpfield_target.html',
+	'helpfield_buynow.html',
+	'helpfield_coordinates.html',
+	'helpfield_webpage.html',
 
+
+
+	
 	]
 	white_list = set(valid_list)
 	path = os.path.join(os.path.dirname(__file__), 'html/%s' % my_clean_path)

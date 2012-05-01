@@ -33,7 +33,9 @@
 	{% endif %}
 	{% endfor %}
 	</select>
+<div class ='help_miniweb'></div>
 </div>
+
 {% endif %}
 {% if key.4 == "Date_field" %}
 <!-- 
@@ -78,7 +80,7 @@
 	{% endif %}
 
 	{% if key.4 == "scan_counter" %}
-<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }}:</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'   /><div>Insert zero to reset</div></div>
+<div class='field {{ key.1 }}' id='field_{{key.1}}' > <div class = 'field_description'> {{ key.0 }}:</div> <input class='{{ key.1 }}' type='{{ key.3 }}' name='{{ key.1 }}'  id='{{ key.1 }}' value = '{{ key.2 }}' size = '41'   /></div>
 	{% endif %}
 
 
@@ -135,5 +137,30 @@ Warning- Forwarding Visitors this web site may harm their computer. The location
 jQuery(':input').focus(function(){
 	state_changed();
 });//
+
+jQuery('#select_card_type').append('<div><a class="link_text" href = "/info/helpfield_type.html">help</a></div>'); // Card Type
+jQuery('#field_Cardtitle').append('<div><a class="link_text" href = "/info/helpfield_title.html">help</a></div>'); //Card Title
+jQuery('#field_Sparebusiness1').append('<div><a class="link_text" href = "/info/helpfield_photo.html">help</a></div>'); //Photo
+jQuery('#field_LabelID').append('<div><a class="link_text" href = "/info/helpfield_navbutton.html">help</a></div>'); //Navigation button
+jQuery('#field_Google_analytics').append('<div><a class="link_text" href = "/info/helpfield_analytics.html">help</a></div>'); //Analytics
+jQuery('#field_scan_counter').append('<div><a class="link_text" href = "/info/helpfield_counter.html">help</a></div>'); //Scan Counter
+jQuery('#field_Sparebusiness2').append('<div><a class="link_text" href = "/info/helpfield_background.html">help</a></div>'); //background
+jQuery('#field_Text_message').append('<div><a class="link_text" href = "/info/helpfield_freetext.html">help</a></div>'); //Free Text
+jQuery('#field_Web_url').append('<div><a class="link_text" href = "/info/helpfield_target.html">help</a></div>'); //Target Website
+jQuery('#field_URL2').append('<div><a class="link_text" href = "/info/helpfield_target.html">help</a></div>'); //Target Website
+//jQuery('#???????').append('<div><a class="link_text" href = "/info/helpfield_target.html">help</a></div>'); //Buy Now
+jQuery('#field_Latlong').append('<div><a class="link_text" href = "/info/helpfield_coordinates.html">help</a></div>'); //Coordinates
+jQuery('.help_miniweb').append('<div><a class="link_text" href = "/info/helpfield_webpage.html">help</a></div>'); //Webpage
+
+jQuery('.ui-btn-back').live('tap',function() {
+  history.back(); return false;
+}).live('click',function() {
+  return false;
+});
+
+
 </script>
+
+
+
 

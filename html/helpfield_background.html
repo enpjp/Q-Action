@@ -6,15 +6,33 @@
 
 
 {% block main-menu %}
+<script type="text/javascript">
+jQuery(document).ready(function(){
+ 
+	jQuery('.back').click(function(){
+		parent.history.back();
+		return false;
+	});
+});
+</script>
 <div class="main-menu">
 	<ul class = "nav">
 	<li><a href="/">Home</a></li>
 	</ul>
 </div>
-{% endblock %}
+<div class="black-menu">
+	<ul class = "nav">
+	<li><a class="back" href="#">Back</a></li>
+	</ul>
+</div>
+
+{% endblock %}}
+
+{% block page_heading %}<h2><a id='background'>Image for Background</a></h2>{% endblock %}
+
+{% block content %}
 
 
-<h2><a id='background'>Image for Background</a></h2>
 <p>Put the URL of an on-line image or graphic. For example one you have uploaded to Flickr, Picasa, Dropbox, or similar cloud-based photo or file storage. Minimising the image size for web will help speed up your page. Put the full URL including http://</p>
 
 
