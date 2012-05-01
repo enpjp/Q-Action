@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ pageTitle }}{% endblock %}
+
+{% block logon %}{% endblock %}
+
+
+{% block main-menu %}
+<div class="main-menu">
+	<ul class = "nav">
+	<li><a href="/">Home</a></li>
+	</ul>
+</div>
+{% endblock %}
+
+
+<h2><a id='webpage'>Select Mini Web Page</a></h2>
+<p>The drop down boxes list the other pages you have created, using your titles, or the card ID if no title was given. By selecting a  page you make it a sub-page of your Mini Web Site. Each action page has a field called 'Label for Navigation Button' so you can specify what text will appear inside its navigation button. If you leave it blank it will use the card title. If that is blank it will use the card's system ID. </p>
+
+
+{% endblock %}
