@@ -58,6 +58,7 @@ def main():
 					('/update_contact.html', update_contact),
 					('/my_account.html', my_account),	
 					('/info/.*.html', InfoPage),
+					('/help/.*.html', InfoPage),
 					('/download.csv', download_csv_files),	
 					('/choose.html', ChooseFileToUpload),
 					('/upload.html', PostToDatabase_V1),

@@ -155,6 +155,25 @@ class InfoPage(webapp.RequestHandler):
 	# trim off the leading slash and info.
 	my_clean_path = my_path[6:len(my_path)]	
 
+	#Adding a back button query to info and help cards so a back button link can be offered
+	my_query = self.request.query
+	my_query_urlparse = cgi.parse_qs(my_query)
+
+	if "back_button" in my_query_urlparse:
+		back_button_value = my_query_urlparse["back_button"]
+		back_button = back_button_value[0]
+
+	else:
+		back_button = ""
+	# This is set up user scanning while elimiating self scans
+	# Will be included on the card list page.
+
+
+
+
+
+
+
 	pageTitle= my_clean_path[0:(len(my_clean_path))]
 	#Set some values that are used in the subscription process
 	#Some might be useful on other pages too.
@@ -200,9 +219,10 @@ class InfoPage(webapp.RequestHandler):
 		'logout_url' : logout_url,
 		'logon_message' : logon_message,
 		'user_nickname_or_url' : user_nickname_or_url,
-
+		'back_button' : back_button,
             	'pageTitle': pageTitle,          
         }
+
 
 	# We need a white list to control the valid info pages
 	valid_list = ["what_can_it_do.html",
